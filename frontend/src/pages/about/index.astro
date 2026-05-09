@@ -1,273 +1,187 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import { generateOrganizationSchema } from '@/lib/schema';
+
+const organizationSchema = generateOrganizationSchema();
 ---
 
-<Layout title="About Us - B2Bbaby" description="Professional baby products manufacturer and sourcing expert from China with 15+ years experience.">
-  <section class="bg-gradient-to-r from-blue-50 to-indigo-50 py-16">
-    <div class="container mx-auto px-6">
-      <h1 class="text-4xl font-bold text-center mb-4">About B2Bbaby</h1>
-      <p class="text-xl text-neutral-600 text-center max-w-3xl mx-auto">
-        Your trusted partner for certified baby products from China. 15+ years of experience serving brands worldwide.
-      </p>
+<Layout title="About Us - B2Bbaby | 15+ Years Baby Product Manufacturing Experience" description="Professional baby products manufacturer and sourcing expert from China with 15+ years experience, serving 30+ countries worldwide.">
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+  
+  <section class="bg-gradient-to-r from-blue-50 to-indigo-50 py-10 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center">
+        <span class="inline-block bg-white/80 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-medium text-blue-700 mb-4">
+          About Us
+        </span>
+        <h1 class="text-3xl md:text-5xl font-bold text-neutral-900 mb-4">About B2Bbaby</h1>
+        <p class="text-base md:text-lg text-neutral-600 max-w-3xl mx-auto">
+          Your trusted partner for certified baby products from China. 15+ years of experience serving brands worldwide.
+        </p>
+      </div>
     </div>
   </section>
 
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-6">
+  <section class="py-12 md:py-20 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
       <div class="max-w-5xl mx-auto">
         <article class="mb-16">
-          <h2 class="text-2xl font-bold mb-6">Our Story</h2>
+          <h2 class="text-xl md:text-2xl font-bold text-neutral-900 mb-6">Our Story</h2>
           <div class="grid md:grid-cols-2 gap-8 items-center">
             <div class="space-y-4">
-              <p class="text-neutral-600 leading-relaxed">
+              <p class="text-neutral-600 text-sm md:text-base leading-relaxed">
                 Founded in 2010 with a mission to provide high-quality, safe baby products to the global market, 
                 we have grown into a trusted manufacturer and sourcing partner for brands worldwide.
               </p>
-              <p class="text-neutral-600 leading-relaxed">
+              <p class="text-neutral-600 text-sm md:text-base leading-relaxed">
                 With <strong>15+ years of experience</strong> in the baby products industry, we understand the importance of 
                 safety, quality, and reliability. Every product we produce goes through rigorous quality 
                 control and meets international safety standards.
               </p>
               <div class="grid grid-cols-3 gap-4 mt-6">
-                <div class="text-center p-4 bg-blue-50 rounded-lg">
-                  <div class="text-3xl font-bold text-blue-600">200+</div>
-                  <div class="text-sm text-neutral-600">Staff</div>
+                <div class="text-center p-4 bg-blue-50 rounded-xl">
+                  <div class="text-2xl md:text-3xl font-bold text-blue-600">200+</div>
+                  <div class="text-xs md:text-sm text-neutral-600 mt-1">Staff</div>
                 </div>
-                <div class="text-center p-4 bg-blue-50 rounded-lg">
-                  <div class="text-3xl font-bold text-blue-600">10,000</div>
-                  <div class="text-sm text-neutral-600">sqm Factory</div>
+                <div class="text-center p-4 bg-blue-50 rounded-xl">
+                  <div class="text-2xl md:text-3xl font-bold text-blue-600">10,000</div>
+                  <div class="text-xs md:text-sm text-neutral-600 mt-1">sqm Factory</div>
                 </div>
-                <div class="text-center p-4 bg-blue-50 rounded-lg">
-                  <div class="text-3xl font-bold text-blue-600">30+</div>
-                  <div class="text-sm text-neutral-600">Countries Served</div>
+                <div class="text-center p-4 bg-blue-50 rounded-xl">
+                  <div class="text-2xl md:text-3xl font-bold text-blue-600">30+</div>
+                  <div class="text-xs md:text-sm text-neutral-600 mt-1">Countries Served</div>
                 </div>
               </div>
             </div>
-            <div class="h-80 rounded-xl overflow-hidden shadow-lg">
+            <div class="h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg">
               <img 
                 src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20product%20showroom%20display%2C%20sample%20exhibition%20room%2C%20strollers%20safety%20gates%20high%20chairs%20on%20display%2C%20modern%20showroom&image_size=landscape_4_3"
                 alt="B2Bbaby product showroom"
                 class="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
           </div>
         </article>
 
         <article class="mb-16">
-          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 border border-blue-100">
-            <h2 class="text-2xl font-bold mb-6">Our Core Values</h2>
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 md:p-8 border border-blue-100">
+            <h2 class="text-xl md:text-2xl font-bold text-neutral-900 mb-6">Our Core Values</h2>
             <div class="grid md:grid-cols-3 gap-6">
-              <div class="text-center p-6 bg-white rounded-lg shadow-sm">
-                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
+              {[
+                {
+                  icon: 'shield',
+                  title: 'Safety First',
+                  desc: 'Products meet and exceed international safety standards including ASTM, EN, and CPC requirements',
+                  color: 'blue'
+                },
+                {
+                  icon: 'check-circle',
+                  title: 'Quality Commitment',
+                  desc: 'Rigorous QC at every stage of production - from raw materials to final packaging',
+                  color: 'green'
+                },
+                {
+                  icon: 'users',
+                  title: 'Partner Success',
+                  desc: 'Your success is our priority - we work closely with you to ensure market success',
+                  color: 'purple'
+                }
+              ].map((item) => (
+                <div key={item.title} class="text-center p-6 bg-white rounded-xl shadow-sm">
+                  <div className={`w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                    item.color === 'blue' ? 'bg-blue-100 text-blue-600' :
+                    item.color === 'green' ? 'bg-green-100 text-green-600' :
+                    'bg-purple-100 text-purple-600'
+                  }`}>
+                    {item.icon === 'shield' && (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    )}
+                    {item.icon === 'check-circle' && (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )}
+                    {item.icon === 'users' && (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    )}
+                  </div>
+                  <h3 class="font-semibold text-lg mb-2">{item.title}</h3>
+                  <p class="text-sm text-neutral-600">{item.desc}</p>
                 </div>
-                <h3 class="font-semibold mb-2 text-lg">Safety First</h3>
-                <p class="text-sm text-neutral-600">Products meet and exceed international safety standards including ASTM, EN, and CPC requirements</p>
-              </div>
-              <div class="text-center p-6 bg-white rounded-lg shadow-sm">
-                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                  </svg>
-                </div>
-                <h3 class="font-semibold mb-2 text-lg">Quality Commitment</h3>
-                <p class="text-sm text-neutral-600">Rigorous QC at every stage of production - from raw materials to final packaging</p>
-              </div>
-              <div class="text-center p-6 bg-white rounded-lg shadow-sm">
-                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <h3 class="font-semibold mb-2 text-lg">Partner Success</h3>
-                <p class="text-sm text-neutral-600">Your success is our priority - we work closely with you to ensure market success</p>
-              </div>
+              ))}
             </div>
           </div>
         </article>
 
         <article class="mb-16">
-          <h2 class="text-2xl font-bold mb-6">Export Markets Served</h2>
-          <p class="text-neutral-600 mb-6">We proudly serve brands across the globe with proven track record:</p>
+          <h2 class="text-xl md:text-2xl font-bold text-neutral-900 mb-6">Export Markets Served</h2>
+          <p class="text-neutral-600 text-sm md:text-base mb-6">We proudly serve brands across the globe with proven track record:</p>
           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
-              <h3 class="font-bold mb-3 text-blue-800">North America</h3>
-              <ul class="text-sm text-neutral-600 space-y-2">
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  United States
-                </li>
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Canada
-                </li>
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Mexico
-                </li>
-              </ul>
-            </div>
-            <div class="bg-green-50 p-6 rounded-xl border border-green-100">
-              <h3 class="font-bold mb-3 text-green-800">Western Europe</h3>
-              <ul class="text-sm text-neutral-600 space-y-2">
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Germany
-                </li>
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  United Kingdom
-                </li>
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  France, Netherlands
-                </li>
-              </ul>
-            </div>
-            <div class="bg-purple-50 p-6 rounded-xl border border-purple-100">
-              <h3 class="font-bold mb-3 text-purple-800">Oceania</h3>
-              <ul class="text-sm text-neutral-600 space-y-2">
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Australia
-                </li>
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  New Zealand
-                </li>
-              </ul>
-            </div>
-            <div class="bg-orange-50 p-6 rounded-xl border border-orange-100">
-              <h3 class="font-bold mb-3 text-orange-800">Asia-Pacific</h3>
-              <ul class="text-sm text-neutral-600 space-y-2">
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Japan
-                </li>
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  South Korea
-                </li>
-                <li class="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  Singapore
-                </li>
-              </ul>
-            </div>
+            {[
+              { region: 'North America', countries: ['United States', 'Canada', 'Mexico'], color: 'blue' },
+              { region: 'Western Europe', countries: ['Germany', 'United Kingdom', 'France, Netherlands'], color: 'green' },
+              { region: 'Oceania', countries: ['Australia', 'New Zealand'], color: 'purple' },
+              { region: 'Asia-Pacific', countries: ['Japan', 'South Korea', 'Singapore'], color: 'orange' }
+            ].map((item) => (
+              <div key={item.region} className={`p-6 rounded-2xl border ${
+                item.color === 'blue' ? 'bg-blue-50 border-blue-200' :
+                item.color === 'green' ? 'bg-green-50 border-green-200' :
+                item.color === 'purple' ? 'bg-purple-50 border-purple-200' :
+                'bg-orange-50 border-orange-200'
+              }`}>
+                <h3 className={`font-bold mb-3 ${
+                  item.color === 'blue' ? 'text-blue-800' :
+                  item.color === 'green' ? 'text-green-800' :
+                  item.color === 'purple' ? 'text-purple-800' :
+                  'text-orange-800'
+                }`}>{item.region}</h3>
+                <ul className="text-sm text-neutral-600 space-y-2">
+                  {item.countries.map(country => (
+                    <li key={country} className="flex items-center gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" className="text-green-500">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      {country}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </article>
 
         <article class="mb-16">
-          <h2 class="text-2xl font-bold mb-6">Certifications & Audit Reports</h2>
+          <h2 class="text-xl md:text-2xl font-bold text-neutral-900 mb-6">Certifications & Audit Reports</h2>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-neutral-200">
-              <div class="h-40 overflow-hidden bg-neutral-100">
-                <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=ISO%209001%20certificate%20document%2C%20official%20quality%20management%20system%20certification&image_size=landscape_4_3"
-                  alt="ISO 9001 Certificate"
-                  class="w-full h-full object-cover"
-                />
+            {[
+              { name: 'ISO 9001:2015', cert: 'CN-123456-QMS', valid: 'Valid until 2028-05' },
+              { name: 'CE Marking', cert: 'BGP-CE-2026-001', valid: 'Verified 2026-03' },
+              { name: 'CPC', cert: 'CPC-BGP-ST-2026', valid: 'Verified 2026-02' },
+              { name: 'BSCI', cert: 'BSCI-12345678', valid: 'Audit score: A' },
+              { name: 'Sedex', cert: 'SMETA-2026-045', valid: '2026 Full Audit' },
+              { name: 'Disney FAMA', cert: 'FAMA-BGP-2026', valid: 'Available on request' }
+            ].map((item, idx) => (
+              <div key={idx} class="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
+                <div class="h-32 overflow-hidden bg-neutral-100">
+                  <img 
+                    src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=certificate%20document%2C%20official%20quality%20certification%2C%20professional%20document&image_size=landscape_4_3"
+                    alt={item.name}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="font-bold text-lg text-neutral-900 mb-1">{item.name}</h3>
+                  <p class="text-sm text-neutral-600">Cert #: {item.cert}</p>
+                  <p class="text-xs text-neutral-500">{item.valid}</p>
+                </div>
               </div>
-              <div class="p-4">
-                <h3 class="font-bold text-lg text-neutral-900 mb-1">ISO 9001:2015</h3>
-                <p class="text-sm text-neutral-600">Cert #: CN-123456-QMS</p>
-                <p class="text-sm text-neutral-500">Valid until 2028-05</p>
-              </div>
-            </div>
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-neutral-200">
-              <div class="h-40 overflow-hidden bg-neutral-100">
-                <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=CE%20certification%20mark%20on%20baby%20product%2C%20EU%20conformity%20certificate&image_size=landscape_4_3"
-                  alt="CE Certificate"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div class="p-4">
-                <h3 class="font-bold text-lg text-neutral-900 mb-1">CE Marking</h3>
-                <p class="text-sm text-neutral-600">Cert #: BGP-CE-2026-001</p>
-                <p class="text-sm text-neutral-500">Verified 2026-03</p>
-              </div>
-            </div>
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-neutral-200">
-              <div class="h-40 overflow-hidden bg-neutral-100">
-                <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=CPC%20certificate%20document%2C%20US%20CPSC%20children%20product%20certificate&image_size=landscape_4_3"
-                  alt="CPC Certificate"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div class="p-4">
-                <h3 class="font-bold text-lg text-neutral-900 mb-1">CPC</h3>
-                <p class="text-sm text-neutral-600">Cert #: CPC-BGP-ST-2026</p>
-                <p class="text-sm text-neutral-500">Verified 2026-02</p>
-              </div>
-            </div>
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-neutral-200">
-              <div class="h-40 overflow-hidden bg-neutral-100">
-                <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=BSCI%20social%20compliance%20certificate%2C%20ethical%20manufacturing%20audit&image_size=landscape_4_3"
-                  alt="BSCI Certificate"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div class="p-4">
-                <h3 class="font-bold text-lg text-neutral-900 mb-1">BSCI</h3>
-                <p class="text-sm text-neutral-600">Cert #: BSCI-12345678</p>
-                <p class="text-sm text-neutral-500">Audit score: A</p>
-              </div>
-            </div>
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-neutral-200">
-              <div class="h-40 overflow-hidden bg-neutral-100">
-                <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Sedex%20SMETA%20certificate%2C%20ethical%20trade%20audit%20report&image_size=landscape_4_3"
-                  alt="Sedex Certificate"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div class="p-4">
-                <h3 class="font-bold text-lg text-neutral-900 mb-1">Sedex</h3>
-                <p class="text-sm text-neutral-600">Cert #: SMETA-2026-045</p>
-                <p class="text-sm text-neutral-500">2026 Full Audit</p>
-              </div>
-            </div>
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-neutral-200">
-              <div class="h-40 overflow-hidden bg-neutral-100">
-                <img 
-                  src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Disney%20FAMA%20certificate%2C%20manufacturer%20approval%20document&image_size=landscape_4_3"
-                  alt="Disney FAMA"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <div class="p-4">
-                <h3 class="font-bold text-lg text-neutral-900 mb-1">Disney FAMA</h3>
-                <p class="text-sm text-neutral-600">Cert #: FAMA-BGP-2026</p>
-                <p class="text-sm text-neutral-500">Available on request</p>
-              </div>
-            </div>
+            ))}
           </div>
           <p class="text-center mt-6 text-sm text-neutral-500">
             Full certification documents available upon request
@@ -275,56 +189,42 @@ import Layout from '@/layouts/Layout.astro';
         </article>
 
         <article class="mb-16">
-          <h2 class="text-2xl font-bold mb-6">Our Facility</h2>
+          <h2 class="text-xl md:text-2xl font-bold text-neutral-900 mb-6">Our Facility</h2>
           <div class="grid md:grid-cols-3 gap-4">
-            <div class="h-64 rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20stroller%20assembly%20line%20in%20factory%2C%20workers%20working%2C%20clean%20professional%20workshop&image_size=landscape_4_3"
-                alt="Production floor - Baby stroller assembly line"
-                class="w-full h-full object-cover hover:scale-105 transition duration-300"
-              />
-            </div>
-            <div class="h-64 rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=quality%20control%20laboratory%20in%20factory%2C%20testing%20equipment%2C%20professional%20setup&image_size=landscape_4_3"
-                alt="Quality control laboratory"
-                class="w-full h-full object-cover hover:scale-105 transition duration-300"
-              />
-            </div>
-            <div class="h-64 rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20warehouse%20and%20shipping%20facility%2C%20organized%2C%20boxes%20ready%20to%20ship&image_size=landscape_4_3"
-                alt="Warehouse and shipping facility"
-                class="w-full h-full object-cover hover:scale-105 transition duration-300"
-              />
-            </div>
+            {[
+              { alt: 'Production floor - Baby stroller assembly line', prompt: 'baby%20stroller%20assembly%20line%20in%20factory%2C%20workers%20working%2C%20clean%20professional%20workshop' },
+              { alt: 'Quality control laboratory', prompt: 'quality%20control%20laboratory%20in%20factory%2C%20testing%20equipment%2C%20professional%20setup' },
+              { alt: 'Warehouse and shipping facility', prompt: 'modern%20warehouse%20and%20shipping%20facility%2C%20organized%2C%20boxes%20ready%20to%20ship' }
+            ].map((item, idx) => (
+              <div key={idx} class="h-48 md:h-56 rounded-2xl overflow-hidden shadow-lg group">
+                <img 
+                  src={`https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=${item.prompt}&image_size=landscape_4_3`}
+                  alt={item.alt}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
         </article>
 
         <article class="mb-16">
-          <h2 class="text-2xl font-bold mb-6">Trade Shows & Exhibitions</h2>
+          <h2 class="text-xl md:text-2xl font-bold text-neutral-900 mb-6">Trade Shows & Exhibitions</h2>
           <div class="grid md:grid-cols-3 gap-4">
-            <div class="h-64 rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20product%20trade%20show%20booth%2C%20professional%20exhibition%2C%20baby%20strollers%20displayed&image_size=landscape_4_3"
-                alt="Trade show booth at baby products exhibition"
-                class="w-full h-full object-cover hover:scale-105 transition duration-300"
-              />
-            </div>
-            <div class="h-64 rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Canton%20Fair%20exhibition%20hall%2C%20large%20trade%20show%2C%20international%20buyers&image_size=landscape_4_3"
-                alt="Canton Fair exhibition"
-                class="w-full h-full object-cover hover:scale-105 transition duration-300"
-              />
-            </div>
-            <div class="h-64 rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20business%20meeting%20at%20trade%20show%2C%20handshake%2C%20business%20discussion&image_size=landscape_4_3"
-                alt="Business meeting at trade show"
-                class="w-full h-full object-cover hover:scale-105 transition duration-300"
-              />
-            </div>
+            {[
+              { alt: 'Trade show booth at baby products exhibition', prompt: 'baby%20product%20trade%20show%20booth%2C%20professional%20exhibition%2C%20baby%20strollers%20displayed' },
+              { alt: 'Canton Fair exhibition', prompt: 'Canton%20Fair%20exhibition%20hall%2C%20large%20trade%20show%2C%20international%20buyers' },
+              { alt: 'Business meeting at trade show', prompt: 'professional%20business%20meeting%20at%20trade%20show%2C%20handshake%2C%20business%20discussion' }
+            ].map((item, idx) => (
+              <div key={idx} class="h-48 md:h-56 rounded-2xl overflow-hidden shadow-lg group">
+                <img 
+                  src={`https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=${item.prompt}&image_size=landscape_4_3`}
+                  alt={item.alt}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
           <p class="text-center mt-4 text-neutral-500 text-sm">
             We participate in major trade shows including Canton Fair, HK Baby Products Fair, and ABC Kids Expo
@@ -332,8 +232,11 @@ import Layout from '@/layouts/Layout.astro';
         </article>
 
         <div class="text-center">
-          <a href="/contact" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition text-lg">
+          <a href="/contact" class="inline-flex items-center gap-2 bg-gradient-primary text-white px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-all">
             Partner With Us
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </a>
         </div>
       </div>

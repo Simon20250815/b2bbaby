@@ -1,22 +1,61 @@
 <template>
 <private-view smallHeader title="Setup">
     <template #navigation>
-        <ol class="list-step list-none p-3 overflow-hidden space-y-8">
-            <li v-for="(step, id, index) in steps" :key="id" :value="id" :class="{'active': currentStep.includes(id)}" >
-                <!-- @click="currentStep = [id]" -->
-                <div class="flex items-center font-medium w-full  ">
-                    <span :class="currentStep.includes(id) ? 'bg-primary text-white border-transparent' : 'bg-[var(--background-normal-alt)] text-primary'" class="w-8 h-8 border-2 rounded-full flex justify-center items-center mr-3 text-sm lg:w-10 lg:h-10">
-                        <svg v-if="currentStep.includes(id)" class="w-5 h-5 stroke-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 12L9.28722 16.2923C9.62045 16.6259 9.78706 16.7927 9.99421 16.7928C10.2014 16.7929 10.3681 16.6262 10.7016 16.2929L20 7" stroke="stroke-current" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="my-path"></path>
-                        </svg>
-                        <span v-else>{{ index + 1 }}</span>
-                    </span>
-                    <div class="block">
-                        <h4 class="text-lg text-primary">{{ step.label }}</h4>
-                    </div>
+        <div class="setup-sidebar bg-white rounded-xl border border-slate-200 shadow-sm p-6 h-fit">
+            <div class="flex items-center gap-3 mb-8 pb-4 border-b border-slate-100">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center">
+                    <v-icon name="settings" class="w-5 h-5 text-white" />
                 </div>
-            </li>
-        </ol>
+                <div>
+                    <h3 class="font-semibold text-slate-900">SEO Setup</h3>
+                    <p class="text-xs text-slate-500">Configuration wizard</p>
+                </div>
+            </div>
+            <ol class="list-step list-none space-y-0">
+                <li v-for="(step, id, index) in steps" :key="id" :value="id" :class="{'active': currentStep.includes(id), 'completed': index < currentIndex}" >
+                    <div class="flex items-start gap-4 py-3">
+                        <div class="relative">
+                            <span 
+                                :class="[
+                                    'w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300',
+                                    currentStep.includes(id) 
+                                        ? 'bg-gradient-to-br from-primary to-primary-dark text-white shadow-lg shadow-primary/30' 
+                                        : index < currentIndex 
+                                            ? 'bg-green-100 text-green-600' 
+                                            : 'bg-slate-100 text-slate-500'
+                                ]"
+                            >
+                                <svg v-if="index < currentIndex" class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12L9.28722 16.2923C9.62045 16.6259 9.78706 16.7927 9.99421 16.7928C10.2014 16.7929 10.3681 16.6262 10.7016 16.2929L20 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <svg v-else-if="currentStep.includes(id)" class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12L9.28722 16.2923C9.62045 16.6259 9.78706 16.7927 9.99421 16.7928C10.2014 16.7929 10.3681 16.6262 10.7016 16.2929L20 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span v-else>{{ index + 1 }}</span>
+                            </span>
+                            <div 
+                                v-if="index < steps.length - 1"
+                                :class="[
+                                    'absolute top-10 left-1/2 w-0.5 h-8 -translate-x-1/2 transition-all duration-300',
+                                    index < currentIndex ? 'bg-green-400' : 'bg-slate-200'
+                                ]"
+                            ></div>
+                        </div>
+                        <div class="flex-1 pb-4">
+                            <h4 
+                                :class="[
+                                    'font-medium transition-colors duration-200',
+                                    currentStep.includes(id) ? 'text-primary' : index < currentIndex ? 'text-green-600' : 'text-slate-500'
+                                ]"
+                            >
+                                {{ step.label }}
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-0.5">{{ step.title }}</p>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
         <!-- <v-tabs v-model="currentStep" vertical>
             <v-tab v-for="(step, id) in steps" :key="id" :value="id"><v-icon :name="currentStep.includes(id) ? `radio_button_checked` : `radio_button_unchecked`" />{{ step.label }}</v-tab>
         </v-tabs> -->
@@ -175,6 +214,8 @@ const currentStep = computed({
         goTo(val?.[0])
     }
 })
+
+const currentIndex = computed(() => index.value)
 
 const defaultLanguageFields = ref([
     {

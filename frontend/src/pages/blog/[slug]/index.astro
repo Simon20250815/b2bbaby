@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { blogPosts, getBlogBySlug } from '@/lib/blog-data';
+import { generateBlogPostSchema } from '@/lib/schema';
 
 export async function getStaticPaths() {
   return blogPosts.map((post) => ({
@@ -15,10 +16,13 @@ interface Props {
 
 const { post } = Astro.props;
 
+const blogSchema = generateBlogPostSchema(post);
 const relatedPosts = blogPosts.filter(p => p.id !== post.id && p.category === post.category).slice(0, 2);
 ---
 
 <Layout title={`${post.title} - B2Bbaby`} description={post.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+  
   <article class="py-16 bg-white">
     <div class="container mx-auto px-6">
       <nav class="mb-8">

@@ -8,6 +8,12 @@ import Scripts from './routes/advanced/scripts.vue';
 import Setup from './routes/setup/setup.vue';
 import SetupWizard from './routes/setup/setup-wizard.vue';
 import Empty from './routes/empty.vue';
+import Products from './routes/content/products.vue';
+import ProductForm from './routes/content/product-form.vue';
+import Blogs from './routes/content/blogs.vue';
+import BlogForm from './routes/content/blog-form.vue';
+import FAQs from './routes/content/faqs.vue';
+import FAQForm from './routes/content/faq-form.vue';
 import '../styles/base.scss'
 import '../styles/form.scss'
 
@@ -16,6 +22,58 @@ export default defineModule({
     name: 'SEO settings',
     icon: 'area_chart',
 	routes: [
+        {
+            name: 'seo-content',
+            path: '/seo-settings/content',
+            component: RoutePass,
+            children: [
+                {
+                    name: 'seo-content-products',
+                    path: 'products',
+                    component: Products,
+                },
+                {
+                    name: 'seo-content-products-create',
+                    path: 'products/create',
+                    component: ProductForm,
+                },
+                {
+                    name: 'seo-content-products-edit',
+                    path: 'products/:id/edit',
+                    component: ProductForm,
+                },
+                {
+                    name: 'seo-content-blogs',
+                    path: 'blogs',
+                    component: Blogs,
+                },
+                {
+                    name: 'seo-content-blogs-create',
+                    path: 'blogs/create',
+                    component: BlogForm,
+                },
+                {
+                    name: 'seo-content-blogs-edit',
+                    path: 'blogs/:id/edit',
+                    component: BlogForm,
+                },
+                {
+                    name: 'seo-content-faqs',
+                    path: 'faqs',
+                    component: FAQs,
+                },
+                {
+                    name: 'seo-content-faqs-create',
+                    path: 'faqs/create',
+                    component: FAQForm,
+                },
+                {
+                    name: 'seo-content-faqs-edit',
+                    path: 'faqs/:id/edit',
+                    component: FAQForm,
+                },
+            ]
+        },
         {
             name: 'seo-settings',
             path: '/seo-settings',

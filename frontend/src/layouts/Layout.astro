@@ -6,11 +6,25 @@ import Footer from '@/components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  image?: string;
+  type?: string;
+  author?: string;
+  keywords?: string[];
 }
 
-const { title = 'B2Bbaby - Baby Product Manufacturer & Sourcing', description = 'ASTM/EN certified baby stroller, safety gate, high chair manufacturer. MOQ 50+, 7-day samples, full QC support for US/EU brands.' } = Astro.props;
+const { 
+  title = 'B2Bbaby - Baby Product Manufacturer & Sourcing', 
+  description = 'ASTM/EN certified baby stroller, safety gate, high chair manufacturer. MOQ 50+, 7-day samples, full QC support for US/EU brands.',
+  canonical,
+  image = 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20products%20manufacturer%20logo%20banner%2C%20professional%20B2B%20sourcing&image_size=landscape_16_9',
+  type = 'website',
+  author = 'B2Bbaby',
+  keywords = ['baby products', 'baby stroller', 'safety gate', 'high chair', 'OEM', 'ODM', 'China manufacturer']
+} = Astro.props;
 
 const organizationSchema = generateOrganizationSchema();
+const pageUrl = canonical || new URL(Astro.request.url).href;
 ---
 
 <!DOCTYPE html>
@@ -18,15 +32,64 @@ const organizationSchema = generateOrganizationSchema();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
-    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <meta name="keywords" content={keywords.join(', ')} />
+    <meta name="author" content={author} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    
+    <link rel="canonical" href={pageUrl} />
+    
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:type" content={type} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="B2Bbaby" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
+    
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    
+    <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
   </head>
-  <body class="min-h-screen bg-neutral-50 flex flex-col">
+  <body class="min-h-screen bg-white text-gray-900">
     <Navbar />
-    <main class="flex-grow"><slot /></main>
+    <main><slot /></main>
     <Footer />
   </body>
 </html>

@@ -11,177 +11,353 @@ const directusFaqs = await getFAQs();
 const featuredFaqs = (directusFaqs.length > 0 ? directusFaqs : fallbackFaqs).slice(0, 3);
 ---
 
-<Layout>
-  <div>
-    <section class="bg-gradient-to-r from-primary-50 to-primary-100 py-10 md:py-20">
-      <div class="container mx-auto px-4 md:px-6 text-center">
-        <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-4 md:mb-6">
-          China Baby Product Manufacturer
-          <br />
-          <span class="text-primary-600">Stroller, Safety Gate, High Chair OEM & Sourcing</span>
-        </h1>
-        <p class="text-base md:text-xl text-neutral-600 mb-6 md:mb-8 max-w-3xl mx-auto">
-          ASTM/EN Certified • MOQ 50+ • 7-day Samples • Real-Time Production Tracking
-        </p>
-        
-        <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-6 md:mb-10">
-          <div class="flex items-center gap-2">
-            <span class="text-2xl md:text-4xl">✅</span>
-            <span class="font-semibold text-sm md:text-base">CE Certified</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-2xl md:text-4xl">✅</span>
-            <span class="font-semibold text-sm md:text-base">CPC Compliant</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-2xl md:text-4xl">✅</span>
-            <span class="font-semibold text-sm md:text-base">ISO 9001</span>
-          </div>
-        </div>
-        
-        <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
-          <a href="/contact" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition text-sm md:text-base">
-            Get Factory Price
-          </a>
-          <a href="/oem-odm" class="bg-neutral-200 text-neutral-800 px-6 py-3 rounded-lg font-semibold hover:bg-neutral-300 transition text-sm md:text-base">
-            Sourcing Service
-          </a>
-        </div>
+<Layout title="B2Bbaby - China Baby Product Manufacturer | ASTM/EN Certified Strollers, Safety Gates" description="Professional baby product manufacturer from China. ASTM/EN certified baby stroller, safety gate, high chair. MOQ 50+, 7-day samples, full QC support for US/EU brands.">
+  <div class="font-sans">
+    <!-- Hero Section -->
+    <section class="relative min-h-screen bg-gradient-to-br from-white via-blue-50 to-indigo-50">
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-20 right-10 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 left-10 w-96 h-96 bg-indigo-200/30 rounded-full blur-3xl"></div>
       </div>
-    </section>
-
-    <section class="py-10 md:py-16 bg-white">
-      <div class="container mx-auto px-4 md:px-6">
-        <h2 class="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12">Core Products</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {products.map((product) => (
-            <article key={product.id} class="bg-white border border-neutral-200 rounded-lg p-4 md:p-6 hover:shadow-lg transition-shadow">
-              <div class="h-32 md:h-48 rounded-lg mb-4 overflow-hidden bg-neutral-100">
-                <img 
-                  src={product.image || product.image_url} 
-                  alt={product.title}
-                  class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-              <h3 class="text-xl md:text-2xl font-bold mb-2">{product.title}</h3>
-              <p class="text-neutral-600 mb-4 text-sm md:text-base">
-                {product.description || product.description_en}
-              </p>
-              <ul class="text-xs md:text-sm text-neutral-500 mb-4 space-y-1">
-                <li>✓ MOQ: {product.moq} units</li>
-                <li>✓ Lead Time: {product.lead_time_production || product.leadTimeProduction}</li>
-                <li>✓ Custom logo/packaging</li>
-              </ul>
-              <a href={`/products/${product.slug}`} class="text-primary-600 font-semibold hover:underline text-sm md:text-base">
-                View Details →
+      
+      <div class="container mx-auto px-6 py-20 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
+          <div class="space-y-8">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-semibold">
+              <span class="w-2 h-2 bg-white/80 rounded-full animate-pulse"></span>
+              Trusted by 200+ Global Brands
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              China's Leading
+              <span class="block text-blue-600 mt-2">Baby Product</span>
+              <span class="block text-gray-600 font-normal text-2xl md:text-3xl lg:text-4xl mt-4">Manufacturer & Sourcing Partner</span>
+            </h1>
+            
+            <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
+              ASTM/EN certified products with MOQ starting at 50 pieces. 7-day sample delivery, real-time QC tracking, and dedicated support for your baby product business.
+            </p>
+            
+            <div class="flex flex-wrap gap-6">
+              {[
+                { label: 'Certifications', value: 'CE / CPC / ISO 9001' },
+                { label: 'Export Batches', value: '127+ to US/EU' },
+                { label: 'Lead Time', value: '7 Days Samples' }
+              ].map((item, idx) => (
+                <div key={idx} class="flex items-center gap-3">
+                  <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="text-xs text-gray-500">{item.label}</div>
+                    <div class="text-sm font-semibold text-gray-900">{item.value}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all hover:shadow-lg hover:-translate-y-0.5">
+                Get Factory Price
               </a>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="py-10 md:py-16 bg-neutral-50">
-      <div class="container mx-auto px-4 md:px-6">
-        <div class="grid lg:grid-cols-2 gap-6 md:gap-12">
-          <article class="bg-white border border-neutral-200 rounded-lg p-6 md:p-8">
-            <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6">OEM/ODM Customization</h3>
-            <div class="space-y-4">
-              <div class="flex items-start gap-4">
-                <div class="bg-primary-600 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center flex-shrink-0 font-semibold text-sm md:text-base">
-                  1
-                </div>
-                <div>
-                  <h4 class="font-semibold text-sm md:text-base">Submit Requirements</h4>
-                  <p class="text-neutral-600 text-xs md:text-sm">Send your design, specs, or ideas</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="bg-primary-600 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center flex-shrink-0 font-semibold text-sm md:text-base">
-                  2
-                </div>
-                <div>
-                  <h4 class="font-semibold text-sm md:text-base">Sample Confirmation</h4>
-                  <p class="text-neutral-600 text-xs md:text-sm">3-5 days sample production</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="bg-primary-600 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center flex-shrink-0 font-semibold text-sm md:text-base">
-                  3
-                </div>
-                <div>
-                  <h4 class="font-semibold text-sm md:text-base">Mass Production</h4>
-                  <p class="text-neutral-600 text-xs md:text-sm">QC at every stage, on-time delivery</p>
-                </div>
-              </div>
+              <a href="/products" class="inline-flex items-center justify-center px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-xl font-semibold hover:border-blue-600 hover:text-blue-600 transition-all">
+                View Products
+              </a>
             </div>
-            <a href="/oem-odm" class="inline-block mt-4 md:mt-6 text-primary-600 font-semibold hover:underline text-sm md:text-base">
-              Learn More →
-            </a>
-          </article>
+          </div>
           
-          <article class="bg-white border border-neutral-200 rounded-lg p-6 md:p-8">
-            <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Factory Sourcing Service</h3>
-            <div class="space-y-4">
-              <div class="flex items-start gap-4">
-                <span class="text-2xl md:text-3xl">🔍</span>
-                <div>
-                  <h4 class="font-semibold text-sm md:text-base">100+ Verified Factories</h4>
-                  <p class="text-neutral-600 text-xs md:text-sm">Pre-audited for quality & compliance</p>
+          <div class="relative">
+            <div class="grid grid-cols-2 gap-6">
+              <div class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="aspect-square bg-gray-100">
+                  <img 
+                    src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20baby%20stroller%20product%20photography%2C%20studio%20quality%2C%20white%20background%2C%20high%20resolution%2C%20clean%20lighting%2C%20commercial%20product%20shot%2C%20modern%20baby%20gear&image_size=square" 
+                    alt="Baby stroller products"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div class="p-4 bg-gradient-to-t from-gray-50 to-white">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                      <span class="text-xl">📊</span>
+                    </div>
+                    <div>
+                      <div class="text-lg font-bold text-gray-900">180,000+</div>
+                      <div class="text-xs text-gray-500">Units Exported</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="flex items-start gap-4">
-                <span class="text-2xl md:text-3xl">📋</span>
-                <div>
-                  <h4 class="font-semibold text-sm md:text-base">Professional Inspection</h4>
-                  <p class="text-neutral-600 text-xs md:text-sm">Detailed factory audit reports</p>
+              <div class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="aspect-square bg-gray-100">
+                  <img 
+                    src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=collection%20of%20premium%20baby%20products%2C%20stroller%20safety%20gate%20high%20chair%20on%20display%2C%20professional%20product%20photography%2C%20white%20background%2C%20clean%20studio%20shot&image_size=square" 
+                    alt="Baby products collection"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div class="p-4 bg-gradient-to-t from-gray-50 to-white">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                      <span class="text-xl">🌍</span>
+                    </div>
+                    <div>
+                      <div class="text-lg font-bold text-gray-900">30+</div>
+                      <div class="text-xs text-gray-500">Countries Served</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="flex items-start gap-4">
-                <span class="text-2xl md:text-3xl">🤝</span>
-                <div>
-                  <h4 class="font-semibold text-sm md:text-base">End-to-End Support</h4>
-                  <p class="text-neutral-600 text-xs md:text-sm">From sourcing to shipment</p>
+              <div class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="aspect-square bg-gray-100">
+                  <img 
+                    src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20bed%20rail%20safety%20guard%20product%20photography%2C%20professional%20studio%20shot%2C%20white%20background%2C%20modern%20design%2C%20baby%20safety%20product%2C%20high%20quality%20commercial%20photography&image_size=square" 
+                    alt="Baby bed rail product"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div class="p-4 bg-gradient-to-t from-gray-50 to-white">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                      <span class="text-xl">✅</span>
+                    </div>
+                    <div>
+                      <div class="text-lg font-bold text-gray-900">Zero</div>
+                      <div class="text-xs text-gray-500">Product Recalls</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div class="aspect-square bg-gray-100">
+                  <img 
+                    src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20customer%20service%20team%2C%20friendly%20support%20staff%2C%20modern%20office%20environment%2C%20helpdesk%20team%2C%20business%20photography%2C%20professional%20portraits&image_size=square" 
+                    alt="Customer service team"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div class="p-4 bg-gradient-to-t from-gray-50 to-white">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                      <span class="text-xl">⏱️</span>
+                    </div>
+                    <div>
+                      <div class="text-lg font-bold text-gray-900">24h</div>
+                      <div class="text-xs text-gray-500">Response</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <a href="/contact" class="inline-block mt-4 md:mt-6 text-primary-600 font-semibold hover:underline text-sm md:text-base">
-              Learn More →
-            </a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-10 md:py-16 bg-white">
-      <div class="container mx-auto px-4 md:px-6">
-        <h2 class="text-2xl md:text-4xl font-bold text-center mb-6 md:mb-12">Frequently Asked Questions</h2>
-        <div class="max-w-3xl mx-auto space-y-3 md:space-y-4">
-          {featuredFaqs.map((faq) => (
-            <article key={faq.id} class="bg-white border border-neutral-200 rounded-lg p-4 md:p-6">
-              <h3 class="text-base md:text-lg font-semibold mb-2">{faq.question}</h3>
-              <p class="text-neutral-600 text-sm md:text-base">{faq.answer}</p>
-            </article>
-          ))}
-          <div class="text-center mt-4 md:mt-6">
-            <a href="/faq" class="text-primary-600 font-semibold hover:underline text-sm md:text-base">
-              View all FAQs →
-            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="bg-primary-600 py-10 md:py-16">
-      <div class="container mx-auto px-4 md:px-6 text-center">
-        <h2 class="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6">Ready to Start Your Baby Product Business?</h2>
-        <p class="text-base md:text-xl text-primary-100 mb-6 md:mb-8">Get a free quote within 24 hours</p>
-        <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
-          <a href="mailto:sourcing@babygeopro.com" class="bg-white text-primary-600 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold hover:bg-neutral-100 transition">
+    <!-- Stats Section -->
+    <section class="py-16 bg-white border-y border-gray-100">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { value: '200+', label: 'Global Clients' },
+            { value: '50+', label: 'Product Categories' },
+            { value: '127+', label: 'Export Batches' },
+            { value: '99.8%', label: 'On-Time Delivery' }
+          ].map((stat, idx) => (
+            <div key={idx} class="text-center">
+              <div class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">{stat.value}</div>
+              <div class="text-sm text-gray-500">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-24 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
+            Featured Products
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Core Products</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Premium baby products certified for international markets
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((product) => (
+            <article key={product.id} class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden">
+                {product.image || product.image_url ? (
+                  <img 
+                    src={product.image || product.image_url} 
+                    alt={product.title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center">
+                    <svg class="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                )}
+                <div class="absolute top-4 left-4">
+                  <span class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-800 shadow-sm">
+                    MOQ: {product.moq} PCS
+                  </span>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex flex-wrap gap-2 mb-3">
+                  {product.certifications?.slice(0, 2).map((cert, idx) => (
+                    <span key={idx} class="text-xs font-medium px-2 py-0.5 bg-green-50 text-green-700 rounded">
+                      {cert}
+                    </span>
+                  ))}
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                  {product.title}
+                </h3>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                  {product.description || product.description_en}
+                </p>
+                <a href={`/products/${product.slug}`} class="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-700 group">
+                  View Details
+                  <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+        
+        <div class="text-center mt-12">
+          <a href="/products" class="inline-flex items-center px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-xl font-semibold hover:bg-blue-600 hover:text-white transition-all">
+            View All Products
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold mb-4">
+            Services
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What We Offer</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Comprehensive solutions for your baby product sourcing needs
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-8 text-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+            <div class="relative z-10">
+              <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-6">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-3">OEM/ODM Customization</h3>
+              <p class="text-blue-100 mb-6">Bring your designs to life with our custom manufacturing solutions.</p>
+              <ul class="space-y-3">
+                {['Design & Engineering', 'Rapid Prototyping', 'Quality Control', 'Packaging Design'].map((item) => (
+                  <li key={item} class="flex items-center gap-2 text-sm">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a href="/oem-odm" class="inline-block mt-6 text-sm font-semibold border border-white/30 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors">
+                Learn More
+              </a>
+            </div>
+          </div>
+          
+          <div class="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-8 text-white relative overflow-hidden">
+            <div class="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+            <div class="relative z-10">
+              <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-6">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-3">Factory Sourcing</h3>
+              <p class="text-green-100 mb-6">Access our network of verified factories for your sourcing needs.</p>
+              <ul class="space-y-3">
+                {['100+ Verified Factories', 'Professional Audits', 'Price Negotiation', 'Logistics Support'].map((item) => (
+                  <li key={item} class="flex items-center gap-2 text-sm">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class="inline-block mt-6 text-sm font-semibold border border-white/30 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors">
+                Get Started
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+        </div>
+        
+        <div class="max-w-3xl mx-auto space-y-4">
+          {featuredFaqs.map((faq) => (
+            <div key={faq.id} class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">{faq.question}</h3>
+              <p class="text-gray-600">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+        
+        <div class="text-center mt-10">
+          <a href="/faq" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700">
+            View All FAQs
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-indigo-700">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Start Your Baby Product Business?</h2>
+        <p class="text-blue-100 mb-8 max-w-xl mx-auto">Get a free quote within 24 hours and start your journey with us.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="mailto:sourcing@babygeopro.com" class="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-colors">
             Email Us
           </a>
-          <a href="/contact" class="bg-primary-700 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold hover:bg-primary-800 transition">
+          <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-xl font-semibold hover:bg-white/10 transition-colors">
             Contact Form
           </a>
         </div>

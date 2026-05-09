@@ -1,83 +1,127 @@
-<header class="bg-white shadow-sm sticky top-0 z-50">
-  <nav class="container mx-auto px-4 py-4">
-    <div class="flex justify-between items-center">
-      <a href="/" class="text-lg md:text-xl font-bold">
-        <span class="bg-blue-700 text-white px-1 py-0.5 rounded-md">B2B</span>
-        <span class="text-blue-700 ml-1">baby</span>
+<header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
+  <nav class="container mx-auto px-4 md:px-6 py-3 md:py-4">
+    <div class="flex items-center justify-between">
+      <a href="/" class="flex items-center gap-1 group">
+        <div class="bg-blue-600 text-white px-1.5 py-0.75 rounded-xl font-bold text-base md:text-lg transition-transform group-hover:scale-105">
+          B2B
+        </div>
+        <span class="text-xl md:text-2xl font-bold text-gray-900">baby</span>
       </a>
 
-      <div class="hidden lg:flex items-center space-x-6">
-        <a href="/products" class="text-neutral-600 hover:text-primary-600 transition">Products</a>
-        <a href="/oem-odm" class="text-neutral-600 hover:text-primary-600 transition">OEM/ODM</a>
-        <a href="/blog" class="text-neutral-600 hover:text-primary-600 transition">Blog</a>
-        <a href="/faq" class="text-neutral-600 hover:text-primary-600 transition">FAQ</a>
-        <a href="/about" class="text-neutral-600 hover:text-primary-600 transition">About</a>
-        <a href="/contact" class="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition font-semibold">Get Quote</a>
+      <div class="hidden lg:flex items-center gap-1">
+        {[
+          { name: 'Products', href: '/products' },
+          { name: 'OEM/ODM', href: '/oem-odm' },
+          { name: 'Blog', href: '/blog' },
+          { name: 'FAQ', href: '/faq' },
+          { name: 'About', href: '/about' }
+        ].map((item) => (
+          <a
+            key={item.name}
+            href={item.href}
+            class="px-4 py-2 text-gray-600 hover:text-blue-600 font-medium transition-all hover:bg-blue-50 rounded-lg"
+          >
+            {item.name}
+          </a>
+        ))}
+        <a
+          href="/contact"
+          class="ml-2 bg-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg"
+        >
+          Get Quote
+        </a>
       </div>
 
-      <div class="flex items-center space-x-4">
-        <div class="hidden md:flex items-center space-x-3">
-          <a href="https://wa.me/8617681128186" target="_blank" rel="noopener noreferrer" 
-             class="text-green-600 hover:text-green-700"
-             aria-label="Contact us on WhatsApp">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
-                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
-                 stroke-linejoin="round">
+      <div class="flex items-center gap-3">
+        <div class="hidden md:flex items-center gap-3">
+          <a
+            href="https://wa.me/8617681128186"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-green-600 hover:text-green-700 transition-colors"
+            aria-label="Contact us on WhatsApp"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
               <path d="M9 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
               <path d="M13 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
               <path d="M17 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
             </svg>
           </a>
-          <a href="https://linkedin.com/company/babygeopro" target="_blank" rel="noopener noreferrer" 
-             class="text-neutral-600 hover:text-blue-600 transition"
-             aria-label="Follow us on LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
-                 fill="currentColor">
+          <a
+            href="https://linkedin.com/company/babygeopro"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-600 hover:text-blue-600 transition-colors"
+            aria-label="Follow us on LinkedIn"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7 0h3.8v2h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V24h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.06 0-2.38 1.6-2.38 3.28V24h-4V8z"/>
             </svg>
           </a>
         </div>
 
         <button
-          class="lg:hidden p-2 text-neutral-600 hover:text-primary-600 mobile-menu-btn"
+          class="lg:hidden p-2 text-gray-600 hover:text-blue-600 mobile-menu-btn transition-colors"
           aria-label="Toggle menu"
           onclick="toggleMobileMenu()"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="menu-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="menu-icon transition-transform duration-300">
             <path d="M3 12h18M3 6h18M3 18h18"/>
           </svg>
         </button>
       </div>
     </div>
 
-    <div class="lg:hidden mt-4 pb-4 border-t pt-4 space-y-3 mobile-menu" id="mobileMenu">
-      <a href="/products" class="block py-2 text-neutral-600 hover:text-primary-600 transition" onclick="toggleMobileMenu()">Products</a>
-      <a href="/oem-odm" class="block py-2 text-neutral-600 hover:text-primary-600 transition" onclick="toggleMobileMenu()">OEM/ODM</a>
-      <a href="/blog" class="block py-2 text-neutral-600 hover:text-primary-600 transition" onclick="toggleMobileMenu()">Blog</a>
-      <a href="/faq" class="block py-2 text-neutral-600 hover:text-primary-600 transition" onclick="toggleMobileMenu()">FAQ</a>
-      <a href="/about" class="block py-2 text-neutral-600 hover:text-primary-600 transition" onclick="toggleMobileMenu()">About</a>
-      <a href="/contact" class="bg-blue-700 text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-blue-800 transition mt-4" onclick="toggleMobileMenu()">Get Quote</a>
-      
-      <div class="flex items-center space-x-4 pt-3 border-t mt-4">
-        <span class="text-sm text-neutral-500">Contact us:</span>
-        <a href="https://wa.me/8617681128186" target="_blank" rel="noopener noreferrer" 
-           class="text-green-600 hover:text-green-700"
-           aria-label="Contact us on WhatsApp">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" 
-               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
-               stroke-linejoin="round">
+    <div class="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4 space-y-2 mobile-menu" id="mobileMenu">
+      {[
+        { name: 'Products', href: '/products' },
+        { name: 'OEM/ODM', href: '/oem-odm' },
+        { name: 'Blog', href: '/blog' },
+        { name: 'FAQ', href: '/faq' },
+        { name: 'About', href: '/about' }
+      ].map((item) => (
+        <a
+          key={item.name}
+          href={item.href}
+          class="block py-3 px-4 text-gray-600 hover:text-blue-600 font-medium transition-all hover:bg-blue-50 rounded-lg"
+          onclick="toggleMobileMenu()"
+        >
+          {item.name}
+        </a>
+      ))}
+      <a
+        href="/contact"
+        class="block mt-2 bg-blue-600 text-white px-4 py-3 rounded-lg text-center font-semibold hover:bg-blue-700 transition-all"
+        onclick="toggleMobileMenu()"
+      >
+        Get Quote
+      </a>
+
+      <div class="flex items-center justify-center gap-4 pt-4 border-t border-gray-200 mt-4">
+        <span class="text-sm text-gray-500">Contact:</span>
+        <a
+          href="https://wa.me/8617681128186"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-green-600 hover:text-green-700"
+          aria-label="Contact us on WhatsApp"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
             <path d="M9 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
             <path d="M13 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
             <path d="M17 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
           </svg>
         </a>
-        <a href="https://linkedin.com/company/babygeopro" target="_blank" rel="noopener noreferrer" 
-           class="text-neutral-600 hover:text-blue-600 transition"
-           aria-label="Follow us on LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" 
-               fill="currentColor">
+        <a
+          href="https://linkedin.com/company/babygeopro"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-600 hover:text-blue-600 transition-colors"
+          aria-label="Follow us on LinkedIn"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
             <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7 0h3.8v2h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V24h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.06 0-2.38 1.6-2.38 3.28V24h-4V8z"/>
           </svg>
         </a>
@@ -98,6 +142,12 @@
     }
     document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('mobileMenu').style.display = 'none';
+    });
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').style.display = 'none';
+        document.querySelector('.menu-icon path').setAttribute('d', 'M3 12h18M3 6h18M3 18h18');
+      }
     });
   </script>
 </header>

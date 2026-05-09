@@ -10,26 +10,32 @@ const categories = [
 ];
 ---
 
-<Layout title="Blog - B2Bbaby" description="Expert guides and insights on importing baby products from China">
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold mb-4">Baby Product Blog</h1>
-        <p class="text-xl text-neutral-600 max-w-2xl mx-auto">
+<Layout title="Blog - B2Bbaby | Baby Products Import Guide & Industry Insights" description="Expert guides and insights on importing baby products from China. Certification requirements, supplier verification, quality control.">
+  <section class="bg-gradient-to-r from-blue-50 to-indigo-50 py-10 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center">
+        <span class="inline-block bg-white/80 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-medium text-blue-700 mb-4">
+          Blog
+        </span>
+        <h1 class="text-3xl md:text-5xl font-bold text-neutral-900 mb-4">Baby Product Blog</h1>
+        <p class="text-base md:text-lg text-neutral-600 max-w-2xl mx-auto">
           Expert guides, industry insights, and practical tips for importing baby products from China.
-          Last Updated: 2026
         </p>
       </div>
+    </div>
+  </section>
 
-      <div class="flex flex-wrap justify-center gap-3 mb-12">
+  <section class="py-12 md:py-20 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
         {categories.map((category) => (
           <button
             key={category.value}
             onClick={() => {}}
-            class={`px-6 py-2 rounded-full font-medium transition ${
+            class={`px-6 py-3 rounded-xl font-medium transition-all ${
               category.value === 'all'
-                ? 'bg-primary-600 text-white'
-                : 'bg-neutral-100 text-neutral-600 hover:bg-primary-100'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'bg-neutral-100 text-neutral-600 hover:bg-blue-100'
             }`}
           >
             {category.name}
@@ -37,42 +43,56 @@ const categories = [
         ))}
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {blogPosts.map((post) => (
-          <article key={post.id} class="bg-white border border-neutral-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
-            <div class="h-48 rounded-lg mb-4 overflow-hidden bg-neutral-100">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {blogPosts.map((post, idx) => (
+          <article 
+            key={post.id} 
+            class="bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1"
+            style={{ animationDelay: `${idx * 100}ms` }}
+          >
+            <div class="relative h-44 overflow-hidden bg-neutral-100 group">
               <img 
                 src={post.image} 
                 alt={post.title}
-                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
+              <div class="absolute top-3 left-3">
+                <span class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-neutral-800">
+                  {post.category}
+                </span>
+              </div>
             </div>
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-primary-100 text-primary-800 text-xs px-3 py-1 rounded-full font-medium">
-                {post.category}
-              </span>
-              <span class="text-neutral-500 text-sm">{post.datePublished}</span>
-              <span class="text-neutral-500 text-sm">{post.readTime} read</span>
+            <div class="p-5">
+              <div class="flex items-center gap-3 mb-3 text-xs text-neutral-500">
+                <span>{post.datePublished}</span>
+                <span>{post.readTime} read</span>
+              </div>
+              <h2 class="text-lg font-bold text-neutral-900 mb-2 line-clamp-2">{post.title}</h2>
+              <p class="text-neutral-600 text-sm line-clamp-2 mb-4">{post.description}</p>
+              <a href={`/blog/${post.slug}`} class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 text-sm">
+                Read Article
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
             </div>
-            <h2 class="text-xl font-bold mb-2">{post.title}</h2>
-            <p class="text-neutral-600 mb-4">{post.description}</p>
-            <a href={`/blog/${post.slug}`} class="text-primary-600 font-semibold hover:underline">
-              Read Article →
-            </a>
           </article>
         ))}
       </div>
 
       <div class="mt-16 text-center">
-        <div class="bg-primary-50 rounded-xl p-10 max-w-3xl mx-auto">
-          <h2 class="text-2xl font-bold mb-4">Have Questions About Importing Baby Products?</h2>
-          <p class="text-neutral-600 mb-6">
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-10 max-w-3xl mx-auto">
+          <h2 class="text-xl md:text-2xl font-bold text-neutral-900 mb-4">Have Questions About Importing Baby Products?</h2>
+          <p class="text-neutral-600 mb-6 text-sm md:text-base">
             Get a free consultation with our sourcing experts. We can help with certification,
             quality control, and factory sourcing.
           </p>
-          <a href="/contact" class="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition inline-block">
+          <a href="/contact" class="inline-flex items-center gap-2 bg-gradient-primary text-white px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-all">
             Get Free Consultation
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </a>
         </div>
       </div>

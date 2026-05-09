@@ -1,3 +1,5 @@
+@import './base.scss';
+
 :deep() {
     #main-content.content {
         .header-bar {
@@ -10,5 +12,124 @@
                 }
             }
         }
+        
+        .v-button {
+            &[href] {
+                text-decoration: none;
+            }
+            
+            &:not([disabled]):hover {
+                transform: translateY(-1px);
+                box-shadow: $shadow-md;
+            }
+            
+            &:active:not([disabled]) {
+                transform: translateY(0);
+            }
+        }
+        
+        .v-card {
+            border-radius: $radius-lg;
+            box-shadow: $shadow-sm;
+            border: 1px solid $slate-200;
+            
+            &:hover {
+                box-shadow: $shadow-md;
+            }
+        }
+        
+        .v-input {
+            border-radius: $radius-md;
+            transition: all $transition-normal;
+            
+            &:focus-within {
+                box-shadow: 0 0 0 3px rgba($primary, 0.1);
+                border-color: $primary;
+            }
+        }
+        
+        .v-switch {
+            .v-switch-track {
+                border-radius: 9999px;
+                transition: all $transition-fast;
+            }
+            
+            &:has(:checked) {
+                .v-switch-track {
+                    background-color: $primary;
+                }
+            }
+        }
+        
+        .v-breadcrumb {
+            a {
+                --v-breadcrumb-color: $primary;
+                color: $primary;
+                
+                &:hover {
+                    color: $primary-dark;
+                }
+            }
+            
+            .v-breadcrumb-item:last-child {
+                color: $slate-700;
+                font-weight: 500;
+            }
+        }
+        
+        .v-list-item {
+            border-radius: $radius-md;
+            transition: all $transition-fast;
+            
+            &:hover {
+                background-color: $slate-50;
+            }
+            
+            &.active {
+                background-color: rgba($primary, 0.08);
+                
+                .v-list-item-content {
+                    color: $primary;
+                }
+                
+                .v-list-item-icon {
+                    color: $primary;
+                }
+            }
+        }
+        
+        .v-icon {
+            transition: color $transition-fast;
+        }
+    }
+}
+
+.page-description {
+    line-height: 1.6;
+    color: $slate-600;
+    font-size: 14px;
+}
+
+.seo-settings-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, $slate-50 0%, $primary-50 100%);
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-hover {
+    transition: all $transition-normal;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-lg;
     }
 }

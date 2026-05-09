@@ -33,6 +33,9 @@ services:
       REFRESH_TOKEN_COOKIE: "true"
       REFRESH_TOKEN_COOKIE_SECURE: "false"
       REFRESH_TOKEN_COOKIE_SAME_SITE: "Lax"
+      PUBLIC_API_ENABLED: "true"
+      ADMIN_TOKEN: "admin-token-for-directus-2026"
+      PUBLIC_ROLE_ID: "56437fba-3544-424c-bae2-790c022e3d8a"
     volumes:
       - ./directus/uploads:/directus/uploads
       - ./directus/extensions:/directus/extensions

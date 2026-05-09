@@ -1,5 +1,27 @@
 export const navigatorItems = [
     {
+        icon: 'file_copy',
+        name: "Content",
+        to: `/seo-settings/content/products`,
+        childrens: [
+            {
+                icon: 'shopping_bag',
+                name: "Products",
+                to: `/seo-settings/content/products`,
+            },
+            {
+                icon: 'article',
+                name: "Blogs",
+                to: `/seo-settings/content/blogs`,
+            },
+            {
+                icon: 'help_center',
+                name: "FAQs",
+                to: `/seo-settings/content/faqs`,
+            },
+        ]
+    },
+    {
         icon: 'public',
         name: "General",
         to: `/seo-settings/title-meta`,
