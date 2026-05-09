@@ -1,0 +1,75 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { faqs, faqCategories } from '@/lib/faq-data';
+import { generateFAQPageSchema } from '@/lib/schema';
+
+const faqPageSchema = generateFAQPageSchema(faqs);
+---
+
+<Layout title="FAQ - B2Bbaby" description="Frequently asked questions about our baby products, services, and ordering process">
+  <div>
+    <script type="application/ld+json" set:html={JSON.stringify(faqPageSchema)} />
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-6">
+        <h1 class="text-4xl font-bold text-center mb-4">Frequently Asked Questions</h1>
+        <p class="text-xl text-neutral-600 text-center mb-12 max-w-2xl mx-auto">
+          Find answers to common questions about our products, services, and ordering process.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+          {faqCategories.map((category) => (
+            <button
+              key={category}
+              onClick={(e) => {
+                const buttons = document.querySelectorAll('.faq-category-btn');
+                buttons.forEach(btn => btn.classList.remove('bg-primary-600', 'text-white'));
+                buttons.forEach(btn => btn.classList.add('bg-neutral-100', 'text-neutral-600', 'hover:bg-primary-100'));
+                e.target.classList.remove('bg-neutral-100', 'text-neutral-600', 'hover:bg-primary-100');
+                e.target.classList.add('bg-primary-600', 'text-white');
+                
+                const articles = document.querySelectorAll('.faq-item');
+                articles.forEach(article => {
+                  if (category === 'All') {
+                    article.style.display = 'block';
+                  } else {
+                    const articleCategory = article.getAttribute('data-category');
+                    article.style.display = articleCategory === category ? 'block' : 'none';
+                  }
+                });
+              }}
+              class={`faq-category-btn px-6 py-2 rounded-lg font-medium transition ${
+                category === 'All'
+                  ? 'bg-primary-600 text-white'
+                  : 'bg-neutral-100 text-neutral-600 hover:bg-primary-100'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+        
+        <div class="max-w-3xl mx-auto space-y-6">
+          {faqs.map((faq) => (
+            <article key={faq.id} class="faq-item bg-white border border-neutral-200 rounded-lg p-6" data-category={faq.category}>
+              <h2 class="text-lg font-bold mb-3 text-neutral-900">{faq.question}</h2>
+              <div class="text-neutral-600 whitespace-pre-line mb-3">
+                {faq.answer}
+              </div>
+              <div class="text-sm text-neutral-400 border-t pt-3 flex justify-between items-center">
+                <span>Category: {faq.category}</span>
+                <span>Last Updated: 2026</span>
+              </div>
+            </article>
+          ))}
+        </div>
+        
+        <div class="text-center mt-12">
+          <p class="text-neutral-600 mb-4">Still have questions?</p>
+          <a href="/contact" class="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition inline-block">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

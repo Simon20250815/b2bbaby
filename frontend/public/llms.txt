@@ -1,0 +1,30 @@
+# BabyGeo Pro - B2B Baby Products Manufacturer
+
+## Site Information
+- Website: https://b2bbaby.com
+- Company: BabyGeo Pro Limited
+- Contact: sourcing@babygeopro.com
+- Phone: +86 176 8112 8186
+- Location: Guangzhou, China
+
+## Content Type
+- Product Catalog (Baby Strollers, Safety Gates, High Chairs)
+- OEM/ODM Customization Services
+- Factory Sourcing Services
+- Industry Blog Articles
+- FAQ Section
+
+## Data Update Frequency
+- Products: Monthly
+- Blog: Weekly
+- Certifications: Quarterly
+
+## Usage Guidelines
+- All content is for informational purposes
+- Prices and availability subject to change
+- Contact us for current pricing and MOQ
+
+## Permissions
+- AI crawlers may index and summarize content
+- Direct scraping of large datasets requires prior consent
+- Commercial use of content requires licensing

@@ -1,0 +1,181 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { blogPosts, getBlogBySlug } from '@/lib/blog-data';
+
+export async function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+interface Props {
+  post: typeof blogPosts[0];
+}
+
+const { post } = Astro.props;
+
+const relatedPosts = blogPosts.filter(p => p.id !== post.id && p.category === post.category).slice(0, 2);
+---
+
+<Layout title={`${post.title} - B2Bbaby`} description={post.description}>
+  <article class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <nav class="mb-8">
+        <ol class="flex items-center gap-2 text-sm text-neutral-600">
+          <li>
+            <a href="/" class="hover:text-primary-600">Home</a>
+          </li>
+          <li>/</li>
+          <li>
+            <a href="/blog" class="hover:text-primary-600">Blog</a>
+          </li>
+          <li>/</li>
+          <li class="text-neutral-900 font-semibold">{post.title}</li>
+        </ol>
+      </nav>
+
+      <div class="max-w-4xl mx-auto">
+        <header class="mb-10">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="bg-primary-100 text-primary-800 text-sm px-4 py-1 rounded-full font-medium">
+              {post.category}
+            </span>
+            <span class="text-neutral-500 text-sm">{post.datePublished}</span>
+            <span class="text-neutral-500 text-sm">{post.readTime} read</span>
+            <span class="text-neutral-500 text-sm">Last Updated: {post.dateModified}</span>
+          </div>
+          <h1 class="text-4xl font-bold mb-4">{post.title}</h1>
+          <p class="text-xl text-neutral-600">{post.description}</p>
+        </header>
+
+        <div class="h-80 rounded-xl mb-10 overflow-hidden bg-neutral-100">
+          <img 
+            src={post.image} 
+            alt={post.title}
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <div class="prose prose-lg max-w-none">
+          <section class="mb-10">
+            <p class="text-lg text-neutral-700 leading-relaxed">
+              This comprehensive guide provides detailed information about importing baby products from China. 
+              We cover essential topics including certification requirements, supplier verification, 
+              quality control procedures, and best practices for successful sourcing.
+            </p>
+          </section>
+
+          <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4">Understanding Certification Requirements</h2>
+            <p class="text-neutral-700 mb-4">
+              When importing baby products, understanding the certification requirements of your target market 
+              is crucial. Different regions have different standards that must be met to ensure product safety 
+              and compliance.
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-start gap-3">
+                <span class="text-primary-600 mt-1">•</span>
+                <span class="text-neutral-700">EU markets require CE marking and compliance with EN standards</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-primary-600 mt-1">•</span>
+                <span class="text-neutral-700">US markets require CPC certification and ASTM standards</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-primary-600 mt-1">•</span>
+                <span class="text-neutral-700">Canada requires compliance with Health Canada regulations</span>
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4">Finding Reliable Suppliers</h2>
+            <p class="text-neutral-700 mb-4">
+              Finding reliable suppliers is essential for successful importing. Here are some key considerations:
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-start gap-3">
+                <span class="text-primary-600 mt-1">•</span>
+                <span class="text-neutral-700">Verify supplier certifications and audit reports</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-primary-600 mt-1">•</span>
+                <span class="text-neutral-700">Request samples before placing bulk orders</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-primary-600 mt-1">•</span>
+                <span class="text-neutral-700">Check factory capabilities and production capacity</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-primary-600 mt-1">•</span>
+                <span class="text-neutral-700">Establish clear communication channels</span>
+              </li>
+            </ul>
+          </section>
+
+          <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-4">Conclusion</h2>
+            <p class="text-neutral-700">
+              Importing baby products from China can be a profitable venture when done correctly. 
+              By understanding certification requirements, finding reliable suppliers, and implementing 
+              proper quality control measures, you can build a successful business. Remember to always 
+              prioritize product safety and compliance to protect your customers and your brand.
+            </p>
+          </section>
+        </div>
+
+        <div class="bg-primary-50 rounded-xl p-8 mb-10">
+          <h3 class="text-xl font-bold mb-3">Ready to Source Quality Baby Products?</h3>
+          <p class="text-neutral-600 mb-4">
+            BabyGeo Pro is your trusted partner for certified baby products from China.
+            With 15+ years of experience, 200+ staff, and 10,000 sqm factory space,
+            we ensure quality, compliance, and on-time delivery.
+          </p>
+          <div class="flex gap-4">
+            <a href="/contact" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition">
+              Get a Quote
+            </a>
+            <a href="/products" class="bg-neutral-200 text-neutral-800 px-6 py-3 rounded-lg font-semibold hover:bg-neutral-300 transition">
+              View Products
+            </a>
+          </div>
+        </div>
+
+        <div class="mb-10">
+          <h3 class="text-lg font-bold mb-3">Tags</h3>
+          <div class="flex flex-wrap gap-2">
+            {post.keywords.map((keyword, index) => (
+              <span key={index} class="bg-neutral-100 text-neutral-600 text-sm px-3 py-1 rounded-full">
+                {keyword}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div class="border-t pt-10">
+          <h2 class="text-2xl font-bold mb-6">Related Articles</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            {relatedPosts.map((relatedPost) => (
+              <a
+                key={relatedPost.id}
+                href={`/blog/${relatedPost.slug}`}
+                class="bg-white border border-neutral-200 rounded-lg p-4 hover:shadow-lg transition"
+              >
+                <div class="h-32 rounded-lg mb-3 overflow-hidden bg-neutral-100">
+                  <img 
+                    src={relatedPost.image} 
+                    alt={relatedPost.title}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 class="font-bold mb-1">{relatedPost.title}</h3>
+                <p class="text-sm text-neutral-600">{relatedPost.readTime} read</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>

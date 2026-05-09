@@ -1,0 +1,80 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { productsData } from '@/lib/product-data';
+import { faqs } from '@/lib/faq-data';
+import { generateProductGroupSchema } from '@/lib/schema';
+
+const productGroupSchema = generateProductGroupSchema(productsData);
+const featuredFaqs = faqs.filter(f => f.category === 'Product').slice(0, 3);
+---
+
+<Layout title="Baby Products - B2Bbaby" description="High-quality, certified baby products including strollers, safety gates, high chairs from China manufacturer">
+  <div>
+    <script type="application/ld+json" set:html={JSON.stringify(productGroupSchema)} />
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-6">
+        <h1 class="text-4xl font-bold text-center mb-4">Our Products</h1>
+        <p class="text-xl text-neutral-600 text-center mb-12 max-w-2xl mx-auto">
+          High-quality, certified baby products from a professional Chinese manufacturer.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+          {productsData.map((product) => (
+            <article key={product.id} class="bg-white border border-neutral-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <div class="h-48 rounded-lg mb-4 overflow-hidden bg-neutral-100">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <h2 class="text-2xl font-bold mb-2">{product.title}</h2>
+              <p class="text-neutral-600 mb-4">{product.description}</p>
+
+              <div class="space-y-2 mb-4">
+                <div class="flex items-center gap-2 text-sm">
+                  <span class="text-neutral-500">MOQ:</span>
+                  <span class="font-semibold">{product.moq} units</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm">
+                  <span class="text-neutral-500">Lead Time:</span>
+                  <span class="font-semibold">{product.leadTimeProduction}</span>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-2 mb-4">
+                {product.certifications.map((cert: string, idx: number) => (
+                  <span key={idx} class="bg-green-50 text-green-700 text-xs px-2 py-1 rounded-full font-medium">
+                    {cert}
+                  </span>
+                ))}
+              </div>
+
+              <a href={`/products/${product.slug}`} class="text-primary-600 font-semibold hover:underline">
+                View Details →
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <article class="max-w-3xl mx-auto">
+          <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {featuredFaqs.map((faq) => (
+              <div key={faq.id} class="bg-white border border-neutral-200 rounded-lg p-6">
+                <h3 class="text-lg font-semibold mb-2">{faq.question}</h3>
+                <p class="text-neutral-600">{faq.answer}</p>
+              </div>
+            ))}
+            <div class="text-center mt-4">
+              <a href="/faq" class="text-primary-600 font-semibold hover:underline">
+                View all FAQs →
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+</Layout>

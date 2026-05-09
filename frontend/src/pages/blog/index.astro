@@ -1,0 +1,81 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { blogPosts } from '@/lib/blog-data';
+
+const categories = [
+  { name: 'All', value: 'all' },
+  { name: 'Certification', value: 'certification' },
+  { name: 'Purchasing', value: 'purchasing' },
+  { name: 'Product', value: 'product' }
+];
+---
+
+<Layout title="Blog - B2Bbaby" description="Expert guides and insights on importing baby products from China">
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-4">Baby Product Blog</h1>
+        <p class="text-xl text-neutral-600 max-w-2xl mx-auto">
+          Expert guides, industry insights, and practical tips for importing baby products from China.
+          Last Updated: 2026
+        </p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        {categories.map((category) => (
+          <button
+            key={category.value}
+            onClick={() => {}}
+            class={`px-6 py-2 rounded-full font-medium transition ${
+              category.value === 'all'
+                ? 'bg-primary-600 text-white'
+                : 'bg-neutral-100 text-neutral-600 hover:bg-primary-100'
+            }`}
+          >
+            {category.name}
+          </button>
+        ))}
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {blogPosts.map((post) => (
+          <article key={post.id} class="bg-white border border-neutral-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div class="h-48 rounded-lg mb-4 overflow-hidden bg-neutral-100">
+              <img 
+                src={post.image} 
+                alt={post.title}
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="bg-primary-100 text-primary-800 text-xs px-3 py-1 rounded-full font-medium">
+                {post.category}
+              </span>
+              <span class="text-neutral-500 text-sm">{post.datePublished}</span>
+              <span class="text-neutral-500 text-sm">{post.readTime} read</span>
+            </div>
+            <h2 class="text-xl font-bold mb-2">{post.title}</h2>
+            <p class="text-neutral-600 mb-4">{post.description}</p>
+            <a href={`/blog/${post.slug}`} class="text-primary-600 font-semibold hover:underline">
+              Read Article →
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-16 text-center">
+        <div class="bg-primary-50 rounded-xl p-10 max-w-3xl mx-auto">
+          <h2 class="text-2xl font-bold mb-4">Have Questions About Importing Baby Products?</h2>
+          <p class="text-neutral-600 mb-6">
+            Get a free consultation with our sourcing experts. We can help with certification,
+            quality control, and factory sourcing.
+          </p>
+          <a href="/contact" class="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition inline-block">
+            Get Free Consultation
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
