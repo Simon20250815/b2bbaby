@@ -58,6 +58,7 @@ const relatedPosts = blogPosts.filter(p => p.id !== post.id && p.category === po
             src={post.image} 
             alt={post.title}
             class="w-full h-full object-cover"
+            loading="lazy"
           />
         </div>
 
@@ -132,17 +133,53 @@ const relatedPosts = blogPosts.filter(p => p.id !== post.id && p.category === po
         <div class="bg-primary-50 rounded-xl p-8 mb-10">
           <h3 class="text-xl font-bold mb-3">Ready to Source Quality Baby Products?</h3>
           <p class="text-neutral-600 mb-4">
-            BabyGeo Pro is your trusted partner for certified baby products from China.
+            B2Bbaby is your trusted partner for certified baby products from China.
             With 15+ years of experience, 200+ staff, and 10,000 sqm factory space,
             we ensure quality, compliance, and on-time delivery.
           </p>
-          <div class="flex gap-4">
-            <a href="/contact" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition">
+          <div class="flex flex-col sm:flex-row gap-4 mb-6">
+            <a href="/contact" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition text-center">
               Get a Quote
             </a>
-            <a href="/products" class="bg-neutral-200 text-neutral-800 px-6 py-3 rounded-lg font-semibold hover:bg-neutral-300 transition">
+            <a href="/products" class="bg-neutral-200 text-neutral-800 px-6 py-3 rounded-lg font-semibold hover:bg-neutral-300 transition text-center">
               View Products
             </a>
+            <a href="/oem-odm" class="bg-white border-2 border-blue-700 text-blue-700 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-center">
+              OEM/ODM Service
+            </a>
+          </div>
+          
+          <div class="border-t border-blue-200 pt-6">
+            <h4 class="font-semibold mb-3">Related Products:</h4>
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-3">
+              <a href="/products/foldable-baby-stroller-astm" class="text-blue-700 hover:text-blue-900 text-sm">
+                → Baby Strollers
+              </a>
+              <a href="/products/en-certified-safety-gate" class="text-blue-700 hover:text-blue-900 text-sm">
+                → Safety Gates
+              </a>
+              <a href="/products/cpc-certified-high-chair" class="text-blue-700 hover:text-blue-900 text-sm">
+                → High Chairs
+              </a>
+              <a href="/products/baby-bed-rail-safety-guard" class="text-blue-700 hover:text-blue-900 text-sm">
+                → Bed Rails
+              </a>
+            </div>
+          </div>
+          
+          <div class="border-t border-blue-200 pt-6 mt-6">
+            <h4 class="font-semibold mb-3">Helpful Resources:</h4>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+              <a href="/faq" class="text-blue-700 hover:text-blue-900 text-sm">
+                → FAQ Page
+              </a>
+              <a href="/shipping-proof" class="text-blue-700 hover:text-blue-900 text-sm">
+                → Shipping Proof
+              </a>
+              <a href="/about" class="text-blue-700 hover:text-blue-900 text-sm">
+                → About Us
+              </a>
+            </div>
           </div>
         </div>
 
@@ -171,6 +208,7 @@ const relatedPosts = blogPosts.filter(p => p.id !== post.id && p.category === po
                     src={relatedPost.image} 
                     alt={relatedPost.title}
                     class="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <h3 class="font-bold mb-1">{relatedPost.title}</h3>

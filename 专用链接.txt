@@ -1,0 +1,38 @@
+谷歌邮箱专用密码
+# PostgreSQL 数据库密码
+DB_PASSWORD=directus_password_2026
+
+# Directus CMS 配置
+DIRECTUS_KEY=your-directus-key-here-change-in-production
+DIRECTUS_SECRET=your-directus-secret-here-change-in-production
+ADMIN_PASSWORD=admin_password_2026
+
+# Umami Analytics 配置
+UMAMI_DB_NAME=umami
+UMAMI_DB_USER=umami_user
+UMAMI_DB_PASSWORD=umami_password_2026
+UMAMI_HASH_SALT=umami-salt-key-change-in-production-2026
+
+# SMTP 邮件配置（联系表单用）
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=ejecoq@gmail.com
+SMTP_PASS=gdahhsnihzlysudk
+SMTP_TO=ejecoq@gmail.com
+
+# 网站配置
+SITE_URL=https://b2bbaby.com
+SITE_NAME=B2B Baby
+
+
+
+cd /www/wwwroot/b2bbaby
+
+# 停止前端容器
+docker-compose down frontend
+
+# 重新启动（会自动安装新依赖）
+docker-compose up -d frontend
+
+# 查看日志确认安装成功
+docker-compose logs frontend

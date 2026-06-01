@@ -1,0 +1,100 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import ShippingGallery from '@/components/ShippingGallery.astro';
+import shippingData from '@/content/shipping-proof/index.json';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": shippingData.title,
+  "description": shippingData.description,
+  "associatedMedia": shippingData.galleries.flatMap((g: any) => 
+    g.images.map((img: any) => ({
+      "@type": "ImageObject",
+      "contentUrl": `https://b2bbaby.com${img.src}`,
+      "description": img.alt,
+      "dateCreated": img.date
+    }))
+  )
+};
+---
+
+<Layout title="Shipping Proof | B2Bbaby - Verified Shipment Records" description="Real shipment documents and photos from our factory to global ports. Verified records to US, EU, and Australia ports with 98% on-time delivery.">
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  
+  <section class="bg-gradient-to-r from-blue-50 to-indigo-50 py-10 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center">
+        <span class="inline-block bg-white/80 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-medium text-blue-700 mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="inline-block mr-1">
+            <path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16v-2"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+          Verified Records
+        </span>
+        <h1 class="text-3xl md:text-5xl font-bold text-neutral-900 mb-4">{shippingData.title}</h1>
+        <p class="text-base md:text-lg text-neutral-600 max-w-3xl mx-auto">{shippingData.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
+        <div class="text-center p-4 md:p-6 bg-blue-50 rounded-xl border border-blue-100">
+          <div class="text-2xl md:text-4xl font-bold text-blue-600 mb-2">{shippingData.stats.total_batches_2025}</div>
+          <div class="text-xs md:text-sm text-neutral-600">Batches Shipped (2025)</div>
+        </div>
+        <div class="text-center p-4 md:p-6 bg-green-50 rounded-xl border border-green-100">
+          <div class="text-2xl md:text-4xl font-bold text-green-600 mb-2">{shippingData.stats.countries_served}</div>
+          <div class="text-xs md:text-sm text-neutral-600">Countries Served</div>
+        </div>
+        <div class="text-center p-4 md:p-6 bg-purple-50 rounded-xl border border-purple-100">
+          <div class="text-2xl md:text-4xl font-bold text-purple-600 mb-2">{shippingData.stats.on_time_delivery_rate}%</div>
+          <div class="text-xs md:text-sm text-neutral-600">On-Time Delivery</div>
+        </div>
+        <div class="text-center p-4 md:p-6 bg-orange-50 rounded-xl border border-orange-100">
+          <div class="text-2xl md:text-4xl font-bold text-orange-600 mb-2">{shippingData.stats.average_lead_time_days}</div>
+          <div class="text-xs md:text-sm text-neutral-600">Avg Lead Time (Days)</div>
+        </div>
+      </div>
+
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center gap-2 mb-8">
+          <div class="w-1 h-6 bg-blue-600 rounded-full"></div>
+          <h2 class="text-xl md:text-2xl font-bold text-neutral-900">Shipment Gallery</h2>
+        </div>
+
+        {shippingData.galleries.map((gallery: any, idx) => (
+          <ShippingGallery gallery={gallery} key={idx} />
+        ))}
+
+        <section class="mt-16 p-6 md:p-8 bg-neutral-50 rounded-2xl border border-neutral-200">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-600">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg text-neutral-900 mb-2">Privacy Protected</h3>
+              <p class="text-neutral-600 text-sm md:text-base">
+                All client information (company names, contact details, pricing) has been redacted for confidentiality. These are real shipment records from our factory to global ports.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="text-center mt-12">
+          <a href="/contact" class="inline-flex items-center gap-2 bg-blue-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all hover:shadow-lg">
+            Request Full Documentation
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

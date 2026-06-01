@@ -34,6 +34,21 @@ export interface Product {
   packaging?: string;
   status: string;
   sort: number;
+  // B2B新增字段
+  paymentTerms: string;
+  loadingPort: string;
+  tradeTerms: string;
+  containerLoad: {
+    '20GP': number;
+    '40GP': number;
+    '40HQ': number;
+  };
+  qcProcess: string;
+  afterSalesPolicy: string;
+  faq: {
+    q: string;
+    a: string;
+  }[];
 }
 
 export const productsData: Product[] = [
@@ -43,8 +58,8 @@ export const productsData: Product[] = [
     title: 'ASTM Certified Baby Stroller',
     title_en: 'ASTM Certified Baby Stroller',
     category: 'stroller',
-    description: 'Lightweight, foldable baby stroller with ASTM F833-23 certification. Premium aluminum frame with one-hand fold design. Suitable for babies 6-36 months. Export to US, Canada, EU with 247+ batches, zero return rate.',
-    description_en: 'Lightweight, foldable baby stroller with ASTM F833-23 certification. Premium aluminum frame with one-hand fold design. Suitable for babies 6-36 months. Export to US, Canada, EU with 247+ batches, zero return rate.',
+    description: 'High-performance travel stroller with one-hand fold in 2 seconds. ASTM F833-23 & EN 1888 certified, 247+ export batches with zero return rate. Ideal for retailers targeting on-the-go families.',
+    description_en: 'High-performance travel stroller with one-hand fold in 2 seconds. ASTM F833-23 & EN 1888 certified, 247+ export batches with zero return rate. Ideal for retailers targeting on-the-go families.',
     moq: 50,
     leadTimeSample: '3-7 days',
     leadTimeProduction: '15-25 days',
@@ -53,13 +68,13 @@ export const productsData: Product[] = [
     testReportNumber: 'BGP-TR-2026-ST001',
     exportBatches: 247,
     zeroReturnRate: true,
-    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20lightweight%20baby%20stroller%20in%20blue%20color%2C%20product%20photography%2C%20white%20background&image_size=square_hd',
+    image: '/images/products/stroller/main.jpg',
     galleryImages: [
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20lightweight%20baby%20stroller%20in%20blue%20color%2C%20product%20photography%2C%20white%20background&image_size=square_hd',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20stroller%20folded%20compact%20view%2C%20easy%20fold%20design%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20stroller%20side%20view%20showing%20storage%20basket%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20stroller%20detail%20closeup%205-point%20harness%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20stroller%20adjustable%20handlebar%20detail%2C%20product%20photo&image_size=square'
+      '/images/products/stroller/main.jpg',
+      '/images/products/stroller/folded.jpg',
+      '/images/products/stroller/storage.jpg',
+      '/images/products/stroller/harness.jpg',
+      '/images/products/stroller/handlebar.jpg'
     ],
     specs: {
       'Material': 'Aluminum alloy frame + 600D Oxford fabric',
@@ -91,7 +106,22 @@ export const productsData: Product[] = [
     applications: ['Daily use', 'Travel', 'Shopping', 'Outdoor activities'],
     packaging: '1pc/ctn, Gross weight 7.5kg, Carton size: 58×32×42cm',
     status: 'published',
-    sort: 1
+    sort: 1,
+    paymentTerms: 'T/T 30% deposit, 70% against copy of B/L',
+    loadingPort: 'Shanghai, China',
+    tradeTerms: 'FOB Shanghai',
+    containerLoad: {
+      '20GP': 1200,
+      '40GP': 2500,
+      '40HQ': 2900
+    },
+    qcProcess: 'IQC (incoming) → IPQC (production line) → FQC (final assembly) → OQC (container loading check). 100% inspection on safety and function.',
+    afterSalesPolicy: '12-month warranty against manufacturing defects. Free replacement parts for quality issues within warranty period.',
+    faq: [
+      { q: 'What certifications do these strollers have?', a: 'All strollers have ASTM F833-23, CPC, EN 1888, and ISO 9001 certification. We can provide test reports upon request.' },
+      { q: 'Can I customize the color and packaging?', a: 'Yes! We offer 15+ color options, custom logo printing, and custom packaging design. MOQ for custom color is 100 units.' },
+      { q: 'What is the sample lead time?', a: 'Standard samples take 3-7 days. Customized samples take 7-10 days depending on requirements.' }
+    ]
   },
   {
     id: 2,
@@ -99,8 +129,8 @@ export const productsData: Product[] = [
     title: 'EN Certified Safety Gate',
     title_en: 'EN Certified Safety Gate',
     category: 'safety-gate',
-    description: 'EN 1930:2012 certified baby safety gate with pressure mount installation. Auto-close door with double-locking mechanism. Fits doorways 75-100cm width. Ideal for stairs and room entrances.',
-    description_en: 'EN 1930:2012 certified baby safety gate with pressure mount installation. Auto-close door with double-locking mechanism. Fits doorways 75-100cm width. Ideal for stairs and room entrances.',
+    description: 'Auto-close baby safety gate with double-locking system. EN 1930 & ASTM F1004 certified, 189+ export batches. Extension kits available for wider openings up to 150cm. Perfect for baby-proofing specialists.',
+    description_en: 'Auto-close baby safety gate with double-locking system. EN 1930 & ASTM F1004 certified, 189+ export batches. Extension kits available for wider openings up to 150cm. Perfect for baby-proofing specialists.',
     moq: 100,
     leadTimeSample: '3-7 days',
     leadTimeProduction: '15-25 days',
@@ -109,13 +139,13 @@ export const productsData: Product[] = [
     testReportNumber: 'BGP-TR-2026-SG001',
     exportBatches: 189,
     zeroReturnRate: true,
-    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20safety%20gate%20for%20doorway%2C%20white%20metal%20design%2C%20product%20photo%2C%20clean%20background&image_size=square_hd',
+    image: '/images/products/safety-gate/main.jpg',
     galleryImages: [
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20safety%20gate%20for%20doorway%2C%20white%20metal%20design%2C%20product%20photo%2C%20clean%20background&image_size=square_hd',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20safety%20gate%20pressure%20mount%20installation%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20safety%20gate%20auto-close%20door%20mechanism%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20safety%20gate%20double-locking%20detail%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20safety%20gate%20installed%20at%20doorway%2C%20lifestyle%20photo&image_size=square'
+      '/images/products/safety-gate/main.jpg',
+      '/images/products/safety-gate/install.jpg',
+      '/images/products/safety-gate/door.jpg',
+      '/images/products/safety-gate/lock.jpg',
+      '/images/products/safety-gate/lifestyle.jpg'
     ],
     specs: {
       'Material': 'High-grade steel frame',
@@ -146,7 +176,22 @@ export const productsData: Product[] = [
     applications: ['Doorways', 'Staircases', 'Kitchen entrances', 'Room separation'],
     packaging: '1pc/ctn, Gross weight 3.2kg, Carton size: 8×78×82cm',
     status: 'published',
-    sort: 2
+    sort: 2,
+    paymentTerms: 'T/T 30% deposit, 70% against copy of B/L or L/C at sight',
+    loadingPort: 'Ningbo, China',
+    tradeTerms: 'FOB Ningbo',
+    containerLoad: {
+      '20GP': 2800,
+      '40GP': 5800,
+      '40HQ': 6700
+    },
+    qcProcess: 'Raw material check → Welding inspection → Finish check → Function test → Impact test → Final packing check. 100% open-close testing for each unit.',
+    afterSalesPolicy: '12-month warranty. Free replacement parts for manufacturing defects. Technical support available 24/7.',
+    faq: [
+      { q: 'What is the maximum width this gate can fit?', a: 'Standard size fits 75-100cm. We have extension kits available for wider openings up to 150cm.' },
+      { q: 'Is this gate suitable for top of stairs?', a: 'Yes! We provide wall mount hardware for staircase installation. Pressure mount is suitable for doorways.' },
+      { q: 'What safety standards does it meet?', a: 'Meets EN 1930:2012 (EU), ASTM F1004 (US), and CPSC safety standards.' }
+    ]
   },
   {
     id: 3,
@@ -154,8 +199,8 @@ export const productsData: Product[] = [
     title: 'CPC Certified High Chair',
     title_en: 'CPC Certified High Chair',
     category: 'high-chair',
-    description: 'CPC and ASTM F404 certified baby high chair with 7-position height adjustment and 3-position recline. Removable dishwasher-safe tray. Premium PP+metal construction. For babies 6-36 months.',
-    description_en: 'CPC and ASTM F404 certified baby high chair with 7-position height adjustment and 3-position recline. Removable dishwasher-safe tray. Premium PP+metal construction. For babies 6-36 months.',
+    description: 'Food-grade high chair with FDA & LFGB certified materials. 7-position height + 3-position recline, dishwasher-safe tray. 205+ export batches, 18-month warranty. Ideal for premium baby stores.',
+    description_en: 'Food-grade high chair with FDA & LFGB certified materials. 7-position height + 3-position recline, dishwasher-safe tray. 205+ export batches, 18-month warranty. Ideal for premium baby stores.',
     moq: 80,
     leadTimeSample: '3-7 days',
     leadTimeProduction: '15-25 days',
@@ -164,13 +209,13 @@ export const productsData: Product[] = [
     testReportNumber: 'BGP-TR-2026-HC001',
     exportBatches: 205,
     zeroReturnRate: true,
-    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20baby%20high%20chair%2C%20gray%20color%2C%20product%20photography%2C%20white%20background&image_size=square_hd',
+    image: '/images/products/high-chair/main.jpg',
     galleryImages: [
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20baby%20high%20chair%2C%20gray%20color%2C%20product%20photography%2C%20white%20background&image_size=square_hd',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20high%20chair%20folded%20compact%20storage%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20high%20chair%20removable%20tray%20detail%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20high%20chair%205-point%20harness%20detail%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20high%20chair%20height%20adjustment%20mechanism%2C%20product%20photo&image_size=square'
+      '/images/products/high-chair/main.jpg',
+      '/images/products/high-chair/folded.jpg',
+      '/images/products/high-chair/tray.jpg',
+      '/images/products/high-chair/harness.jpg',
+      '/images/products/high-chair/height.jpg'
     ],
     specs: {
       'Material': 'PP plastic + powder-coated steel',
@@ -202,7 +247,22 @@ export const productsData: Product[] = [
     applications: ['Feeding time', 'Play time', 'Family dining'],
     packaging: '1pc/ctn, Gross weight 6.8kg, Carton size: 58×28×68cm',
     status: 'published',
-    sort: 3
+    sort: 3,
+    paymentTerms: 'T/T 30% deposit, 70% against copy of B/L',
+    loadingPort: 'Shanghai, China',
+    tradeTerms: 'FOB Shanghai',
+    containerLoad: {
+      '20GP': 1500,
+      '40GP': 3200,
+      '40HQ': 3700
+    },
+    qcProcess: 'Incoming material food-grade check → Assembly line QC → Function test (harness, tray, recline) → Stability test → Final visual inspection.',
+    afterSalesPolicy: '18-month warranty for high chairs. Free replacement parts within warranty. Food-safe parts guaranteed.',
+    faq: [
+      { q: 'Is the tray material food-safe?', a: 'Yes! All food-contact materials are FDA and LFGB certified. Tray is dishwasher-safe and BPA-free.' },
+      { q: 'What is the height range?', a: '7-position height adjustment from 45cm to 65cm to fit different table heights.' },
+      { q: 'Can it be folded for storage?', a: 'Yes! Compact fold design makes it easy to store when not in use.' }
+    ]
   },
   {
     id: 4,
@@ -210,8 +270,8 @@ export const productsData: Product[] = [
     title: 'Baby Bed Rail Safety Guard',
     title_en: 'Baby Bed Rail Safety Guard',
     category: 'bed-rail',
-    description: 'Heightening reinforced baby bed rail with breathable mesh window. Prevents toddler falls during sleep. Adjustable length 120-200cm. EN 1930 and CPSC certified. Tool-free installation.',
-    description_en: 'Heightening reinforced baby bed rail with breathable mesh window. Prevents toddler falls during sleep. Adjustable length 120-200cm. EN 1930 and CPSC certified. Tool-free installation.',
+    description: 'Heightening bed rail with breathable mesh window for visibility. Adjustable length 120-200cm, fits 20-60cm mattresses. EN 1930 & CPSC certified, 156+ export batches. Great for online marketplaces.',
+    description_en: 'Heightening bed rail with breathable mesh window for visibility. Adjustable length 120-200cm, fits 20-60cm mattresses. EN 1930 & CPSC certified, 156+ export batches. Great for online marketplaces.',
     moq: 60,
     leadTimeSample: '3-7 days',
     leadTimeProduction: '15-25 days',
@@ -220,13 +280,13 @@ export const productsData: Product[] = [
     testReportNumber: 'BGP-TR-2026-BR001',
     exportBatches: 156,
     zeroReturnRate: true,
-    image: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20bed%20rail%20safety%20guard%20in%20gray%20color%2C%20product%20photography%2C%20white%20background&image_size=square_hd',
+    image: '/images/products/bed-rail/main.jpg',
     galleryImages: [
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20bed%20rail%20safety%20guard%20in%20gray%20color%2C%20product%20photography%2C%20white%20background&image_size=square_hd',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20bed%20rail%20installation%20on%20bed%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20bed%20rail%20breathable%20mesh%20window%20detail%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20bed%20rail%20heightening%20design%20explanation%2C%20product%20photo&image_size=square',
-      'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20bed%20rail%20in%20bedroom%20setting%2C%20lifestyle%20photo&image_size=square'
+      '/images/products/bed-rail/main.jpg',
+      '/images/products/bed-rail/install.jpg',
+      '/images/products/bed-rail/mesh.jpg',
+      '/images/products/bed-rail/height.jpg',
+      '/images/products/bed-rail/lifestyle.jpg'
     ],
     specs: {
       'Material': 'Steel frame + 600D Oxford fabric + mesh',
@@ -257,7 +317,22 @@ export const productsData: Product[] = [
     applications: ['Toddler beds', 'Adult beds', 'Travel', 'Hotel use'],
     packaging: '1pc/ctn, Gross weight 2.5kg, Carton size: 65×12×88cm',
     status: 'published',
-    sort: 4
+    sort: 4,
+    paymentTerms: 'T/T 30% deposit, 70% against copy of B/L or PayPal for small orders',
+    loadingPort: 'Ningbo, China',
+    tradeTerms: 'FOB Ningbo',
+    containerLoad: {
+      '20GP': 2000,
+      '40GP': 4200,
+      '40HQ': 4900
+    },
+    qcProcess: 'Frame strength test → Fabric tension test → Installation fit test → Fold/unfold test → Final inspection.',
+    afterSalesPolicy: '12-month warranty. Free replacement parts for any quality issues. Custom length options available.',
+    faq: [
+      { q: 'What mattress thickness does it fit?', a: 'Fits mattresses from 20cm to 60cm thickness. Works with most standard and thick mattresses.' },
+      { q: 'Can I install on both sides of the bed?', a: 'Yes! Order 2 units for both sides. They work independently and don\'t interfere with each other.' },
+      { q: 'Is the fabric washable?', a: 'Yes! The fabric cover is removable and machine washable on gentle cycle.' }
+    ]
   }
 ];
 

@@ -1,0 +1,44 @@
+{
+  "faqs": [
+    {
+      "question": "最小起订量是多少？",
+      "question_en": "What is the minimum order quantity?",
+      "answer": "不同产品的起订量不同，一般在50-100件之间。具体请咨询我们的销售团队。",
+      "answer_en": "MOQ varies by product, typically between 50-100 pieces. Please contact our sales team for details.",
+      "category": "order",
+      "sort": 1
+    },
+    {
+      "question": "产品有哪些认证？",
+      "question_en": "What certifications do your products have?",
+      "answer": "我们的产品通过ASTM、EN、CPSIA、CE等国际认证，可根据目标市场要求提供相应认证产品。",
+      "answer_en": "Our products are certified with ASTM, EN, CPSIA, CE and other international standards. We can provide products with certifications based on your target market requirements.",
+      "category": "certification",
+      "sort": 2
+    },
+    {
+      "question": "交货期是多久？",
+      "question_en": "What is the lead time?",
+      "answer": "样品交期7-10天，大货交期25-45天，具体取决于订单数量和产品类型。",
+      "answer_en": "Sample lead time is 7-10 days, production lead time is 25-45 days, depending on order quantity and product type.",
+      "category": "order",
+      "sort": 3
+    },
+    {
+      "question": "可以定制产品吗？",
+      "question_en": "Can I customize products?",
+      "answer": "是的，我们提供OEM/ODM服务，可以根据您的需求定制产品颜色、包装、Logo等。",
+      "answer_en": "Yes, we offer OEM/ODM services. We can customize product colors, packaging, logos, etc. according to your requirements.",
+      "category": "product",
+      "sort": 4
+    },
+    {
+      "question": "如何获取报价？",
+      "question_en": "How can I get a quote?",
+      "answer": "请通过网站联系表单或直接发送邮件至我们的销售团队，我们会在24小时内回复。",
+      "answer_en": "Please use our contact form or email our sales team directly. We will respond within 24 hours.",
+      "category": "order",
+      "sort": 5
+    }
+  ]
+}

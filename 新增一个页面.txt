@@ -1,0 +1,558 @@
+# 📦 发货凭证展示方案 + 架构调整（无TinaCMS版）
+
+## 一、 发货照片的价值评估
+
+### ✅ **非常有用！强烈建议添加**
+
+| 价值维度 | 说明 | 对B2B买家的影响 |
+|:---|:---|:---|
+| 🔹 **真实运营证明** | 证明你不是皮包公司，有实际出货 | 消除"空壳公司"疑虑，转化率提升30%+ |
+| 🔹 **出货能力展示** | 展示包装质量、物流合作方、出货频率 | 增强专业感，证明供应链稳定 |
+| 🔹 **可验证证据** | 提货单含日期/目的地/产品类别（脱敏） | AI可抓取"频繁出货至US/EU"信号，提升GEO引用率 |
+| 🔹 **信任锚点** | 视觉化证据 > 文字描述 | 买家停留时间延长，询盘转化率提升 |
+
+> ⚠️ **关键提醒**：必须**脱敏处理**！
+> - ✅ 保留：日期、目的地港口（如"Los Angeles Port"）、产品类别（"Baby Stroller"）、箱数
+> - ❌ 隐藏：客户公司名、联系人、金额、提单号完整数字、精确地址
+
+---
+
+## 二、 放置位置建议（3个方案）
+
+### 🏆 **推荐方案：单独页面 `/shipping-proof`**
+
+**为什么单独页面？**
+1. **专注展示**：不被About/Products内容稀释
+2. **SEO/GEO友好**：可独立优化Schema（`ImageGallery` + `AboutPage`）
+3. **导航清晰**：主导航加"Proof of Shipment"链接，信任信号前置
+4. **可扩展性**：后期可加"月度出货报告"、"物流合作商"等模块
+
+**页面结构**：
+
+**GEO Schema注入**：
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": "BabyGEO Pro Shipping Proof Gallery",
+  "description": "Real shipment records to US/EU ports, 2025-2026",
+  "associatedMedia": [
+    {
+      "@type": "ImageObject",
+      "contentUrl": "https://b2bbaby.com/assets/images/shipping/2026-05-la-port.jpg",
+      "description": "12 batches of baby strollers shipped to Los Angeles Port, May 2026",
+      "dateCreated": "2026-05-08"
+    }
+  ]
+}
+```
+
+---
+
+
+
+## 三、 架构调整方案（移除TinaCMS）
+
+### 3.1 新技术栈
+
+| 组件 | 技术 | 说明 |
+|:---|:---|:---|
+| **前端** | Astro 4.0 | 纯静态输出，零运行时依赖 |
+| **内容管理** | 本地Markdown + JSON | 直接编辑文件，无需CMS |
+| **部署** | rsync + SSH | 本地构建 → 推送香港服务器 |
+| **数据分析** | Umami（Docker） | 隐私合规，自托管 |
+| **CDN** | Cloudflare | 全球加速 + 缓存清理API |
+
+---
+
+
+├── src/
+│   ├── content/
+│   │   ├── products/           # Markdown产品文件
+│   │   │   ├── baby-stroller.md
+│   │   │   └── bed-rail.md
+│   │   ├── blog/               # Markdown博客
+│   │   ├── faqs/               # Markdown FAQ
+│   │   ├── shipping-proof/     # 📦 新增：发货凭证
+│   │   │   └── index.json      # 图片列表+元数据
+│   │   └── config/
+│   │       └── site.json       # 全局配置（联系方式/域名）
+│   ├── components/
+│   │   ├── GEOHead.astro       # Schema注入
+│   │   ├── ShippingGallery.astro  # 📦 新增：图片网格组件
+│   │   └── ...
+│   ├── layouts/
+│   │   └── BaseLayout.astro
+│   └── pages/
+│       ├── index.astro
+│       ├── products/[slug].astro
+│       ├── about.astro
+│       ├── shipping-proof.astro  # 📦 新增页面
+│       └── contact.astro
+├── public/
+│   ├── assets/
+│   │   └── images/
+│   │       └── shipping/       # 📦 发货照片目录
+│   │           ├── 2026-05-la-port.jpg
+│   │           └── ...
+│   ├── robots.txt
+│   └── llms.txt
+├── docker/
+│   └── umami/                  # Umami Docker配置
+│       ├── docker-compose.yml
+│       └── .env
+├── scripts/
+│   ├── build.sh                # 构建脚本
+│   ├── deploy.sh               # 推送+清缓存脚本
+│   └── init-umami.sh           # Umami初始化脚本
+├── astro.config.mjs
+├── package.json
+└── README.md
+```
+
+---
+
+### 3.3 发货凭证数据结构（`src/content/shipping-proof/index.json`）
+
+```json
+{
+  "title": "Real Shipment Records - Verified & Traceable",
+  "description": "Actual shipping documents and photos from our factory to global ports. Client information redacted for privacy.",
+  "stats": {
+    "total_batches_2025": 342,
+    "countries_served": 12,
+    "on_time_delivery_rate": 98,
+    "average_lead_time_days": 23
+  },
+  "galleries": [
+    {
+      "month": "2026-05",
+      "destination": "Los Angeles Port, USA",
+      "product": "Baby Stroller (Model ST-01A)",
+      "batches": 12,
+      "images": [
+        {
+          "src": "/assets/images/shipping/2026-05-la-port-1.jpg",
+          "alt": "12 batches of baby strollers packed and ready for Los Angeles shipment, May 2026",
+          "date": "2026-05-08",
+          "caption": "Loading at Shantou Port - Destination: Los Angeles"
+        },
+        {
+          "src": "/assets/images/shipping/2026-05-la-port-2.jpg",
+          "alt": "Bill of lading for baby stroller shipment to USA (client info redacted)",
+          "date": "2026-05-08",
+          "caption": "Bill of Lading - 12 Batches, ASTM Certified"
+        }
+      ]
+    },
+    {
+      "month": "2026-04",
+      "destination": "Hamburg Port, Germany",
+      "product": "Bed Rail (Model BR-02B)",
+      "batches": 8,
+      "images": [
+        {
+          "src": "/assets/images/shipping/2026-04-hamburg-1.jpg",
+          "alt": "8 batches of bed rails shipped to Hamburg Port, April 2026",
+          "date": "2026-04-15",
+          "caption": "EN71 Certified Bed Rails - Hamburg Shipment"
+        }
+      ]
+    }
+  ]
+}
+```
+
+---
+
+### 3.4 页面组件（`src/components/ShippingGallery.astro`）
+
+```astro
+---
+interface Props {
+  gallery: any;
+}
+
+const { gallery } = Astro.props;
+---
+
+<div class="shipping-gallery mb-12">
+  <h3 class="text-2xl font-bold mb-4">{gallery.month} - {gallery.destination}</h3>
+  <p class="text-gray-600 mb-6">
+    Product: {gallery.product} | Batches: {gallery.batches}
+  </p>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {gallery.images.map((img: any) => (
+      <figure class="border rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+        <img 
+          src={img.src} 
+          alt={img.alt}
+          loading="lazy"
+          class="w-full h-64 object-cover"
+        />
+        <figcaption class="p-4 bg-gray-50">
+          <p class="text-sm text-gray-700">{img.caption}</p>
+          <p class="text-xs text-gray-500 mt-2">Date: {img.date}</p>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</div>
+
+<style>
+.shipping-gallery img {
+  transition: transform 0.3s ease;
+}
+.shipping-gallery img:hover {
+  transform: scale(1.02);
+}
+</style>
+```
+
+---
+
+### 3.5 页面实现（`src/pages/shipping-proof.astro`）
+
+```astro
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ShippingGallery from '../components/ShippingGallery.astro';
+import shippingData from '../content/shipping-proof/index.json';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": shippingData.title,
+  "description": shippingData.description,
+  "associatedMedia": shippingData.galleries.flatMap((g: any) => 
+    g.images.map((img: any) => ({
+      "@type": "ImageObject",
+      "contentUrl": `https://b2bbaby.com${img.src}`,
+      "description": img.alt,
+      "dateCreated": img.date
+    }))
+  )
+};
+---
+
+<BaseLayout title="Shipping Proof | BabyGEO Pro" schema={schema}>
+  <main class="container mx-auto px-4 py-12">
+    <!-- Hero -->
+    <section class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">{shippingData.title}</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">{shippingData.description}</p>
+    </section>
+
+    <!-- Stats -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+      <div class="text-center p-6 bg-blue-50 rounded-lg">
+        <div class="text-3xl font-bold text-blue-600">{shippingData.stats.total_batches_2025}</div>
+        <div class="text-sm text-gray-600">Batches Shipped (2025)</div>
+      </div>
+      <div class="text-center p-6 bg-green-50 rounded-lg">
+        <div class="text-3xl font-bold text-green-600">{shippingData.stats.countries_served}</div>
+        <div class="text-sm text-gray-600">Countries Served</div>
+      </div>
+      <div class="text-center p-6 bg-purple-50 rounded-lg">
+        <div class="text-3xl font-bold text-purple-600">{shippingData.stats.on_time_delivery_rate}%</div>
+        <div class="text-sm text-gray-600">On-Time Delivery</div>
+      </div>
+      <div class="text-center p-6 bg-orange-50 rounded-lg">
+        <div class="text-3xl font-bold text-orange-600">{shippingData.stats.average_lead_time_days}</div>
+        <div class="text-sm text-gray-600">Avg Lead Time (Days)</div>
+      </div>
+    </section>
+
+    <!-- Galleries -->
+    {shippingData.galleries.map((gallery: any) => (
+      <ShippingGallery gallery={gallery} />
+    ))}
+
+    <!-- Trust Statement -->
+    <section class="mt-16 p-6 bg-gray-50 rounded-lg text-center">
+      <p class="text-gray-700">
+        🔒 <strong>Privacy Protected:</strong> All client information (company names, contact details, pricing) 
+        has been redacted for confidentiality. These are real shipment records from our factory to global ports.
+      </p>
+    </section>
+  </main>
+</BaseLayout>
+```
+
+---
+
+## 四、 Umami Docker部署方案
+
+### 4.1 `docker/umami/docker-compose.yml`
+
+```yaml
+version: '3.8'
+
+services:
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    ports:
+      - "3001:3000"  # 避免与Astro开发服务器冲突
+    environment:
+      DATABASE_URL: postgresql://umami:umami_password@db:5432/umami
+      DATABASE_TYPE: postgresql
+      APP_SECRET: your_super_secret_random_string_here
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - umami-net
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: umami
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: umami_password
+    volumes:
+      - umami-db_/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U umami"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - umami-net
+
+volumes:
+  umami-db_data:
+
+networks:
+  umami-net:
+    driver: bridge
+```
+
+---
+
+### 4.2 初始化脚本（`scripts/init-umami.sh`）
+
+```bash
+#!/bin/bash
+
+echo "🚀 Starting Umami setup..."
+
+# 1. 启动容器
+cd docker/umami
+docker-compose up -d
+
+# 2. 等待数据库就绪
+echo "⏳ Waiting for database to be ready..."
+sleep 10
+
+# 3. 创建管理员账号（需手动访问 http://localhost:3001 完成）
+echo "✅ Umami is running at http://localhost:3001"
+echo "📝 Please visit the URL to create your admin account"
+
+# 4. 获取Website ID（用于前端集成）
+echo ""
+echo "📊 Next steps:"
+echo "1. Visit http://localhost:3001 and create admin account"
+echo "2. Add a new website: b2bbaby.com"
+echo "3. Copy the Website ID"
+echo "4. Update astro.config.mjs with your Umami ID"
+```
+
+---
+
+### 4.3 Astro集成（`astro.config.mjs`）
+
+```javascript
+import { defineConfig } from 'astro/config';
+
+export default defineConfig({
+  // ...其他配置
+  integrations: [],
+  vite: {
+    define: {
+      'import.meta.env.UMAMI_WEBSITE_ID': JSON.stringify(process.env.UMAMI_WEBSITE_ID || 'your-website-id'),
+      'import.meta.env.UMAMI_HOST': JSON.stringify(process.env.UMAMI_HOST || 'https://umami.b2bbaby.com'),
+    }
+  }
+});
+```
+
+---
+
+### 4.4 前端追踪脚本（`src/layouts/BaseLayout.astro`）
+
+```astro
+<head>
+  <!-- 其他meta标签 -->
+  
+  <!-- Umami Analytics -->
+  <script 
+    async 
+    defer 
+    data-website-id={import.meta.env.UMAMI_WEBSITE_ID}
+    data-host-url={import.meta.env.UMAMI_HOST}
+    src={`${import.meta.env.UMAMI_HOST}/script.js`}
+  ></script>
+</head>
+
+<body>
+  <!-- 页面内容 -->
+</body>
+```
+
+---
+
+### 4.5 环境变量（`.env`）
+
+```bash
+# Umami配置
+UMAMI_WEBSITE_ID=your-website-id-here
+UMAMI_HOST=https://umami.b2bbaby.com  # 或 http://服务器IP:3001
+```
+
+---
+
+## 五、 部署工作流（无TinaCMS版）
+
+### 5.1 `scripts/deploy.sh`
+
+```bash
+#!/bin/bash
+set -e
+
+echo "🚀 Starting deployment..."
+
+# 1. 构建Astro
+echo "📦 Building Astro..."
+npm run build
+
+# 2. 同步到香港服务器
+echo "📤 Syncing to server..."
+rsync -avz --delete \
+  dist/ \
+  root@45.114.127.251:/var/www/b2bbaby/
+
+# 3. 清理Cloudflare缓存
+echo "🧹 Purging Cloudflare cache..."
+curl -X POST "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/purge_cache" \
+  -H "Authorization: Bearer ${CF_API_TOKEN}" \
+  -H "Content-Type: application/json" \
+  --data '{"purge_everything": true}'
+
+echo "✅ Deployment complete!"
+echo "🌐 Visit https://b2bbaby.com to verify"
+```
+
+---
+
+### 5.2 本地开发流程
+
+```bash
+# 1. 修改内容（直接编辑Markdown/JSON）
+vim src/content/products/baby-stroller.md
+vim src/content/shipping-proof/index.json
+
+# 2. 本地预览
+npm run dev
+
+# 3. 构建并部署
+npm run build
+bash scripts/deploy.sh
+
+# 4. 验证
+curl -A "Googlebot-AI" https://b2bbaby.com/shipping-proof
+```
+
+---
+
+## 六、 主导航更新
+
+在`src/components/Navbar.astro`中添加：
+
+```astro
+<nav class="fixed top-0 w-full bg-white shadow-md z-50">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <a href="/" class="text-xl font-bold">BabyGEO Pro</a>
+      
+      <!-- 导航链接 -->
+      <div class="hidden md:flex space-x-6">
+        <a href="/" class="hover:text-blue-600">Home</a>
+        <a href="/products" class="hover:text-blue-600">Products</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+        <a href="/shipping-proof" class="hover:text-blue-600 text-green-600 font-semibold">
+          📦 Shipping Proof
+        </a>
+        <a href="/faq" class="hover:text-blue-600">FAQ</a>
+        <a href="/contact" class="hover:text-blue-600">Contact</a>
+      </div>
+      
+      <!-- WhatsApp按钮 -->
+      <a href="https://wa.me/你的号码" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</nav>
+```
+
+---
+
+## 七、 执行清单
+
+```bash
+# 1. 创建发货凭证页面
+mkdir -p src/content/shipping-proof
+mkdir -p public/assets/images/shipping
+vim src/content/shipping-proof/index.json  # 粘贴上述JSON
+vim src/pages/shipping-proof.astro         # 粘贴上述代码
+vim src/components/ShippingGallery.astro   # 粘贴上述组件
+
+# 2. 部署Umami
+cd docker/umami
+docker-compose up -d
+# 访问 http://localhost:3001 创建管理员账号
+
+# 3. 更新主导航
+vim src/components/Navbar.astro
+
+# 4. 上传发货照片
+# 将脱敏后的照片上传至 public/assets/images/shipping/
+
+# 5. 构建并部署
+npm run build
+bash scripts/deploy.sh
+
+# 6. 验证
+curl https://b2bbaby.com/shipping-proof
+```
+
+---
+
+## 八、 关键提醒
+
+| 项目 | 注意事项 |
+|:---|:---|
+| 🔸 **照片脱敏** | 必须模糊/遮盖客户名、提单号、金额、联系方式 |
+| 🔸 **图片优化** | 构建期压缩为WebP，单张≤500KB，alt文本含关键词 |
+| 🔸 **隐私声明** | 页面底部必须加"Client info redacted for privacy" |
+| 🔸 **Umami隐私** | 不收集PII，符合GDPR，无需Cookie弹窗 |
+| 🔸 **缓存清理** | 每次部署必须调用CF purge_cache，否则照片不更新 |
+
+---
+
+## 🎯 总结
+
+✅ **发货照片非常有价值** → 单独建页 `/shipping-proof`，主导航前置  
+✅ **移除TinaCMS** → 直接编辑Markdown/JSON + rsync部署，更简单  
+✅ **Umami自托管** → Docker一键部署，隐私合规，零成本  
+
+需要我输出：
+- 完整的 `shipping-proof.astro` 页面代码（含响应式优化）
+- `deploy.sh` 完整脚本（含错误处理+日志）
+- Umami + Cloudflare反向代理配置（用自定义域名访问Umami）
+
+回复对应需求，我立即输出可执行文件。

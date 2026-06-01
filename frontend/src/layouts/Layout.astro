@@ -1,7 +1,10 @@
 ---
 import { generateOrganizationSchema } from '@/lib/schema';
+import { getSiteConfig } from '@/lib/site-config';
 import Navbar from '@/components/Navbar.astro';
 import Footer from '@/components/Footer.astro';
+
+const config = getSiteConfig();
 
 interface Props {
   title?: string;
@@ -14,12 +17,12 @@ interface Props {
 }
 
 const { 
-  title = 'B2Bbaby - Baby Product Manufacturer & Sourcing', 
-  description = 'ASTM/EN certified baby stroller, safety gate, high chair manufacturer. MOQ 50+, 7-day samples, full QC support for US/EU brands.',
+  title = config.site.title, 
+  description = config.site.description,
   canonical,
-  image = 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20products%20manufacturer%20logo%20banner%2C%20professional%20B2B%20sourcing&image_size=landscape_16_9',
+  image = '/images/layouts/banner-main.jpg',
   type = 'website',
-  author = 'B2Bbaby',
+  author = config.company.name,
   keywords = ['baby products', 'baby stroller', 'safety gate', 'high chair', 'OEM', 'ODM', 'China manufacturer']
 } = Astro.props;
 
@@ -32,6 +35,7 @@ const pageUrl = canonical || new URL(Astro.request.url).href;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="3GirdP6h6hPr1KWr7Y1XvOX4BijkzN-lTg1cGx_WZjc" />
     <meta name="theme-color" content="#2563eb" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -59,10 +63,19 @@ const pageUrl = canonical || new URL(Astro.request.url).href;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
     
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <link rel="apple-touch-icon" href="/logo.svg" />
+    <link rel="icon" type="image/png" href="/LOGO.png" />
+    <link rel="apple-touch-icon" href="/LOGO.png" />
     
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    
+    {config.umami?.website_id && (
+      <script
+        is:inline
+        async
+        src={config.umami.host_url + '/script.js'}
+        data-website-id={config.umami.website_id}
+      ></script>
+    )}
     
     <style is:global>
       @tailwind base;
@@ -84,6 +97,10 @@ const pageUrl = canonical || new URL(Astro.request.url).href;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+      }
+      
+      .bg-gradient-primary {
+        background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
       }
     </style>
   </head>

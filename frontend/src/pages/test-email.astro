@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Email Test">
+  <div class="container mx-auto px-4 py-12 max-w-2xl">
+    <h1 class="text-3xl font-bold mb-8 text-center">Email API Test</h1>
+    
+    <form id="test-form" class="space-y-4 bg-white p-6 rounded-xl shadow">
+      <div>
+        <label class="block text-sm font-medium mb-2">Name</label>
+        <input type="text" name="name" value="Test User" class="w-full px-4 py-2 border rounded-lg" required>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium mb-2">Email</label>
+        <input type="email" name="email" value="test@example.com" class="w-full px-4 py-2 border rounded-lg" required>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium mb-2">Company</label>
+        <input type="text" name="company" value="Test Company" class="w-full px-4 py-2 border rounded-lg">
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium mb-2">Phone</label>
+        <input type="text" name="phone" value="123456789" class="w-full px-4 py-2 border rounded-lg">
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium mb-2">Message</label>
+        <textarea name="message" class="w-full px-4 py-2 border rounded-lg" rows="4">This is a test message</textarea>
+      </div>
+      
+      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">
+        Send Test Email
+      </button>
+    </form>
+    
+    <div id="result" class="mt-6 p-4 rounded-lg hidden"></div>
+  </div>
+
+  <script>
+    document.getElementById('test-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      const result = document.getElementById('result');
+      
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      result.classList.add('hidden');
+      
+      try {
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData);
+        
+        console.log('Sending data:', data);
+        
+        const response = await fetch('/api/send-email.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        const resultData = await response.json();
+        console.log('Response:', resultData);
+        
+        result.classList.remove('hidden');
+        if (response.ok && resultData.success) {
+          result.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800';
+          result.innerHTML = '<strong>Success!</strong> Email sent successfully.';
+          e.target.reset();
+        } else {
+          result.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
+          result.innerHTML = `<strong>Error:</strong> ${resultData.error || 'Unknown error'}<br><pre>${JSON.stringify(resultData, null, 2)}</pre>`;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        result.classList.remove('hidden');
+        result.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
+        result.innerHTML = `<strong>Network Error:</strong> ${error.message}`;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send Test Email';
+      }
+    });
+  </script>
+</Layout>

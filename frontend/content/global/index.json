@@ -1,0 +1,41 @@
+{
+  "site": {
+    "title": "B2Bbaby - Baby Product Manufacturer ",
+    "title_en": "B2Bbaby - Baby Product Manufacturer ",
+    "description": "ASTM/EN certified baby stroller, safety gate, high chair manufacturer. MOQ 50+, 7-day samples, full QC support for US/EU brands.",
+    "description_en": "ASTM/EN certified baby stroller, safety gate, high chair manufacturer. MOQ 50+, 7-day samples, full QC support for US/EU brands.",
+    "logo": "/logo.svg",
+    "favicon": "/favicon.ico"
+  },
+  "company": {
+    "name": "B2Bbaby",
+    "name_en": "Anhui Talent Baby Products Co., Ltd.",
+    "address": "Building C4, Yungu Innovation and Entrepreneurship Park, Baohe District, Hefei, Anhui Province, China",
+    "address_en": "Building C4, Yungu Innovation and Entrepreneurship Park, Baohe District, Hefei, Anhui Province, China",
+    "phone": "+86 176 8112 8186",
+    "email": "info@b2bbaby.com",
+    "sales_email": "sales@b2bbaby.com",
+    "whatsapp": "+86 176 8112 8186",
+    "business_hours": "24h",
+    "founded": "2019",
+    "employees": "200+",
+    "factories": "3",
+    "export_countries": "30+"
+  },
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "linkedin": "https://www.linkedin.com/in/simion-q-6711b8411/",
+    "twitter": "",
+    "youtube": "",
+    "made_in_china": "https://talent-infant.en.made-in-china.com/?"
+  },
+  "seo": {
+    "google_site_verification": "",
+    "google_analytics_id": ""
+  },
+  "umami": {
+    "website_id": "ff90e337-d57c-4a7f-ad60-9d7d00674875",
+    "host_url": "https://umami.b2bbaby.com"
+  }
+}

@@ -1,0 +1,179 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { generateArticleSchema, generateProductSchema } from '@/lib/schema';
+
+const pageTitle = 'Baby Stroller Factory: ASTM EN Certified Wholesale & OEM';
+const pageDescription = 'Professional baby stroller manufacturer with 15+ years experience. ASTM, EN, CE, CPC certified. Custom OEM designs, flexible MOQ, wholesale pricing.';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    generateArticleSchema(pageTitle, pageDescription),
+    {
+      "@type": "ProductGroup",
+      "name": "Baby Strollers",
+      "description": "ASTM and EN certified baby strollers, including lightweight, foldable, and standard models for wholesale and OEM",
+      "productGroupID": "baby-strollers"
+    }
+  ]
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  
+  <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-12 md:py-20">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="max-w-4xl">
+        <span class="inline-block bg-white/20 text-white px-4 py-1 rounded-full text-sm font-medium mb-6">Wholesale & OEM</span>
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">Baby Stroller Factory</h1>
+        <p class="text-lg md:text-xl text-white/90 mb-8">ASTM & EN Certified | Custom OEM Designs | Flexible MOQ | Wholesale Pricing</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/quote" class="inline-flex items-center justify-center gap-2 bg-white text-blue-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all hover:shadow-xl">
+            Get a Quote
+          </a>
+          <a href="/products" class="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all">
+            View All Products
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-4xl font-bold text-neutral-900 mb-4">Our Stroller Range</h2>
+        <p class="text-base md:text-lg text-neutral-600 max-w-3xl mx-auto">From lightweight travel strollers to heavy-duty models for wholesale distribution</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          {
+            title: "Lightweight Travel Strollers",
+            desc: "Compact, easy to fold, perfect for retail chains and e-commerce",
+            certs: ["ASTM F833", "EN 1888"],
+            moq: "500 units"
+          },
+          {
+            title: "Standard Baby Strollers",
+            desc: "Full-featured strollers with adjustable seats, storage baskets",
+            certs: ["ASTM F833", "EN 1888", "CE"],
+            moq: "300 units"
+          },
+          {
+            title: "Double & Twin Strollers",
+            desc: "Side-by-side and tandem models for growing families",
+            certs: ["ASTM F833", "EN 1888"],
+            moq: "200 units"
+          }
+        ].map((item, idx) => (
+          <div key={idx} class="bg-neutral-50 rounded-2xl p-8 hover:shadow-lg transition-all border border-neutral-200">
+            <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-600">
+                <path d="M3 20a4 4 0 0 1 8 0M13 20a4 4 0 0 1 8 0M11 20a2 2 0 1 0-4 0"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-900 mb-3">{item.title}</h3>
+            <p class="text-neutral-600 mb-6">{item.desc}</p>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-neutral-500">Certifications:</span>
+                <div class="flex flex-wrap gap-2">
+                  {item.certs.map((cert, i) => (
+                    <span key={i} class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">{cert}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-neutral-500">MOQ:</span>
+                <span class="font-medium text-neutral-900">{item.moq}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-neutral-50">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-2xl md:text-4xl font-bold text-neutral-900 mb-6">OEM Customization Available</h2>
+          <div class="space-y-4">
+            {[
+              "Custom colors, fabrics, and patterns",
+              "Brand logo and packaging design",
+              "Feature modifications and upgrades",
+              "Private label manufacturing"
+            ].map((point, idx) => (
+              <div key={idx} class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <span class="text-neutral-700">{point}</span>
+              </div>
+            ))}
+          </div>
+          <div class="mt-8">
+            <a href="/oem-odm" class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700">
+              Learn more about OEM
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          {[
+            { label: "Years Experience", value: "15+" },
+            { label: "Countries Served", value: "12+" },
+            { label: "Annual Capacity", value: "500K+" },
+            { label: "On-Time Delivery", value: "98%" }
+          ].map((stat, idx) => (
+            <div key={idx} class="bg-white p-6 rounded-2xl shadow-sm border border-neutral-200 text-center">
+              <div class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">{stat.value}</div>
+              <div class="text-sm text-neutral-600">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-4xl font-bold text-neutral-900 mb-4">Certifications & Compliance</h2>
+        <p class="text-base md:text-lg text-neutral-600 max-w-3xl mx-auto">All products meet strict international safety standards</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {[
+          { name: "ASTM", desc: "US Safety Standards" },
+          { name: "EN 1888", desc: "European Standards" },
+          { name: "CE", desc: "EU Conformity" },
+          { name: "CPC", desc: "Children's Product Certificate" }
+        ].map((cert, idx) => (
+          <div key={idx} class="bg-neutral-50 p-6 rounded-2xl text-center border border-neutral-200">
+            <div class="text-2xl font-bold text-blue-600 mb-2">{cert.name}</div>
+            <div class="text-sm text-neutral-600">{cert.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <h2 class="text-2xl md:text-4xl font-bold mb-4">Ready to Order Baby Strollers?</h2>
+      <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">Get a competitive quote within 24 hours. Flexible MOQ, OEM available.</p>
+      <a href="/quote" class="inline-flex items-center justify-center gap-2 bg-white text-blue-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all hover:shadow-xl">
+        Request Quote Now
+      </a>
+    </div>
+  </section>
+</Layout>

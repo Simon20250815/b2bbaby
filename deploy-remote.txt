@@ -1,0 +1,221 @@
+#!/bin/bash
+# B2Bbaby 服务器部署脚本 - 这是将要在服务器上执行的完整命令序列
+# 请将此内容复制到宝塔面板终端执行
+#
+# 命令已更新 docker-compose.yml
+cat > /www/wwwroot/b2bbaby/docker-compose.yml << 'EOF'
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: directus
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - b2bbaby-network
+
+  directus:
+    image: directus/directus:11
+    ports:
+      - "8055:8055"
+    environment:
+      KEY: ${DIRECTUS_KEY}
+      SECRET: ${DIRECTUS_SECRET}
+      DB_CLIENT: "pg"
+      DB_HOST: "db"
+      DB_PORT: "5432"
+      DB_DATABASE: "directus"
+      DB_USER: "admin"
+      DB_PASSWORD: ${DB_PASSWORD}
+      ADMIN_EMAIL: "admin@b2bbaby.com"
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      PUBLIC_URL: "https://b2bbaby.com"
+      DIRECTUS_RUN_SCRIPT_ALLOW_LIST: "exec,spawn"
+      REFRESH_TOKEN_COOKIE: "true"
+      REFRESH_TOKEN_COOKIE_SECURE: "true"
+      REFRESH_TOKEN_COOKIE_SAME_SITE: "Strict"
+      PUBLIC_API_ENABLED: "true"
+      ADMIN_TOKEN: "admin-token-for-directus-2026"
+      PUBLIC_ROLE_ID: "56437fba-3544-424c-bae2-790c022e3d8a"
+    volumes:
+      - ./directus/uploads:/directus/uploads
+      - ./directus/extensions:/directus/extensions
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - b2bbaby-network
+    security_opt:
+      - seccomp:unconfined
+
+  umami-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${UMAMI_DB_NAME}
+      POSTGRES_USER: ${UMAMI_DB_USER}
+      POSTGRES_PASSWORD: ${UMAMI_DB_PASSWORD}
+    volumes:
+      - umami_db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - b2bbaby-network
+
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    ports:
+      - "3001:3000"
+    environment:
+      DATABASE_URL: postgresql://${UMAMI_DB_USER}:${UMAMI_DB_PASSWORD}@umami-db:5432/${UMAMI_DB_NAME}
+      DATABASE_TYPE: postgresql
+      HASH_SALT: ${UMAMI_HASH_SALT}
+      GEOLOCATION_PATH: /data/GeoLite2-City.mmdb
+      BASE_PATH: /umami
+    volumes:
+      - ./umami-data:/data
+    depends_on:
+      - umami-db
+    restart: unless-stopped
+    networks:
+      - b2bbaby-network
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./frontend/dist:/usr/share/nginx/html:ro
+    depends_on:
+      - directus
+      - umami
+    restart: unless-stopped
+    networks:
+      - b2bbaby-network
+
+volumes:
+  db_data:
+  umami_db_data:
+
+networks:
+  b2bbaby-network:
+    driver: bridge
+EOF
+
+# 更新 nginx.conf
+cat > /www/wwwroot/b2bbaby/nginx/nginx.conf << 'NGINXEOF'
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log notice;
+pid /var/run/nginx.pid;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for';
+
+    access_log /var/log/nginx/access.log main;
+
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    keepalive_timeout 65;
+
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1000;
+    gzip_comp_level 6;
+    gzip_types text/html text/plain text/css application/javascript application/json image/svg+xml;
+
+    server {
+        listen 80;
+        server_name b2bbaby.com www.b2bbaby.com;
+
+        root /usr/share/nginx/html;
+        index index.html;
+
+        location ~* \.(js|css|woff|woff2)$ {
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+            add_header X-Content-Type-Options nosniff;
+        }
+
+        location ~* \.(jpg|jpeg|png|gif|ico|svg|webp)$ {
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+            add_header X-Content-Type-Options nosniff;
+            add_header X-Image-Optimized "true";
+        }
+
+        location / {
+            try_files $uri $uri/ /index.html;
+        }
+
+        location /admin/ {
+            proxy_pass http://directus:8055/;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+        location /api/ {
+            proxy_pass http://directus:8055/;
+            proxy_http_version 1.1;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+        location /umami/ {
+            proxy_pass http://umami:3000;
+            proxy_http_version 1.1;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+        location /images/ {
+            alias /usr/share/nginx/html/images/;
+            autoindex off;
+        }
+
+        location /sitemap.xml {
+            expires 1d;
+            add_header Cache-Control "public";
+        }
+
+        location /robots.txt {
+            expires 1d;
+            add_header Cache-Control "public";
+        }
+    }
+}
+NGINXEOF
+
+# 重启容器
+cd /www/wwwroot/b2bbaby
+docker-compose down
+docker-compose up -d
+
+# 显示状态
+echo "容器状态："
+docker-compose ps
+echo ""
+echo "部署完成！"

@@ -1,4 +1,4 @@
-export const faqCategories = ['All', 'Product', 'Certification', 'Purchasing', 'Service', 'Company'];
+export const faqCategories = ['All', 'Product', 'Certification', 'Purchasing', 'Service', 'Company', 'Shipping', 'QC', 'Customization', 'Compliance'];
 
 export const faqs = [
   {
@@ -96,15 +96,99 @@ export const faqs = [
     id: 14,
     category: 'Company',
     question: 'Tell me about your company history and experience',
-    answer: 'BabyGeo Pro was founded in 2009 in Ningbo, China. Our experience: 15+ years in baby product manufacturing and sourcing, 200+ full-time employees, 10,000+ square meters of production space, 100+ verified factories in our network, 500+ global clients served, Products exported to 30+ countries. We are proud to be a trusted partner to businesses worldwide.',
+    answer: 'B2Bbaby (ANHUI TALENT BABY PRODUCT Co., Ltd.) was founded in 2019 in Hefei, Anhui Province, China. Our experience: 10+ years in baby product manufacturing and sourcing, 200+ full-time employees, 10,000+ square meters of production space, 100+ verified factories in our network, 500+ global clients served, Products exported to 30+ countries. We are proud to be a trusted partner to businesses worldwide.',
     sort: 14
   },
   {
     id: 15,
     category: 'Company',
     question: 'What makes you different from other suppliers?',
-    answer: 'What sets BabyGeo Pro apart: 100% focus on baby products - it\'s all we do, In-house R&D and engineering team, Our own QC team (not outsourced), Factory audits before production, Real cultural bridge (our team understands both Eastern and Western business), Zero tolerance for quality issues, Full transparency throughout the process, We treat your business as our own. Our clients consistently tell us we\'re more professional and reliable than other suppliers they\'ve worked with.',
+    answer: 'What sets B2Bbaby apart: 100% focus on baby products - it\'s all we do, In-house R&D and engineering team, Our own QC team (not outsourced), Factory audits before production, Real cultural bridge (our team understands both Eastern and Western business), Zero tolerance for quality issues, Full transparency throughout the process, We treat your business as our own. Our clients consistently tell us we\'re more professional and reliable than other suppliers they\'ve worked with.',
     sort: 15
+  },
+  {
+    id: 16,
+    category: 'Shipping',
+    question: 'What shipping options do you offer?',
+    answer: 'We offer multiple shipping options to meet your needs: Sea freight (FCL - Full Container Load, LCL - Less than Container Load), Air freight for urgent orders (3-7 days delivery), Express shipping (DHL/UPS/FEDEX/TNT) for samples, Door-to-door delivery, DDP (Delivery Duty Paid) service to US, EU, Australia, and other major markets. We can work with your preferred forwarder or recommend our trusted partners.',
+    sort: 16
+  },
+  {
+    id: 17,
+    category: 'Shipping',
+    question: 'What are typical shipping times by sea?',
+    answer: 'Sea freight transit times: West Coast USA: 14-18 days, East Coast USA: 25-30 days, Western Europe: 25-30 days, UK: 28-35 days, Australia: 18-22 days, Southeast Asia: 7-10 days. These are estimates and can vary by season and carrier. We will provide you with a detailed shipping schedule and tracking information once your order is on the water.',
+    sort: 17
+  },
+  {
+    id: 18,
+    category: 'Shipping',
+    question: 'What is your loading port and trade terms?',
+    answer: 'Our main loading port is Shanghai, China (we can also ship from Ningbo or Shenzhen if needed). We typically work on FOB (Free On Board) Shanghai terms, but can also quote CFR (Cost and Freight), CIF (Cost, Insurance and Freight), or EXW (Ex Works) terms depending on your preference.',
+    sort: 18
+  },
+  {
+    id: 19,
+    category: 'QC',
+    question: 'What quality control processes do you have?',
+    answer: 'We implement a rigorous 3-stage QC process: IQC (Incoming Quality Control): All raw materials and components are inspected upon arrival; IPQC (In-Process Quality Control): Multiple checks during production at key stages; OQC (Outgoing Quality Control): 100% final inspection before shipment including function test, safety check, packaging review, and random drop tests. We provide a full QC report with photos for every order.',
+    sort: 19
+  },
+  {
+    id: 20,
+    category: 'QC',
+    question: 'Can I request a third-party inspection?',
+    answer: 'Absolutely! We welcome and encourage third-party inspections. We can work with any major inspection company (SGS, BV, Intertek, QIMA, etc.). The inspection is typically performed after production is complete but before shipment. If the inspection finds issues, we will fix them before shipping. We can also arrange for you to visit our factory for an in-person inspection.',
+    sort: 20
+  },
+  {
+    id: 21,
+    category: 'QC',
+    question: 'What happens if QC inspection fails?',
+    answer: 'If inspection fails, we have a clear corrective action process: 1. Immediate halt to any planned shipments; 2. Root cause analysis to identify the issue; 3. Corrective action plan implementation; 4. Full re-inspection before re-submitting for approval; 5. If necessary, re-production of affected units at our cost; 6. Extended QC on the next production run to prevent recurrence. Your satisfaction is our priority.',
+    sort: 21
+  },
+  {
+    id: 22,
+    category: 'Customization',
+    question: 'What customization options do you offer?',
+    answer: 'We offer comprehensive OEM/ODM customization: Custom colors and materials, Logo printing/embroidery/embossing, Custom packaging (gift boxes, retail packaging, branded polybags), Custom instruction manuals and labels, Product modifications (adjusting sizes, adding features), Complete custom product design (ODM) with our R&D team. We can provide design mockups and prototypes before production.',
+    sort: 22
+  },
+  {
+    id: 23,
+    category: 'Customization',
+    question: 'What is the MOQ for custom products?',
+    answer: 'Customization MOQs vary by type: Color customization: 100 units per color; Logo customization: 50 units; Packaging customization: 300 units; Full product custom design (ODM): 500 units. We can be flexible for new customers or test orders - please contact us to discuss your specific project requirements.',
+    sort: 23
+  },
+  {
+    id: 24,
+    category: 'Customization',
+    question: 'Do you offer NDA for custom projects?',
+    answer: 'Yes! We understand the importance of protecting your designs and intellectual property. We are happy to sign a Non-Disclosure Agreement (NDA) before discussing any custom projects. Our NDA covers confidentiality of your designs, product concepts, specifications, pricing, and any other proprietary information you share with us.',
+    sort: 24
+  },
+  {
+    id: 25,
+    category: 'Compliance',
+    question: 'Do your products comply with REACH and RoHS?',
+    answer: 'Yes, all our products comply with EU REACH (Registration, Evaluation, Authorization and Restriction of Chemicals) and RoHS (Restriction of Hazardous Substances) regulations. We ensure all materials used meet EU chemical safety standards, and can provide test reports for heavy metals, phthalates, lead, and other restricted substances upon request.',
+    sort: 25
+  },
+  {
+    id: 26,
+    category: 'Compliance',
+    question: 'What documentation do you provide for customs clearance?',
+    answer: 'We provide a complete set of shipping and customs documents: Commercial invoice, Packing list, Bill of lading (or airway bill), Certificate of Origin, Test reports and certificates (as required), Any other documents specific to your destination country. All documents are prepared accurately to ensure smooth customs clearance.',
+    sort: 26
+  },
+  {
+    id: 27,
+    category: 'Compliance',
+    question: 'Can you help with product registration in my country?',
+    answer: 'While we cannot directly register products in your country, we can provide comprehensive support: All necessary test reports and certification documents, Technical documentation files (TCF) for EU, Guidance on local registration requirements, Samples and product information for your regulatory submission, Support during any audits or inspections by your local authorities. We have experience working with regulators in many countries.',
+    sort: 27
   }
 ];
 

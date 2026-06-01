@@ -1,0 +1,162 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import shippingData from '@/content/shipping-proof/index.json';
+
+export function getStaticPaths() {
+  return shippingData.galleries.map((gallery: any) => ({
+    params: { slug: gallery.slug }
+  }));
+}
+
+const { slug } = Astro.params;
+const gallery = shippingData.galleries.find((g: any) => g.slug === slug);
+
+if (!gallery) {
+  return Astro.redirect('/shipping-proof');
+}
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": `${gallery.month} - ${gallery.destination}`,
+  "description": gallery.description,
+  "associatedMedia": gallery.images.map((img: any) => ({
+    "@type": "ImageObject",
+    "contentUrl": `https://b2bbaby.com${img.src}`,
+    "description": img.alt,
+    "dateCreated": img.date
+  }))
+};
+---
+
+<Layout title={`${gallery.destination} | Shipping Proof - B2Bbaby`} description={`Verified shipment records for ${gallery.product} to ${gallery.destination}. ${gallery.description}`}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  
+  <section class="bg-gradient-to-r from-blue-50 to-indigo-50 py-10 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center">
+        <nav class="inline-flex items-center gap-2 text-sm mb-4">
+          <a href="/" class="text-neutral-600 hover:text-blue-600">Home</a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-neutral-400">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+          <a href="/shipping-proof" class="text-neutral-600 hover:text-blue-600">Shipping Proof</a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-neutral-400">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+          <span class="text-blue-600">{gallery.destination}</span>
+        </nav>
+        <h1 class="text-3xl md:text-5xl font-bold text-neutral-900 mb-4">{gallery.destination}</h1>
+        <p class="text-base md:text-lg text-neutral-600 max-w-3xl mx-auto">{gallery.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div class="lg:col-span-1">
+          <div class="sticky top-8 space-y-6">
+            <div class="bg-neutral-50 rounded-2xl p-6 border border-neutral-200">
+              <h3 class="font-bold text-lg text-neutral-900 mb-4">Shipment Details</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-sm text-neutral-600">Date</span>
+                  <span class="text-sm font-medium text-neutral-900">{gallery.month}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sm text-neutral-600">Product</span>
+                  <span class="text-sm font-medium text-neutral-900">{gallery.product}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sm text-neutral-600">Batches</span>
+                  <span class="text-sm font-medium text-neutral-900">{gallery.batches}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sm text-neutral-600">Shipping Method</span>
+                  <span class="text-sm font-medium text-neutral-900">{gallery.shipping_method}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sm text-neutral-600">Container</span>
+                  <span class="text-sm font-medium text-neutral-900">{gallery.container_size}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sm text-neutral-600">BL Number</span>
+                  <span class="text-sm font-medium text-neutral-900 font-mono">{gallery.bill_of_lading_number}</span>
+                </div>
+              </div>
+            </div>
+
+            <a href="/contact" class="inline-flex items-center justify-center gap-2 w-full bg-blue-600 text-white px-6 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all hover:shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+              Request Full Documentation
+            </a>
+
+            <a href="/shipping-proof" class="inline-flex items-center justify-center gap-2 w-full border-2 border-neutral-300 text-neutral-700 px-6 py-4 rounded-xl font-semibold hover:border-blue-600 hover:text-blue-600 transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+              Back to All Shipments
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3">
+          <div class="space-y-8">
+            <section class="p-6 md:p-8 bg-neutral-50 rounded-2xl border border-neutral-200">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-600">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg text-neutral-900 mb-2">Privacy Protected</h3>
+                  <p class="text-neutral-600 text-sm md:text-base">
+                    All client information (company names, contact details, pricing) has been redacted for confidentiality. These are real shipment records from our factory to {gallery.destination}.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {gallery.images.map((img: any, idx: number) => (
+                <figure key={idx} class="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200">
+                  <div class="relative overflow-hidden h-56 md:h-64">
+                    <img 
+                      src={img.src} 
+                      alt={img.alt}
+                      loading="lazy"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <figcaption class="p-4 bg-neutral-50">
+                    <p class="text-base text-neutral-700 font-medium">{img.caption}</p>
+                    <p class="text-sm text-neutral-500 mt-1">Date: {img.date}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <section class="mt-12 p-6 md:p-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100">
+              <h3 class="font-bold text-xl text-neutral-900 mb-4">Need Similar Shipment?</h3>
+              <p class="text-neutral-600 mb-6">
+                We can ship similar products to your destination with the same quality standards and certification.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a href="/quote" class="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all">
+                  Get a Quote
+                </a>
+                <a href="/products" class="inline-flex items-center justify-center gap-2 bg-white text-blue-600 border border-blue-200 px-6 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all">
+                  View Products
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,22 @@
+## 1. 构建和预览命令
+这是一个基于 Astro 的前端项目，具体命令如下：
+
+### 开发模式（预览网站）
+```
+cd frontend
+npm run dev
+```
+访问 http://localhost:4321
+
+### 构建生产版本
+```
+cd frontend
+npm run build
+```
+构建产物在 frontend/dist/client/ 目录
+
+### 预览构建结果
+```
+cd frontend
+npm run preview
+```

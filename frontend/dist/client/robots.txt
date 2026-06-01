@@ -1,16 +1,85 @@
+# B2Bbaby robots.txt - AI & Search Engine Friendly Configuration
+# Last Updated: 2026-05-31
+
 User-agent: *
 Allow: /
 
 User-agent: GPTBot
 Allow: /
+Crawl-delay: 5
 
-User-agent: PerplexityBot
+User-agent: ChatGPT-User
 Allow: /
+Crawl-delay: 5
 
 User-agent: Google-Extended
 Allow: /
+Crawl-delay: 5
 
 User-agent: ClaudeBot
 Allow: /
+Crawl-delay: 5
+
+User-agent: Claude-Web
+Allow: /
+Crawl-delay: 5
+
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: OAI-SearchBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Applebot
+Allow: /
+Crawl-delay: 5
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 5
+
+User-agent: Teoma
+Allow: /
+Crawl-delay: 5
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Googlebot-Image
+Allow: /images/
+Crawl-delay: 10
+
+User-agent: Googlebot-News
+Allow: /blog/
+Crawl-delay: 10
+
+User-agent: Googlebot-Video
+Allow: /
+Crawl-delay: 10
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: feed
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+User-agent:.*
+Crawl-delay: 10
 
 Sitemap: https://b2bbaby.com/sitemap.xml
+
+Host: https://b2bbaby.com

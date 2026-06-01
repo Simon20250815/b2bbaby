@@ -1,0 +1,56 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  widths?: number[];
+  aspectRatio?: string;
+  quality?: number;
+}
+
+const { 
+  src, 
+  alt, 
+  class: className = '', 
+  loading = 'lazy',
+  widths = [400, 800, 1200, 1600],
+  aspectRatio = '16/9',
+  quality = 80 
+} = Astro.props;
+
+// 获取图片扩展名
+const ext = src.split('.').pop()?.toLowerCase() || 'jpg';
+
+// 生成不同尺寸的 URL
+const srcSet = widths.map(w => `${src}?width=${w}&quality=${quality} ${w}w`).join(', ');
+
+// 生成 WebP 版本的 URL
+const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+const webpSrcSet = widths.map(w => `${webpSrc}?width=${w}&quality=${quality} ${w}w`).join(', ');
+---
+
+<div class={`relative overflow-hidden ${aspectRatio ? `aspect-${aspectRatio.replace('/', '-')}` : ''}`}>
+  <picture>
+    <!-- WebP 格式 -->
+    <source 
+      srcset={webpSrcSet} 
+      sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, (max-width: 1440px) 1200px, 1600px"
+      type="image/webp"
+    />
+    <!-- 原始格式 -->
+    <source 
+      srcset={srcSet} 
+      sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, (max-width: 1440px) 1200px, 1600px"
+      type={`image/${ext}`}
+    />
+    <!-- 回退 -->
+    <img 
+      src={src} 
+      alt={alt} 
+      class={`w-full h-full object-cover ${className}`}
+      loading={loading}
+      decoding="async"
+    />
+  </picture>
+</div>

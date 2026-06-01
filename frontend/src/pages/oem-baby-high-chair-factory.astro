@@ -1,0 +1,176 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { generateArticleSchema } from '@/lib/schema';
+
+const pageTitle = 'OEM Baby High Chair Factory: ASTM EN Certified Customization';
+const pageDescription = 'OEM baby high chair manufacturer. Custom designs, materials, colors. ASTM, EN, CE certified. Private label available for wholesale distributors.';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    generateArticleSchema(pageTitle, pageDescription),
+    {
+      "@type": "ProductGroup",
+      "name": "Baby High Chairs",
+      "description": "ASTM and EN certified high chairs with full OEM customization capabilities",
+      "productGroupID": "baby-high-chairs"
+    }
+  ]
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  
+  <section class="bg-gradient-to-r from-orange-600 to-amber-700 text-white py-12 md:py-20">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="max-w-4xl">
+        <span class="inline-block bg-white/20 text-white px-4 py-1 rounded-full text-sm font-medium mb-6">OEM & Customization</span>
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">OEM Baby High Chair Factory</h1>
+        <p class="text-lg md:text-xl text-white/90 mb-8">Custom Designs | ASTM & EN Certified | Private Label | Wholesale Pricing</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/oem-odm" class="inline-flex items-center justify-center gap-2 bg-white text-orange-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all hover:shadow-xl">
+            Explore OEM
+          </a>
+          <a href="/quote" class="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all">
+            Get a Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-4xl font-bold text-neutral-900 mb-4">High Chair Customization Options</h2>
+        <p class="text-base md:text-lg text-neutral-600 max-w-3xl mx-auto">Tailor every aspect to match your brand and market requirements</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { title: "Colors & Fabrics", items: ["10+ color options", "Custom fabric patterns", "Waterproof materials"] },
+          { title: "Materials", items: ["PP Plastic", "Beech wood", "Bamboo", "Metal frames"] },
+          { title: "Features", items: ["Adjustable height", "Reclining seat", "Foldable design", "Removable tray"] },
+          { title: "Branding", items: ["Custom logo", "Private label", "Custom packaging", "Hang tags"] }
+        ].map((section, idx) => (
+          <div key={idx} class="bg-neutral-50 rounded-2xl p-6 border border-neutral-200">
+            <h3 class="font-bold text-lg text-neutral-900 mb-4">{section.title}</h3>
+            <ul class="space-y-2">
+              {section.items.map((item, i) => (
+                <li key={i} class="flex items-center gap-2 text-sm text-neutral-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-orange-500 flex-shrink-0">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-neutral-50">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-2xl md:text-4xl font-bold text-neutral-900 mb-6">Our High Chair Range</h2>
+          <div class="space-y-6">
+            {[
+              {
+                title: "Standard High Chairs",
+                desc: "Classic design with 5-point harness, adjustable tray, easy to clean",
+                certs: ["ASTM F404", "EN 14988"],
+                moq: "300 units"
+              },
+              {
+                title: "Convertible High Chairs",
+                desc: "Grows with child - converts to booster seat and toddler chair",
+                certs: ["ASTM F404", "EN 14988"],
+                moq: "200 units"
+              },
+              {
+                title: "Portable High Chairs",
+                desc: "Compact, foldable, perfect for travel and small spaces",
+                certs: ["ASTM F404", "EN 14988"],
+                moq: "400 units"
+              }
+            ].map((chair, idx) => (
+              <div key={idx} class="bg-white p-6 rounded-2xl shadow-sm border border-neutral-200">
+                <h3 class="text-lg font-bold text-neutral-900 mb-2">{chair.title}</h3>
+                <p class="text-neutral-600 text-sm mb-4">{chair.desc}</p>
+                <div class="flex flex-wrap items-center gap-3">
+                  <div class="flex flex-wrap gap-2">
+                    {chair.certs.map((cert, i) => (
+                      <span key={i} class="bg-orange-100 text-orange-700 px-2 py-1 rounded-full text-xs font-medium">{cert}</span>
+                    ))}
+                  </div>
+                  <span class="text-sm text-neutral-500">MOQ: {chair.moq}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-orange-500 to-amber-500 p-8 rounded-2xl text-white">
+            <h3 class="text-xl font-bold mb-4">OEM Process</h3>
+            <div class="space-y-4">
+              {[
+                "1. Share your design or requirements",
+                "2. We create prototypes (7-10 days)",
+                "3. Sample approval and certification",
+                "4. Mass production (25-35 days)",
+                "5. Quality inspection and shipping"
+              ].map((step, idx) => (
+                <div key={idx} class="flex items-start gap-3">
+                  <span class="flex-shrink-0 w-6 h-6 bg-white text-orange-600 rounded-full flex items-center justify-center text-sm font-bold">{idx + 1}</span>
+                  <span>{step}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-4xl font-bold text-neutral-900 mb-4">Certifications & Safety</h2>
+        <p class="text-base md:text-lg text-neutral-600 max-w-3xl mx-auto">All high chairs meet the strictest international safety standards</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {[
+          { name: "ASTM F404", desc: "US High Chair Standard" },
+          { name: "EN 14988", desc: "European High Chair Standard" },
+          { name: "CE", desc: "EU Conformity" },
+          { name: "CPC", desc: "Children's Product Certificate" }
+        ].map((cert, idx) => (
+          <div key={idx} class="bg-neutral-50 p-6 rounded-2xl text-center border border-neutral-200">
+            <div class="text-2xl font-bold text-orange-600 mb-2">{cert.name}</div>
+            <div class="text-sm text-neutral-600">{cert.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-gradient-to-r from-orange-600 to-amber-700 text-white">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <h2 class="text-2xl md:text-4xl font-bold mb-4">Ready for Your Custom High Chairs?</h2>
+      <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">Let's create the perfect high chair for your brand. Contact us today!</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/oem-odm" class="inline-flex items-center justify-center gap-2 bg-white text-orange-700 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all hover:shadow-xl">
+          Start OEM Project
+        </a>
+        <a href="/quote" class="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all">
+          Get Wholesale Quote
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

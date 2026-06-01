@@ -1,0 +1,163 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import globalData from '../../content/global/index.json';
+
+const pageTitle = 'Content Standards - B2Bbaby';
+const pageDescription = 'Content standards and quality guidelines for B2Bbaby website, product information, and documentation.';
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="bg-gradient-to-r from-indigo-50 to-purple-50 py-10 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center">
+        <span class="inline-block bg-white/80 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-medium text-indigo-700 mb-4">
+          Content Standards
+        </span>
+        <h1 class="text-3xl md:text-5xl font-bold text-neutral-900 mb-4">Content Standards</h1>
+        <p class="text-base md:text-lg text-neutral-600 max-w-2xl mx-auto">
+          Quality guidelines and standards for B2Bbaby content, product information, and documentation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-20 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="max-w-4xl mx-auto">
+        <article class="prose prose-lg max-w-none">
+          <h2>Introduction</h2>
+          <p>
+            This document outlines the content standards and quality guidelines for all materials published on 
+            B2Bbaby. Our goal is to provide accurate, reliable, and useful information to our customers.
+          </p>
+
+          <h2>Accuracy & Verification</h2>
+          
+          <h3>Product Information</h3>
+          <ul>
+            <li>All product specifications are verified against actual production samples</li>
+            <li>Certification information is kept current and verifiable</li>
+            <li>MOQ, lead time, and pricing are updated regularly (last reviewed: {new Date().toISOString().split('T')[0]})</li>
+            <li>Product images show actual products, not renderings unless clearly labeled</li>
+          </ul>
+
+          <h3>Company Information</h3>
+          <div class="bg-indigo-50 rounded-xl p-6 mb-8">
+            <h3 class="text-xl font-bold text-neutral-900 mb-4">Verified Company Details</h3>
+            <ul class="space-y-2">
+              <li><strong>Legal Name:</strong> {globalData.company.name_en}</li>
+              <li><strong>Brand:</strong> {globalData.company.name}</li>
+              <li><strong>Founded:</strong> {globalData.company.founded}</li>
+              <li><strong>Location:</strong> {globalData.company.address_en}</li>
+              <li><strong>Employees:</strong> {globalData.company.employees}</li>
+              <li><strong>Status:</strong> Verified and active</li>
+            </ul>
+          </div>
+
+          <h2>Certification Standards</h2>
+          
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-blue-50 rounded-xl p-6">
+              <h3 class="font-bold text-blue-900 mb-3">US Market Standards</h3>
+              <ul class="space-y-2 text-blue-800">
+                <li>ASTM F833-23 - Strollers</li>
+                <li>ASTM F404-23 - High Chairs</li>
+                <li>CPC Certification</li>
+                <li>CPSC Compliant</li>
+              </ul>
+            </div>
+            <div class="bg-green-50 rounded-xl p-6">
+              <h3 class="font-bold text-green-900 mb-3">EU Market Standards</h3>
+              <ul class="space-y-2 text-green-800">
+                <li>EN 1888-1:2018 - Strollers</li>
+                <li>EN 1930:2012 - Safety Gates</li>
+                <li>EN 14988 - High Chairs</li>
+                <li>CE Marking</li>
+                <li>REACH Compliant</li>
+              </ul>
+            </div>
+          </div>
+
+          <h2>Quality Assurance Process</h2>
+          
+          <h3>Three-Stage QC</h3>
+          <ol>
+            <li><strong>Incoming QC:</strong> Raw materials and components inspection</li>
+            <li><strong>Production QC:</strong> In-line checks at every production stage</li>
+            <li><strong>Final QC:</strong> 100% inspection before shipment with test reports</li>
+          </ol>
+
+          <h3>Documentation Available</h3>
+          <ul>
+            <li>Test Reports (upon request)</li>
+            <li>Certification Copies (upon request)</li>
+            <li>Inspection Checklists</li>
+            <li>Product Specifications Sheets</li>
+          </ul>
+
+          <h2>Content Update Policy</h2>
+          <p>
+            Our content is reviewed and updated on a regular basis:
+          </p>
+          <ul>
+            <li>Product information: Quarterly review, or as changes occur</li>
+            <li>Pricing & MOQ: Monthly review</li>
+            <li>Certifications: Upon renewal or changes</li>
+            <li>Company news: As events occur</li>
+          </ul>
+
+          <h2>Transparency & Disclosure</h2>
+          <ul>
+            <li>We clearly distinguish between standard products and custom OEM/ODM</li>
+            <li>Lead times are estimates based on typical production schedules</li>
+            <li>Pricing may vary based on order quantity and customization</li>
+            <li>Shipping quotes are provided separately based on destination</li>
+          </ul>
+
+          <h2>Contact for Verification</h2>
+          <div class="bg-purple-50 rounded-xl p-6">
+            <p class="font-semibold text-purple-800 mb-2">Questions about our content or need verification?</p>
+            <ul class="space-y-1 text-purple-700">
+              <li>Email: {globalData.company.email}</li>
+              <li>Sales: {globalData.company.sales_email}</li>
+              <li>WhatsApp: {globalData.company.whatsapp}</li>
+              <li>Phone: {globalData.company.phone}</li>
+            </ul>
+            <p class="mt-4 text-sm text-purple-600">
+              We're happy to provide additional documentation or answer any questions about our products, 
+              certifications, or company information.
+            </p>
+          </div>
+
+          <h2>Last Updated</h2>
+          <p>
+            This content standards document was last reviewed and updated on {new Date().toISOString().split('T')[0]}.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Content Standards - B2Bbaby",
+      "description": "Quality guidelines and standards for B2Bbaby content, product information, and documentation.",
+      "url": "https://b2bbaby.com/content-standards",
+      "provider": {
+        "@type": "Organization",
+        "name": "B2Bbaby",
+        "legalName": "Anhui Talent Baby Products Co., Ltd.",
+        "foundingDate": "2019",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "CN",
+          "addressRegion": "Anhui",
+          "addressLocality": "Hefei",
+          "streetAddress": "Building C4, Yungu Innovation and Entrepreneurship Park, Baohe District"
+        }
+      }
+    }
+  </script>
+</Layout>

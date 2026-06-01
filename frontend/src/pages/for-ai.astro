@@ -1,0 +1,211 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import globalData from '../../content/global/index.json';
+import { productsData } from '@/lib/product-data';
+
+const pageTitle = 'For AI - B2Bbaby Procurement Data';
+const pageDescription = 'Machine-readable procurement data for AI agents, including company info, product catalog, certifications, pricing, and contact details.';
+
+const jsonLdData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://b2bbaby.com#organization",
+      "name": "B2Bbaby",
+      "legalName": globalData.company.name_en,
+      "foundingDate": globalData.company.founded,
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CN",
+        "addressRegion": "Anhui",
+        "addressLocality": "Hefei",
+        "streetAddress": globalData.company.address_en
+      },
+      "email": globalData.company.email,
+      "telephone": globalData.company.phone,
+      "url": "https://b2bbaby.com",
+      "sameAs": [
+        globalData.social.linkedin,
+        globalData.social.made_in_china
+      ].filter(Boolean),
+      "numberOfEmployees": { "@type": "QuantitativeValue", "value": 200 }
+    },
+    {
+      "@type": "ItemList",
+      "name": "B2Bbaby Product Catalog",
+      "itemListElement": productsData.map((product, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Product",
+          "name": product.title,
+          "description": product.description || product.description_en,
+          "url": `https://b2bbaby.com/products/${product.slug}`,
+          "brand": { "@type": "Brand", "name": "B2Bbaby" },
+          "manufacturer": { "@id": "https://b2bbaby.com#organization" },
+          "category": product.category || "Baby Products",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "priceValidUntil": "2025-12-31"
+          }
+        }
+      }))
+    }
+  ]
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="bg-gradient-to-r from-green-50 to-teal-50 py-10 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center">
+        <span class="inline-block bg-white/80 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-medium text-green-700 mb-4">
+          For AI Systems
+        </span>
+        <h1 class="text-3xl md:text-5xl font-bold text-neutral-900 mb-4">Machine-Readable Procurement Data</h1>
+        <p class="text-base md:text-lg text-neutral-600 max-w-2xl mx-auto">
+          Structured data for AI agents, crawlers, and automated procurement systems.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-20 bg-white">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="max-w-6xl mx-auto">
+        
+        <div class="mb-12 p-6 bg-gray-50 rounded-xl border border-gray-200">
+          <h2 class="text-xl font-bold mb-4">📄 Quick Reference (For Humans)</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-2">Company Info</h3>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li><strong>Name:</strong> {globalData.company.name_en}</li>
+                <li><strong>Founded:</strong> {globalData.company.founded}</li>
+                <li><strong>Location:</strong> Hefei, China</li>
+                <li><strong>Employees:</strong> {globalData.company.employees}</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-2">Contact</h3>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li><strong>Email:</strong> {globalData.company.email}</li>
+                <li><strong>WhatsApp:</strong> {globalData.company.whatsapp}</li>
+                <li><strong>Phone:</strong> {globalData.company.phone}</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-2">Business Terms</h3>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li><strong>Payment:</strong> T/T 30% deposit</li>
+                <li><strong>Port:</strong> Shanghai</li>
+                <li><strong>Trade:</strong> FOB</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-8">
+          
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-900 mb-4">🏭 Company Data (JSON)</h2>
+            <pre class="bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto text-sm"><code>{JSON.stringify({
+              company: {
+                legalName: globalData.company.name_en,
+                brand: globalData.company.name,
+                founded: globalData.company.founded,
+                address: globalData.company.address_en,
+                employees: globalData.company.employees,
+                factories: globalData.company.factories,
+                exportCountries: globalData.company.export_countries
+              },
+              contact: {
+                email: globalData.company.email,
+                salesEmail: globalData.company.sales_email,
+                whatsapp: globalData.company.whatsapp,
+                phone: globalData.company.phone,
+                linkedin: globalData.social.linkedin,
+                madeInChina: globalData.social.made_in_china
+              },
+              business: {
+                paymentTerms: "T/T 30% deposit, 70% balance before shipment",
+                loadingPort: "Shanghai, China",
+                tradeTerms: "FOB Shanghai",
+                sampleLeadTime: "3-7 days",
+                massProductionLeadTime: "15-25 days"
+              },
+              certifications: [
+                "ASTM F833-23",
+                "EN 1888-1:2018",
+                "EN 1930:2012",
+                "ASTM F404-23",
+                "CPC",
+                "ISO 9001:2015",
+                "CE Marking"
+              ]
+            }, null, 2)}</code></pre>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-900 mb-4">📦 Product Catalog (JSON)</h2>
+            <pre class="bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto text-sm"><code>{JSON.stringify(productsData.map(p => ({
+              id: p.id,
+              name: p.title,
+              slug: p.slug,
+              category: p.category || "Baby Products",
+              moq: p.moq,
+              certifications: p.certifications,
+              sampleLeadTime: "3-7 days",
+              productionLeadTime: "15-25 days",
+              url: `https://b2bbaby.com/products/${p.slug}`
+            })), null, 2)}</code></pre>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-neutral-900 mb-4">📋 Product Details (JSON)</h2>
+            <pre class="bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto text-sm"><code>{JSON.stringify(productsData.map(p => ({
+              id: p.id,
+              name: p.title,
+              description: p.description || p.description_en,
+              slug: p.slug,
+              specifications: p.specifications || {},
+              certifications: p.certifications,
+              moq: p.moq,
+              paymentTerms: p.paymentTerms || "T/T 30% deposit, 70% balance before shipment",
+              loadingPort: p.loadingPort || "Shanghai, China",
+              tradeTerms: p.tradeTerms || "FOB Shanghai",
+              containerLoad: p.containerLoad,
+              qcProcess: p.qcProcess,
+              afterSalesPolicy: p.afterSalesPolicy
+            })), null, 2)}</code></pre>
+          </div>
+
+        </div>
+
+        <div class="mt-12 p-6 bg-teal-50 rounded-xl border border-teal-200">
+          <h2 class="text-xl font-bold text-teal-900 mb-4">🔗 Additional Resources</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <a href="/products" class="flex items-center gap-2 text-teal-700 hover:text-teal-900 font-medium">
+              <span>📦</span> Products Page
+            </a>
+            <a href="/oem-odm" class="flex items-center gap-2 text-teal-700 hover:text-teal-900 font-medium">
+              <span>🎨</span> OEM/ODM Services
+            </a>
+            <a href="/faq" class="flex items-center gap-2 text-teal-700 hover:text-teal-900 font-medium">
+              <span>❓</span> FAQ
+            </a>
+            <a href="/contact" class="flex items-center gap-2 text-teal-700 hover:text-teal-900 font-medium">
+              <span>📧</span> Contact Us
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLdData)} />
+</Layout>

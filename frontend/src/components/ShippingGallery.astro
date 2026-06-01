@@ -1,0 +1,141 @@
+---
+interface Props {
+  gallery: {
+    slug?: string;
+    month: string;
+    destination: string;
+    product: string;
+    batches: number;
+    images: {
+      src: string;
+      alt: string;
+      date: string;
+      caption: string;
+    }[];
+  };
+}
+
+const { gallery } = Astro.props;
+---
+
+<div class="shipping-gallery mb-12">
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+    <div>
+      <h3 class="text-xl md:text-2xl font-bold text-neutral-900 mb-2">
+        {gallery.month} - {gallery.destination}
+      </h3>
+      <p class="text-neutral-600">
+        Product: {gallery.product} | Batches: {gallery.batches}
+      </p>
+    </div>
+    <div class="mt-2 md:mt-0 flex flex-col sm:flex-row gap-3">
+      {gallery.slug && (
+        <a href={`/shipping-proof/${gallery.slug}`} class="inline-flex items-center gap-1.5 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          View Details
+        </a>
+      )}
+      <span class="inline-flex items-center gap-1.5 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16v-2"/>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+          <line x1="12" y1="22.08" x2="12" y2="12"/>
+        </svg>
+        {gallery.images.length} {gallery.images.length === 1 ? 'photo' : 'photos'}
+      </span>
+    </div>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {gallery.images.map((img, idx) => (
+      <figure class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200 hover:shadow-lg transition-all duration-300 cursor-pointer" key={idx} data-modal-open>
+        <div class="relative overflow-hidden h-48 md:h-56">
+          <img 
+            src={img.src} 
+            alt={img.alt}
+            loading="lazy"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <span class="bg-white text-neutral-900 px-4 py-2 rounded-lg text-sm font-medium cursor-pointer">View Larger</span>
+          </div>
+        </div>
+        <figcaption class="p-4 bg-neutral-50">
+          <p class="text-sm text-neutral-700 font-medium">{img.caption}</p>
+          <p class="text-xs text-neutral-500 mt-1">Date: {img.date}</p>
+        </figcaption>
+        <input type="hidden" class="modal-src" value={img.src} />
+        <input type="hidden" class="modal-alt" value={img.alt} />
+        <input type="hidden" class="modal-caption" value={img.caption} />
+        <input type="hidden" class="modal-date" value={img.date} />
+      </figure>
+    ))}
+  </div>
+</div>
+
+<div id="image-modal" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+  <button id="modal-close" class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <div class="bg-white rounded-xl max-w-4xl w-full mx-4 p-6 transform scale-95 transition-transform duration-300">
+    <img id="modal-image" src="" alt="" class="w-full max-h-[70vh] object-contain rounded-lg" />
+    <div class="mt-4 text-center">
+      <h4 id="modal-caption" class="text-lg font-semibold text-neutral-900"></h4>
+      <p id="modal-date" class="text-sm text-neutral-500 mt-1"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('image-modal');
+    const closeBtn = document.getElementById('modal-close');
+    const modalImg = document.getElementById('modal-image');
+    const modalCaption = document.getElementById('modal-caption');
+    const modalDate = document.getElementById('modal-date');
+    const figures = document.querySelectorAll('[data-modal-open]');
+
+    figures.forEach(figure => {
+      figure.addEventListener('click', () => {
+        const src = figure.querySelector('.modal-src').value;
+        const alt = figure.querySelector('.modal-alt').value;
+        const caption = figure.querySelector('.modal-caption').value;
+        const date = figure.querySelector('.modal-date').value;
+        
+        modalImg.src = src;
+        modalImg.alt = alt;
+        modalCaption.textContent = caption;
+        modalDate.textContent = 'Date: ' + date;
+        
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.querySelector('div').classList.remove('scale-95');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.querySelector('div').classList.add('scale-95');
+      document.body.style.overflow = '';
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
+        closeModal();
+      }
+    });
+  });
+</script>

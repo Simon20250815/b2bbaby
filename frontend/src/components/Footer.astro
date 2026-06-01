@@ -1,4 +1,7 @@
 ---
+import { getSiteConfig } from '@/lib/site-config';
+
+const config = getSiteConfig();
 ---
 
 <footer class="bg-gray-900 text-white">
@@ -17,31 +20,48 @@
             We specialize in safety gates, strollers, and high chairs with full OEM/ODM support.
           </p>
           <div class="flex items-center gap-3">
-            <a
-              href="https://wa.me/8617681128186"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-10 h-10 bg-green-600 hover:bg-green-500 rounded-full flex items-center justify-center transition-colors"
-              aria-label="Contact us on WhatsApp"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
-                <path d="M9 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                <path d="M13 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                <path d="M17 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-              </svg>
-            </a>
-            <a
-              href="https://linkedin.com/company/babygeopro"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors"
-              aria-label="Follow us on LinkedIn"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white">
-                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7 0h3.8v2h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V24h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.06 0-2.38 1.6-2.38 3.28V24h-4V8z"/>
-              </svg>
-            </a>
+            {config.social.linkedin && (
+              <a
+                href={config.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Follow us on LinkedIn"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white">
+                  <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7 0h3.8v2h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V24h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.06 0-2.38 1.6-2.38 3.28V24h-4V8z"/>
+                </svg>
+              </a>
+            )}
+            {config.company.whatsapp && (
+              <a
+                href={`https://wa.me/${config.company.whatsapp.replace(/\s/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 bg-green-600 hover:bg-green-500 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Contact us on WhatsApp"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+                  <path d="M9 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                  <path d="M13 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                  <path d="M17 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg>
+              </a>
+            )}
+            {config.social.made_in_china && (
+              <a
+                href={config.social.made_in_china}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 bg-orange-600 hover:bg-orange-500 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Visit us on Made in China"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+              </a>
+            )}
           </div>
         </div>
         
@@ -106,8 +126,10 @@
                 <polyline points="22,6 12,13 2,6"/>
               </svg>
               <div>
-                <span class="text-white font-medium">Email</span>
-                <p><a href="mailto:sourcing@babygeopro.com" class="hover:text-white transition-colors">sourcing@babygeopro.com</a></p>
+                <span class="text-white font-medium">General</span>
+                <p><a href={`mailto:${config.company.email}`} class="hover:text-white transition-colors">{config.company.email}</a></p>
+                <span class="text-white font-medium mt-2 block">Sales</span>
+                <p><a href={`mailto:${config.company.sales_email}`} class="hover:text-white transition-colors">{config.company.sales_email}</a></p>
               </div>
             </li>
             <li class="flex items-start gap-3">
@@ -116,7 +138,7 @@
               </svg>
               <div>
                 <span class="text-white font-medium">WhatsApp</span>
-                <p><a href="https://wa.me/8617681128186" class="hover:text-white transition-colors">+86 176 8112 8186</a></p>
+                <p><a href={`https://wa.me/${config.company.whatsapp.replace(/\s/g, '')}`} class="hover:text-white transition-colors">{config.company.whatsapp}</a></p>
               </div>
             </li>
             <li class="flex items-start gap-3">
@@ -126,7 +148,7 @@
               </svg>
               <div>
                 <span class="text-white font-medium">Location</span>
-                <p class="text-sm">中国安徽省合肥市包河区云谷创新创业园C4栋</p>
+                <p class="text-sm">{config.company.address}</p>
               </div>
             </li>
           </ul>
@@ -137,7 +159,7 @@
     <div class="border-t border-gray-800 py-6">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="text-gray-400 text-sm">
-          &copy; {new Date().getFullYear()} B2Bbaby. All rights reserved.
+          &copy; {new Date().getFullYear()} ANHUI TALENT BABY PRODUCT CO LTD. All rights reserved.
         </p>
         <div class="flex items-center gap-6 text-sm text-gray-400">
           <a href="/llms.txt" class="hover:text-white transition-colors">AI Agent Guidelines</a>
@@ -146,7 +168,7 @@
         </div>
       </div>
       <p class="text-center text-gray-500 text-xs mt-4">
-        Last Updated: 2026 | We serve 30+ countries worldwide
+        Last Updated: 2026 | We serve {config.company.export_countries} countries worldwide
       </p>
     </div>
   </div>

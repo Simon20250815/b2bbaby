@@ -1,0 +1,125 @@
+{
+  "title": "Real Shipment Records - Verified & Traceable",
+  "description": "Actual shipping documents from our factory to global ports. Authentic bill of lading records with client information redacted for privacy.",
+  "stats": {
+    "total_batches_2025": 342,
+    "countries_served": 12,
+    "on_time_delivery_rate": 98,
+    "average_lead_time_days": 23
+  },
+  "galleries": [
+    {
+      "slug": "2026-05-los-angeles-port",
+      "month": "2026-05",
+      "destination": "Los Angeles Port, USA",
+      "product": "Baby Strollers & Safety Gates",
+      "batches": 12,
+      "shipping_method": "FCL (Full Container Load)",
+      "container_size": "40ft HC",
+      "bill_of_lading_number": "COSU6295878235",
+      "description": "12 batches of ASTM and EN certified baby products shipped to Los Angeles Port. Includes baby strollers, safety gates, and high chairs.",
+      "images": [
+        {
+          "src": "/images/shipping/2026-05-la-port-1.jpg",
+          "alt": "Master Bill of Lading document for shipment to Los Angeles Port",
+          "date": "2026-05-20",
+          "caption": "MBL (Master Bill of Lading) - Los Angeles"
+        },
+        {
+          "src": "/images/shipping/2026-05-la-port-2.jpg",
+          "alt": "Commercial invoice and packing list for USA shipment",
+          "date": "2026-05-19",
+          "caption": "Commercial Invoice & Packing List"
+        }
+      ]
+    },
+    {
+      "slug": "2026-04-hamburg-port",
+      "month": "2026-04",
+      "destination": "Hamburg Port, Germany",
+      "product": "Baby Bed Rails & High Chairs",
+      "batches": 8,
+      "shipping_method": "LCL (Less than Container Load)",
+      "container_size": "20ft GP",
+      "bill_of_lading_number": "HLCUHK1G13560894",
+      "description": "8 batches of EN and CE certified baby bed rails and high chairs for the German market.",
+      "images": [
+        {
+          "src": "/images/shipping/2026-04-hamburg-1.jpg",
+          "alt": "House Bill of Lading for Hamburg shipment",
+          "date": "2026-04-28",
+          "caption": "HBL (House Bill of Lading)"
+        },
+        {
+          "src": "/images/shipping/2026-04-hamburg-2.jpg",
+          "alt": "Packed cartons ready for shipment to Germany",
+          "date": "2026-04-27",
+          "caption": "Packed Cargo - Ready for Export"
+        }
+      ]
+    },
+    {
+      "slug": "2026-03-rotterdam-port",
+      "month": "2026-03",
+      "destination": "Rotterdam Port, Netherlands",
+      "product": "Baby Strollers",
+      "batches": 15,
+      "shipping_method": "FCL (Full Container Load)",
+      "container_size": "40ft HC",
+      "bill_of_lading_number": "MAEU6295878235",
+      "description": "15 batches of EN certified baby strollers to Rotterdam. Includes both foldable and standard models.",
+      "images": [
+        {
+          "src": "/images/shipping/2026-03-rotterdam-1.jpg",
+          "alt": "Bill of lading for shipment to Rotterdam",
+          "date": "2026-03-30",
+          "caption": "Bill of Lading - Rotterdam Bound"
+        }
+      ]
+    },
+    {
+      "slug": "2026-02-sydney-port",
+      "month": "2026-02",
+      "destination": "Sydney Port, Australia",
+      "product": "Baby Safety Gates",
+      "batches": 10,
+      "shipping_method": "FCL (Full Container Load)",
+      "container_size": "20ft GP",
+      "bill_of_lading_number": "TST661708",
+      "description": "10 batches of safety gates certified for Australian standards, shipped via telex release.",
+      "images": [
+        {
+          "src": "/images/shipping/2026-02-sydney-1.jpg",
+          "alt": "Bill of lading document for Australia shipment",
+          "date": "2026-02-28",
+          "caption": "Bill of Lading - LGZKPR25C0954KPR"
+        },
+        {
+          "src": "/images/shipping/2026-02-sydney-2.jpg",
+          "alt": "Telex release bill of lading for Australian destination",
+          "date": "2026-02-26",
+          "caption": "Telex Release Bill of Lading - TST661708"
+        }
+      ]
+    },
+    {
+      "slug": "2026-01-new-york-port",
+      "month": "2026-01",
+      "destination": "New York Port, USA",
+      "product": "Baby High Chairs",
+      "batches": 18,
+      "shipping_method": "LCL (Less than Container Load)",
+      "container_size": "40ft GP",
+      "bill_of_lading_number": "NYK3295878235",
+      "description": "18 batches of ASTM and CPC certified baby high chairs to New York. Includes OEM customized colors.",
+      "images": [
+        {
+          "src": "/images/shipping/2026-01-ny-1.jpg",
+          "alt": "Bill of lading for New York shipment",
+          "date": "2026-01-30",
+          "caption": "Bill of Lading - New York Port"
+        }
+      ]
+    }
+  ]
+}

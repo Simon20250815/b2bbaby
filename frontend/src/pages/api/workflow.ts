@@ -4,8 +4,7 @@ import { promisify } from 'util';
 
 const execAsync = promisify(exec);
 
-let previewServerProcess = null;
-let previewPort = 4323;
+const previewServers = new Map<number, any>();
 
 export const POST: APIRoute = async ({ request }) => {
   const { action } = await request.json();
@@ -25,19 +24,24 @@ export const POST: APIRoute = async ({ request }) => {
 };
 
 async function handlePreview() {
-  if (previewServerProcess) {
+  for (const [port, process] of previewServers.entries()) {
     try {
-      previewServerProcess.kill();
-    } catch (e) {}
+      process.kill();
+      previewServers.delete(port);
+    } catch (e) {
+      console.error(`Failed to kill preview server on port ${port}:`, e);
+    }
   }
   
-  previewPort = 4323 + Math.floor(Math.random() * 100);
+  const previewPort = 4323 + Math.floor(Math.random() * 100);
   
   try {
-    previewServerProcess = exec(
+    const previewServerProcess = exec(
       `npm run dev -- --port ${previewPort}`,
       { cwd: './frontend' }
     );
+    
+    previewServers.set(previewPort, previewServerProcess);
     
     await new Promise(resolve => setTimeout(resolve, 3000));
     
@@ -83,24 +87,30 @@ async function handlePublish() {
 }
 
 async function handleStopPreview() {
-  if (previewServerProcess) {
+  const stoppedServers = [];
+  
+  for (const [port, process] of previewServers.entries()) {
     try {
-      previewServerProcess.kill();
-      previewServerProcess = null;
-      return new Response(
-        JSON.stringify({ success: true, message: 'Preview server stopped' }),
-        { headers: { 'Content-Type': 'application/json' } }
-      );
+      process.kill();
+      previewServers.delete(port);
+      stoppedServers.push(port);
     } catch (error) {
-      return new Response(
-        JSON.stringify({ success: false, error: error.message }),
-        { status: 500 }
-      );
+      console.error(`Failed to stop preview server on port ${port}:`, error);
     }
   }
   
+  if (stoppedServers.length > 0) {
+    return new Response(
+      JSON.stringify({ 
+        success: true, 
+        message: `Preview servers stopped on ports: ${stoppedServers.join(', ')}` 
+      }),
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+  
   return new Response(
-    JSON.stringify({ success: true, message: 'No preview server running' }),
+    JSON.stringify({ success: true, message: 'No preview servers running' }),
     { headers: { 'Content-Type': 'application/json' } }
   );
 }

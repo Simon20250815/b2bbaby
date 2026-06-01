@@ -55,7 +55,7 @@ const organizationSchema = generateOrganizationSchema();
             </div>
             <div class="h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg">
               <img 
-                src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=baby%20product%20showroom%20display%2C%20sample%20exhibition%20room%2C%20strollers%20safety%20gates%20high%20chairs%20on%20display%2C%20modern%20showroom&image_size=landscape_4_3"
+                src="/images/pages/about/showroom.jpg"
                 alt="B2Bbaby product showroom"
                 class="w-full h-full object-cover"
                 loading="lazy"
@@ -159,25 +159,29 @@ const organizationSchema = generateOrganizationSchema();
           <h2 class="text-xl md:text-2xl font-bold text-neutral-900 mb-6">Certifications & Audit Reports</h2>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: 'ISO 9001:2015', cert: 'CN-123456-QMS', valid: 'Valid until 2028-05' },
-              { name: 'CE Marking', cert: 'BGP-CE-2026-001', valid: 'Verified 2026-03' },
-              { name: 'CPC', cert: 'CPC-BGP-ST-2026', valid: 'Verified 2026-02' },
-              { name: 'BSCI', cert: 'BSCI-12345678', valid: 'Audit score: A' },
-              { name: 'Sedex', cert: 'SMETA-2026-045', valid: '2026 Full Audit' },
-              { name: 'Disney FAMA', cert: 'FAMA-BGP-2026', valid: 'Available on request' }
+              { name: 'ISO 9001:2015', cert: 'Quality Management System', valid: 'Valid Certificate', image: '/images/pages/about/证书/iso9001-certificate.jpg' },
+              { name: 'CE Marking', cert: 'EN 71 Certified', valid: 'European Standards', image: '/images/pages/about/证书/en-certificate.jpg' },
+              { name: 'CPC', cert: 'Children\'s Product Certificate', valid: 'ASTM F963 Compliant', image: '/images/pages/about/证书/cpc-certificate.jpg' },
+              { name: 'ASTM F963', cert: 'US Safety Standard', valid: 'GZHL2309033714IP', image: '/images/pages/about/证书/astm-certificate.jpg' },
+              { name: 'RoHS Test', cert: 'RoHS, Halogen, Formaldehyde', valid: 'TLTBABY-30X 5.0mm', image: '/images/pages/about/证书/rohs-test-report.jpg' },
+              { name: 'Business License', cert: 'Business Registration', valid: 'No. 91241830137', image: '/images/pages/about/证书/business-license.jpg' },
+              { name: 'Stroller Test', cert: 'Baby Stroller Report', valid: 'Foldable Stroller', image: '/images/pages/about/证书/stroller-test-report.jpg' },
+              { name: 'Bed Rail Test', cert: 'EU Standard Report', valid: 'Safety Bed Rail', image: '/images/pages/about/证书/bed-rail-test-report.jpg' },
+              { name: 'Test Report 2025', cert: 'Product Testing', valid: 'Batch SHHL2509', image: '/images/pages/about/证书/test-report-2025.jpg' },
+              { name: 'Test Report 2026', cert: 'Product Testing', valid: 'Batch SHHL2605', image: '/images/pages/about/证书/test-report-2026.jpg' }
             ].map((item, idx) => (
-              <div key={idx} class="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
-                <div class="h-32 overflow-hidden bg-neutral-100">
+              <div key={idx} class="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200 hover:shadow-md transition-shadow group cursor-pointer">
+                <div class="h-48 md:h-56 bg-neutral-100 flex items-center justify-center p-2">
                   <img 
-                    src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=certificate%20document%2C%20official%20quality%20certification%2C%20professional%20document&image_size=landscape_4_3"
+                    src={item.image}
                     alt={item.name}
-                    class="w-full h-full object-cover"
+                    class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
                 <div class="p-4">
                   <h3 class="font-bold text-lg text-neutral-900 mb-1">{item.name}</h3>
-                  <p class="text-sm text-neutral-600">Cert #: {item.cert}</p>
+                  <p class="text-sm text-neutral-600">{item.cert}</p>
                   <p class="text-xs text-neutral-500">{item.valid}</p>
                 </div>
               </div>
@@ -192,13 +196,13 @@ const organizationSchema = generateOrganizationSchema();
           <h2 class="text-xl md:text-2xl font-bold text-neutral-900 mb-6">Our Facility</h2>
           <div class="grid md:grid-cols-3 gap-4">
             {[
-              { alt: 'Production floor - Baby stroller assembly line', prompt: 'baby%20stroller%20assembly%20line%20in%20factory%2C%20workers%20working%2C%20clean%20professional%20workshop' },
-              { alt: 'Quality control laboratory', prompt: 'quality%20control%20laboratory%20in%20factory%2C%20testing%20equipment%2C%20professional%20setup' },
-              { alt: 'Warehouse and shipping facility', prompt: 'modern%20warehouse%20and%20shipping%20facility%2C%20organized%2C%20boxes%20ready%20to%20ship' }
+              { alt: 'Production floor - Baby stroller assembly line', image: '/images/pages/about/factory/factory-1.jpg' },
+              { alt: 'Quality control laboratory', image: '/images/pages/about/factory/factory-2.jpg' },
+              { alt: 'Warehouse and shipping facility', image: '/images/pages/about/exhibition/exhibition-products.jpg' }
             ].map((item, idx) => (
               <div key={idx} class="h-48 md:h-56 rounded-2xl overflow-hidden shadow-lg group">
                 <img 
-                  src={`https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=${item.prompt}&image_size=landscape_4_3`}
+                  src={item.image}
                   alt={item.alt}
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
@@ -210,15 +214,20 @@ const organizationSchema = generateOrganizationSchema();
 
         <article class="mb-16">
           <h2 class="text-xl md:text-2xl font-bold text-neutral-900 mb-6">Trade Shows & Exhibitions</h2>
-          <div class="grid md:grid-cols-3 gap-4">
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { alt: 'Trade show booth at baby products exhibition', prompt: 'baby%20product%20trade%20show%20booth%2C%20professional%20exhibition%2C%20baby%20strollers%20displayed' },
-              { alt: 'Canton Fair exhibition', prompt: 'Canton%20Fair%20exhibition%20hall%2C%20large%20trade%20show%2C%20international%20buyers' },
-              { alt: 'Business meeting at trade show', prompt: 'professional%20business%20meeting%20at%20trade%20show%2C%20handshake%2C%20business%20discussion' }
+              { alt: 'Exhibition Booth Display', image: '/images/pages/about/exhibition/exhibition-booth.jpg' },
+              { alt: 'Canton Fair Exhibition', image: '/images/pages/about/exhibition/exhibition-canton-fair.jpg' },
+              { alt: 'Product Display', image: '/images/pages/about/exhibition/exhibition-display.jpg' },
+              { alt: 'Business Meeting at Exhibition', image: '/images/pages/about/exhibition/exhibition-meeting.jpg' },
+              { alt: 'Product Showcase', image: '/images/pages/about/exhibition/exhibition-products.jpg' },
+              { alt: 'Exhibition Showcase', image: '/images/pages/about/exhibition/exhibition-showcase.jpg' },
+              { alt: 'Team at Exhibition', image: '/images/pages/about/exhibition/exhibition-team.jpg' },
+              { alt: 'Visitors at Exhibition', image: '/images/pages/about/exhibition/exhibition-visitors.jpg' }
             ].map((item, idx) => (
-              <div key={idx} class="h-48 md:h-56 rounded-2xl overflow-hidden shadow-lg group">
+              <div key={idx} class="h-40 md:h-48 rounded-2xl overflow-hidden shadow-lg group">
                 <img 
-                  src={`https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=${item.prompt}&image_size=landscape_4_3`}
+                  src={item.image}
                   alt={item.alt}
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"

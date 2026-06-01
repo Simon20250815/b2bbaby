@@ -1,0 +1,41 @@
+{
+  "smtp": {
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "secure": false,
+    "user": "ejecoq@gmail.com",
+    "password_env": "SMTP_PASS",
+    "to": "ejecoq@gmail.com"
+  },
+  "forms": {
+    "contact": {
+      "subject": "New Contact Form Submission",
+      "required_fields": ["name", "email", "message"],
+      "fields": ["name", "email", "company", "phone", "productInterest", "message"]
+    },
+    "quote": {
+      "subject": "New Quote Request",
+      "required_fields": ["name", "email", "company"],
+      "fields": ["name", "email", "company", "phone", "productType", "quantity", "targetMarket", "certification", "customization", "leadTime", "message"]
+    },
+    "oem-quote": {
+      "subject": "New OEM/ODM Quote Request",
+      "required_fields": ["contact", "email", "company"],
+      "fields": ["company", "contact", "email", "whatsapp", "serviceType", "productType", "quantity", "customization", "newsletter"]
+    },
+    "nda-request": {
+      "subject": "New NDA Request",
+      "required_fields": ["ndaContact", "ndaEmail", "ndaCompany"],
+      "fields": ["ndaCompany", "ndaContact", "ndaEmail", "ndaType", "ndaProject"]
+    }
+  },
+  "field_mapping": {
+    "contact": "name",
+    "ndaContact": "name",
+    "ndaEmail": "email",
+    "ndaCompany": "company",
+    "whatsapp": "phone",
+    "customization": "message",
+    "ndaProject": "message"
+  }
+}
