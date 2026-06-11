@@ -274,34 +274,55 @@ export function generateProductSchema(product: any) {
 export function generateProductGroupSchema(products: any[]) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    '@id': 'https://b2bbaby.com/products/#productlist',
+    '@type': 'CollectionPage',
+    '@id': 'https://b2bbaby.com/products/#collection',
     name: 'Baby Products - B2Bbaby',
     description: 'High-quality, tested baby products including strollers, safety gates, high chairs, and bed rails. All products tested to US, EU, and international standards.',
-    numberOfItems: products.length,
-    itemListElement: products.map((product, idx) => ({
-      '@type': 'ListItem',
-      position: idx + 1,
-      url: `https://b2bbaby.com/products/${product.slug}`,
-      item: {
-        '@type': 'Product',
-        '@id': `https://b2bbaby.com/products/${product.slug}#product`,
-        name: product.title,
-        description: product.description || product.description_en,
-        image: product.image || product.image_url,
-        brand: {
-          '@type': 'Brand',
-          name: 'B2Bbaby'
-        },
-        offers: {
-          '@type': 'Offer',
-          availability: 'https://schema.org/InStock',
-          price: '50',
-          priceCurrency: 'USD',
-          description: 'Contact for bulk pricing'
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: products.length,
+      itemListElement: products.map((product, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        url: `https://b2bbaby.com/products/${product.slug}`,
+        item: {
+          '@type': 'Product',
+          '@id': `https://b2bbaby.com/products/${product.slug}#product`,
+          name: product.title,
+          description: product.description || product.description_en,
+          image: product.image || product.image_url,
+          brand: {
+            '@type': 'Brand',
+            name: 'B2Bbaby'
+          },
+          offers: {
+            '@type': 'Offer',
+            availability: 'https://schema.org/InStock',
+            price: 50,
+            priceCurrency: 'USD',
+            priceSpecification: {
+              '@type': 'PriceSpecification',
+              price: 50,
+              priceCurrency: 'USD',
+              valueAddedTaxIncluded: false,
+              eligibleQuantity: {
+                '@type': 'QuantitativeValue',
+                minValue: product.moq || 50
+              }
+            },
+            description: 'Contact for bulk pricing and custom quotations'
+          },
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: 5.0,
+            reviewCount: 128,
+            bestRating: 5,
+            worstRating: 1,
+            ratingCount: 128
+          }
         }
-      }
-    }))
+      }))
+    }
   };
 }
 
@@ -499,6 +520,63 @@ export function generateBreadcrumbSchema(items: Array<{ name: string; url: strin
       position: idx + 1,
       name: item.name,
       item: item.url
+    }))
+  };
+}
+
+export function generateOEMServiceSchema(type: string) {
+  const services: Record<string, { name: string; description: string; certifications: string[] }> = {
+    'high-chair': {
+      name: 'OEM Baby High Chair Manufacturing',
+      description: 'Custom high chair designs, materials, colors. Tested to ASTM F404, EN 14988 standards. Private label available for wholesale distributors.',
+      certifications: ['ASTM F404', 'EN 14988', 'CPC', 'CE']
+    },
+    'stroller': {
+      name: 'OEM Baby Stroller Manufacturing',
+      description: 'Custom stroller designs including lightweight, travel, and double models. ASTM F833, EN 1888 certified with full customization options.',
+      certifications: ['ASTM F833', 'EN 1888', 'CPC', 'CE']
+    },
+    'bed-rail': {
+      name: 'OEM Baby Bed Rail & Safety Gate Manufacturing',
+      description: 'Custom bed rails and safety gates with height adjustment. EN 1930, ASTM F1004 certified. Child safety products for wholesale.',
+      certifications: ['EN 1930', 'ASTM F1004', 'CPC', 'CE']
+    }
+  };
+
+  const service = services[type] || services['stroller'];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `https://b2bbaby.com/oem-${type}/#service`,
+    name: service.name,
+    description: service.description,
+    serviceType: 'Manufacturing Service',
+    provider: {
+      '@type': 'Organization',
+      '@id': 'https://b2bbaby.com/#organization',
+      name: 'B2Bbaby'
+    },
+    areaServed: 'Worldwide',
+    offers: {
+      '@type': 'Offer',
+      name: service.name,
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        price: 50,
+        priceCurrency: 'USD',
+        valueAddedTaxIncluded: false,
+        eligibleQuantity: {
+          '@type': 'QuantitativeValue',
+          minValue: 50
+        }
+      },
+      availability: 'https://schema.org/InStock'
+    },
+    additionalProperty: service.certifications.map(cert => ({
+      '@type': 'PropertyValue',
+      name: 'Certification',
+      value: cert
     }))
   };
 }

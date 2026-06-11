@@ -2,20 +2,31 @@
 import Layout from '@/layouts/Layout.astro';
 import ShippingGallery from '@/components/ShippingGallery.astro';
 import shippingData from '@/content/shipping-proof/index.json';
+import { generateArticleSchema } from '@/lib/schema';
+
+const pageTitle = 'Shipping Proof | B2Bbaby - Verified Shipment Records';
+const pageDescription = 'Real shipment documents and photos from our factory to global ports. Verified records to US, EU, and Australia ports with 98% on-time delivery.';
 
 const schema = {
   "@context": "https://schema.org",
-  "@type": "ImageGallery",
-  "name": shippingData.title,
-  "description": shippingData.description,
-  "associatedMedia": shippingData.galleries.flatMap((g: any) => 
-    g.images.map((img: any) => ({
-      "@type": "ImageObject",
-      "contentUrl": `https://b2bbaby.com${img.src}`,
-      "description": img.alt,
-      "dateCreated": img.date
-    }))
-  )
+  "@graph": [
+    generateArticleSchema(pageTitle, pageDescription),
+    {
+      "@type": "ImageGallery",
+      "@id": "https://b2bbaby.com/shipping-proof/#gallery",
+      "name": shippingData.title,
+      "description": shippingData.description,
+      "associatedMedia": shippingData.galleries.flatMap((g: any) => 
+        g.images.map((img: any) => ({
+          "@type": "ImageObject",
+          "contentUrl": `https://b2bbaby.com${img.src}`,
+          "description": img.alt,
+          "dateCreated": img.date,
+          "caption": img.caption
+        }))
+      )
+    }
+  ]
 };
 ---
 

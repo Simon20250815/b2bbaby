@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import shippingData from '@/content/shipping-proof/index.json';
+import { generateArticleSchema } from '@/lib/schema';
 
 export function getStaticPaths() {
   return shippingData.galleries.map((gallery: any) => ({
@@ -15,17 +16,27 @@ if (!gallery) {
   return Astro.redirect('/shipping-proof');
 }
 
+const pageTitle = `${gallery.destination} | Shipping Proof - B2Bbaby`;
+const pageDescription = `Verified shipment records for ${gallery.product} to ${gallery.destination}. ${gallery.description}`;
+
 const schema = {
   "@context": "https://schema.org",
-  "@type": "ImageGallery",
-  "name": `${gallery.month} - ${gallery.destination}`,
-  "description": gallery.description,
-  "associatedMedia": gallery.images.map((img: any) => ({
-    "@type": "ImageObject",
-    "contentUrl": `https://b2bbaby.com${img.src}`,
-    "description": img.alt,
-    "dateCreated": img.date
-  }))
+  "@graph": [
+    generateArticleSchema(pageTitle, pageDescription),
+    {
+      "@type": "ImageGallery",
+      "@id": `https://b2bbaby.com/shipping-proof/${slug}#gallery`,
+      "name": `${gallery.month} - ${gallery.destination}`,
+      "description": gallery.description,
+      "associatedMedia": gallery.images.map((img: any) => ({
+        "@type": "ImageObject",
+        "contentUrl": `https://b2bbaby.com${img.src}`,
+        "description": img.alt,
+        "dateCreated": img.date,
+        "caption": img.caption
+      }))
+    }
+  ]
 };
 ---
 

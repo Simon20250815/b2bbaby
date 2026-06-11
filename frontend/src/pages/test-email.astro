@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { generateArticleSchema } from '@/lib/schema';
+
+const pageTitle = 'Email Test - B2Bbaby';
+const pageDescription = 'Test page for email sending functionality on B2Bbaby website.';
+const articleSchema = generateArticleSchema(pageTitle, pageDescription);
 ---
 
-<Layout title="Email Test">
+<Layout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <div class="container mx-auto px-4 py-12 max-w-2xl">
     <h1 class="text-3xl font-bold mb-8 text-center">Email API Test</h1>
     

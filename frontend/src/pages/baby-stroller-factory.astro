@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { generateArticleSchema, generateProductSchema } from '@/lib/schema';
+import { generateArticleSchema, generateOEMServiceSchema } from '@/lib/schema';
 
 const pageTitle = 'Baby Stroller Factory: ASTM EN Certified Wholesale & OEM';
 const pageDescription = 'Professional baby stroller manufacturer established in 2019. Tested to ASTM, EN standards. Custom OEM designs, flexible MOQ, wholesale pricing.';
@@ -9,12 +9,7 @@ const schema = {
   "@context": "https://schema.org",
   "@graph": [
     generateArticleSchema(pageTitle, pageDescription),
-    {
-      "@type": "ProductGroup",
-      "name": "Baby Strollers",
-      "description": "ASTM and EN tested baby strollers, including lightweight, foldable, and standard models for wholesale and OEM",
-      "productGroupID": "baby-strollers"
-    }
+    generateOEMServiceSchema('stroller')
   ]
 };
 ---

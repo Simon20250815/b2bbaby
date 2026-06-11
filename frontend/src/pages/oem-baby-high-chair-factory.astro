@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { generateArticleSchema } from '@/lib/schema';
+import { generateArticleSchema, generateOEMServiceSchema } from '@/lib/schema';
 
 const pageTitle = 'OEM Baby High Chair Factory: ASTM EN Certified Customization';
 const pageDescription = 'OEM baby high chair manufacturer. Custom designs, materials, colors. Tested to ASTM, EN standards. Private label available for wholesale distributors.';
@@ -9,12 +9,7 @@ const schema = {
   "@context": "https://schema.org",
   "@graph": [
     generateArticleSchema(pageTitle, pageDescription),
-    {
-      "@type": "ProductGroup",
-      "name": "Baby High Chairs",
-      "description": "ASTM and EN tested high chairs with full OEM customization capabilities",
-      "productGroupID": "baby-high-chairs"
-    }
+    generateOEMServiceSchema('high-chair')
   ]
 };
 ---

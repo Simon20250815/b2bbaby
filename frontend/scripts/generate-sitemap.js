@@ -13,24 +13,64 @@ const pages = [
   { loc: '/shipping-proof', priority: '0.7', changefreq: 'monthly' }
 ];
 
-const blogPosts = [
-  'eu-ce-standard-safety-gates',
-  'us-cpsc-compliance-strollers',
-  'avoid-bad-baby-product-suppliers',
-  'high-chair-safety-standards',
-  'foldable-vs-standard-strollers',
-  'wooden-vs-plastic-safety-gates',
-  'oem-customization-process'
-];
+async function getBlogPosts() {
+  try {
+    const blogDataPath = path.join(process.cwd(), 'src', 'lib', 'blog-data.ts');
+    const content = fs.readFileSync(blogDataPath, 'utf-8');
+    
+    const match = content.match(/blogPosts:\s*(\[.*?\])/s);
+    if (match) {
+      const jsonStr = match[1]
+        .replace(/'/g, '"')
+        .replace(/(\w+):/g, '"$1":')
+        .replace(/,\s*(\]|\})/g, '$1');
+      const posts = JSON.parse(jsonStr);
+      return posts.filter(p => p.status === 'published').map(p => p.slug);
+    }
+  } catch (error) {
+    console.warn('⚠️  Failed to read blog data, using fallback');
+  }
+  return [
+    'eu-ce-standard-safety-gates',
+    'us-cpsc-compliance-strollers',
+    'avoid-bad-baby-product-suppliers',
+    'high-chair-safety-standards',
+    'foldable-vs-standard-strollers',
+    'wooden-vs-plastic-safety-gates',
+    'oem-customization-process'
+  ];
+}
 
-const products = [
-  'foldable-baby-stroller-astm',
-  'en-tested-safety-gate',
-  'high-chair-tested-astm-f404',
-  'baby-bed-rail-safety-guard'
-];
+async function getProducts() {
+  try {
+    const productDataPath = path.join(process.cwd(), 'src', 'lib', 'product-data.ts');
+    const content = fs.readFileSync(productDataPath, 'utf-8');
+    
+    const match = content.match(/productsData:\s*(\[.*?\])/s);
+    if (match) {
+      const jsonStr = match[1]
+        .replace(/'/g, '"')
+        .replace(/(\w+):/g, '"$1":')
+        .replace(/,\s*(\]|\})/g, '$1');
+      const products = JSON.parse(jsonStr);
+      return products.filter(p => p.status === 'published').map(p => p.slug);
+    }
+  } catch (error) {
+    console.warn('⚠️  Failed to read product data, using fallback');
+  }
+  return [
+    'foldable-baby-stroller-astm',
+    'en-certified-safety-gate',
+    'cpc-certified-high-chair',
+    'baby-bed-rail-safety-guard'
+  ];
+}
 
-const urlset = pages.map(page => `
+async function generateSitemap() {
+  const blogPosts = await getBlogPosts();
+  const products = await getProducts();
+
+  const urlset = pages.map(page => `
   <url>
     <loc>https://b2bbaby.com${page.loc}</loc>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
@@ -38,7 +78,7 @@ const urlset = pages.map(page => `
     <priority>${page.priority}</priority>
   </url>`).join('');
 
-const blogUrls = blogPosts.map(slug => `
+  const blogUrls = blogPosts.map(slug => `
   <url>
     <loc>https://b2bbaby.com/blog/${slug}</loc>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
@@ -46,7 +86,7 @@ const blogUrls = blogPosts.map(slug => `
     <priority>0.7</priority>
   </url>`).join('');
 
-const productUrls = products.map(slug => `
+  const productUrls = products.map(slug => `
   <url>
     <loc>https://b2bbaby.com/products/${slug}</loc>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
@@ -54,17 +94,22 @@ const productUrls = products.map(slug => `
     <priority>0.8</priority>
   </url>`).join('');
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urlset}${blogUrls}${productUrls}
 </urlset>`;
 
-const distDir = path.join(process.cwd(), 'dist', 'client');
-if (!fs.existsSync(distDir)) {
-  fs.mkdirSync(distDir, { recursive: true });
+  const distDir = path.join(process.cwd(), 'dist', 'client');
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true });
+  }
+
+  fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap);
+
+  console.log('✅ sitemap.xml generated successfully!');
+  console.log(`📄 Location: ${path.join(distDir, 'sitemap.xml')}`);
+  console.log(`📊 Total URLs: ${pages.length + blogPosts.length + products.length}`);
+  console.log(`📝 Blog posts: ${blogPosts.length}`);
+  console.log(`🛒 Products: ${products.length}`);
 }
 
-fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap);
-
-console.log('✅ sitemap.xml generated successfully!');
-console.log(`📄 Location: ${path.join(distDir, 'sitemap.xml')}`);
-console.log(`📊 Total URLs: ${pages.length + blogPosts.length + products.length}`);
+generateSitemap();
