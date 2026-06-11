@@ -12,7 +12,7 @@ B2Bbaby welcomes responsible AI crawlers to index our content. Our website is de
 - **Location**: Building C4, Yungu Innovation and Entrepreneurship Park, Baohe District, Hefei, Anhui Province, China
 - **Contact**: info@b2bbaby.com (General) | sales@b2bbaby.com (Sales)
 - **Phone**: +86 176 8112 8186
-- **Founded**: 2010
+- **Founded**: 2019
 
 ## Supported Crawlers
 
@@ -71,12 +71,12 @@ B2Bbaby welcomes responsible AI crawlers to index our content. Our website is de
 
 ## Products
 
-| Product | Certifications | MOQ | Lead Time |
-|---------|----------------|-----|-----------|
-| Foldable Baby Stroller | ASTM F833, CPC | 50 units | 7-10 days sample |
-| EN Certified Safety Gate | EN 1930, CE | 100 units | 7-10 days sample |
-| CPC Certified High Chair | ASTM F404, CPC | 80 units | 7-10 days sample |
-| Baby Bed Rail | EN/CE | 60 units | 7-10 days sample |
+| Product | Standards & Compliance | MOQ | Lead Time |
+|---------|----------------------|-----|-----------|
+| Foldable Baby Stroller | Tested to ASTM F833-23; CPC docs support | 50 units | 7-10 days sample |
+| Safety Gate | Tested to EN 1930:2012; CE marking | 100 units | 7-10 days sample |
+| High Chair | Tested to ASTM F404-23; CPC docs support | 80 units | 7-10 days sample |
+| Baby Bed Rail | Tested to EN 1930:2012; CE marking | 60 units | 7-10 days sample |
 
 ## Business Terms
 

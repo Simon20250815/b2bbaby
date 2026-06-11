@@ -258,6 +258,19 @@ const contactSchema = generateContactPageSchema();
   </section>
   
   <script>
+    function getUTMParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return {
+        utm_source: urlParams.get('utm_source') || '',
+        utm_medium: urlParams.get('utm_medium') || '',
+        utm_campaign: urlParams.get('utm_campaign') || '',
+        utm_term: urlParams.get('utm_term') || '',
+        utm_content: urlParams.get('utm_content') || '',
+        referrer: document.referrer || '',
+        landing_page: window.location.pathname
+      };
+    }
+
     document.getElementById('contact-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       
@@ -269,6 +282,8 @@ const contactSchema = generateContactPageSchema();
       try {
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
+        const utmParams = getUTMParams();
+        const payload = { ...data, ...utmParams, form_type: 'contact' };
         
         const apiUrl = '/api/send-email.json';
         
@@ -277,7 +292,7 @@ const contactSchema = generateContactPageSchema();
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(payload),
         });
         
         if (response.ok) {

@@ -5,7 +5,7 @@ export const faqs = [
     id: 1,
     category: 'Product',
     question: 'What certifications do your baby products have?',
-    answer: 'Our baby products are certified with ASTM F833-23 (US standard for strollers), EN 1888-1:2018 (EU standard for strollers), EN 1930:2012 (EU standard for safety gates), ASTM F404-23 (US standard for high chairs), CPC (Children\'s Product Certificate), ISO 9001:2015 (Quality management system), and CE marking. All certifications are verifiable with test report numbers provided upon request.',
+    answer: 'Our baby products are tested to ASTM F833-23 (US standard for strollers), EN 1888-1:2018 (EU standard for strollers), EN 1930:2012 (EU standard for safety gates), ASTM F404-23 (US standard for high chairs). We support CPC documentation (test reports provided for US importer CPC issuance). ISO 9001:2015 certified factory. CE marking documentation available. All test reports are available upon request.',
     sort: 1
   },
   {
@@ -96,7 +96,7 @@ export const faqs = [
     id: 14,
     category: 'Company',
     question: 'Tell me about your company history and experience',
-    answer: 'B2Bbaby (ANHUI TALENT BABY PRODUCT Co., Ltd.) was founded in 2019 in Hefei, Anhui Province, China. Our experience: 10+ years in baby product manufacturing and sourcing, 200+ full-time employees, 10,000+ square meters of production space, 100+ verified factories in our network, 500+ global clients served, Products exported to 30+ countries. We are proud to be a trusted partner to businesses worldwide.',
+    answer: 'B2Bbaby (ANHUI TALENT BABY PRODUCT Co., Ltd.) was founded in 2019 in Hefei, Anhui Province, China. Our experience: 10+ years team experience in baby product manufacturing and sourcing, 200+ full-time employees, 10,000+ square meters of production space, 100+ verified factories in our network, 500+ global clients served, Products exported to 30+ countries. We are proud to be a trusted partner to businesses worldwide.',
     sort: 14
   },
   {

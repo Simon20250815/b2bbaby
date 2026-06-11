@@ -43,7 +43,7 @@ export const blogPosts: BlogPost[] = [
     id: 3,
     slug: 'avoid-bad-baby-product-suppliers',
     title: 'How to Avoid Bad Baby Product Suppliers in China',
-    description: 'Red flags to watch for and proven strategies to find reliable, certified baby product manufacturers in China.',
+    description: 'Red flags to watch for and proven strategies to find reliable, tested baby product manufacturers in China.',
     category: 'buying-guide',
     datePublished: '2026-03-10',
     dateModified: '2026-05-05',
@@ -89,6 +89,19 @@ export const blogPosts: BlogPost[] = [
     keywords: ['safety gate', 'wooden gate', 'plastic gate', 'product comparison', 'market demand'],
     readTime: '7 min',
     image: '/images/pages/blog/gates.jpg',
+    status: 'published'
+  },
+  {
+    id: 7,
+    slug: 'oem-customization-process',
+    title: 'Baby Product OEM Customization: Complete Process Guide',
+    description: 'Step-by-step guide to OEM customization for baby products, including MOQ requirements, logo printing options, packaging design, and certification considerations.',
+    category: 'oem-odm',
+    datePublished: '2026-04-10',
+    dateModified: '2026-06-01',
+    keywords: ['OEM', 'customization', 'logo printing', 'packaging', 'MOQ', 'baby products'],
+    readTime: '10 min',
+    image: '/images/pages/blog/audit.jpg',
     status: 'published'
   }
 ];

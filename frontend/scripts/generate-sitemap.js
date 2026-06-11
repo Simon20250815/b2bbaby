@@ -19,13 +19,14 @@ const blogPosts = [
   'avoid-bad-baby-product-suppliers',
   'high-chair-safety-standards',
   'foldable-vs-standard-strollers',
-  'wooden-vs-plastic-safety-gates'
+  'wooden-vs-plastic-safety-gates',
+  'oem-customization-process'
 ];
 
 const products = [
   'foldable-baby-stroller-astm',
-  'en-certified-safety-gate',
-  'cpc-certified-high-chair',
+  'en-tested-safety-gate',
+  'high-chair-tested-astm-f404',
   'baby-bed-rail-safety-guard'
 ];
 

@@ -3,15 +3,19 @@ import Layout from '@/layouts/Layout.astro';
 import { getProducts, getFAQs } from '@/lib/directus';
 import { productsData } from '@/lib/product-data';
 import { faqs as fallbackFaqs } from '@/lib/faq-data';
+import { generateLocalBusinessSchema } from '@/lib/schema';
 
 const directusProducts = await getProducts();
 const products = directusProducts.length > 0 ? directusProducts : productsData;
 
 const directusFaqs = await getFAQs();
 const featuredFaqs = (directusFaqs.length > 0 ? directusFaqs : fallbackFaqs).slice(0, 3);
+
+const localBusinessSchema = generateLocalBusinessSchema();
 ---
 
-<Layout title="B2Bbaby - China Baby Product Manufacturer | ASTM/EN Certified Strollers, Safety Gates" description="Professional baby product manufacturer from China. ASTM/EN certified baby stroller, safety gate, high chair. MOQ 50+, 7-day samples, full QC support for US/EU brands.">
+<Layout title="B2Bbaby - China Baby Product Manufacturer | ASTM/EN Tested Strollers, Safety Gates" description="Professional baby product manufacturer from China. ASTM/EN tested baby stroller, safety gate, high chair. MOQ 50+, 7-day samples, full QC support for US/EU brands.">
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
   <div class="font-sans">
     <!-- Hero Section -->
     <section class="relative min-h-screen bg-gradient-to-br from-white via-blue-50 to-indigo-50">
@@ -29,13 +33,12 @@ const featuredFaqs = (directusFaqs.length > 0 ? directusFaqs : fallbackFaqs).sli
             </div>
             
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              China's Leading
-              <span class="block text-blue-600 mt-2">Wholesale Baby Strollers&Baby bed barrier for Retailers</span>
-              <span class="block text-gray-600 font-normal text-2xl md:text-3xl lg:text-4xl mt-4">Manufacturer & Sourcing Partner</span>
+              Wholesale Baby Strollers, Safety Gates & Bed Rails
+              <span class="block text-blue-600 mt-2">OEM/ODM Manufacturer in China</span>
             </h1>
             
             <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
-              ASTM/EN certified products with MOQ starting at 50 pieces. 7-day sample delivery, real-time QC tracking, and dedicated support for your baby product business.
+              ASTM/EN tested products with MOQ starting at 50 pieces. 7-day sample delivery, real-time QC tracking, and dedicated support for your baby product business.
             </p>
             
             <div class="flex flex-wrap gap-6">
@@ -177,13 +180,13 @@ const featuredFaqs = (directusFaqs.length > 0 ? directusFaqs : fallbackFaqs).sli
           {[
             {
               icon: '🏭',
-              title: '10+ Years Experience',
-              desc: 'Professional manufacturer since 2019 with proven track record'
+              title: 'Professional Manufacturer',
+              desc: 'Established in 2019 with experienced team in baby product export'
             },
             {
               icon: '✅',
-              title: 'Certified Quality',
-              desc: 'ASTM, EN, CE, CPC, ISO 9001 certified products'
+              title: 'Tested Quality',
+              desc: 'Products tested to ASTM/EN standards; ISO 9001 certified factory'
             },
             {
               icon: '📦',
@@ -254,7 +257,7 @@ const featuredFaqs = (directusFaqs.length > 0 ? directusFaqs : fallbackFaqs).sli
           </span>
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Core Products</h2>
           <p class="text-gray-600 max-w-2xl mx-auto">
-            Premium baby products certified for international markets
+            Premium baby products tested for international markets
           </p>
         </div>
         
@@ -351,7 +354,7 @@ const featuredFaqs = (directusFaqs.length > 0 ? directusFaqs : fallbackFaqs).sli
                   Private Label Manufacturing
                 </div>
                 <p class="text-orange-100 text-sm mt-2">
-                  "Bring your brand to life with our certified production lines."
+                  "Bring your brand to life with our ISO 9001 certified production lines."
                 </p>
               </div>
               <ul class="space-y-2 mb-6">
@@ -424,7 +427,7 @@ const featuredFaqs = (directusFaqs.length > 0 ? directusFaqs : fallbackFaqs).sli
               "@type": "Service",
               "@id": "#oem-service",
               "name": "OEM Private Label Manufacturing",
-              "description": "Bring your brand to life with our certified production lines. Logo embroidery, custom packaging, material selection available. MOQ: 50 Units.",
+              "description": "Bring your brand to life with our ISO 9001 certified production lines. Logo embroidery, custom packaging, material selection available. MOQ: 50 Units.",
               "provider": {
                 "@type": "Organization",
                 "name": "B2Bbaby",

@@ -11,8 +11,8 @@
     {
       "question": "产品有哪些认证？",
       "question_en": "What certifications do your products have?",
-      "answer": "我们的产品通过ASTM、EN、CPSIA、CE等国际认证，可根据目标市场要求提供相应认证产品。",
-      "answer_en": "Our products are certified with ASTM, EN, CPSIA, CE and other international standards. We can provide products with certifications based on your target market requirements.",
+      "answer": "我们的产品测试符合ASTM、EN等国际标准，可根据目标市场要求提供相应测试报告和合规文档。",
+      "answer_en": "Our products are tested to ASTM, EN and other international standards. We can provide test reports and compliance documents based on your target market requirements.",
       "category": "certification",
       "sort": 2
     },
@@ -39,6 +39,86 @@
       "answer_en": "Please use our contact form or email our sales team directly. We will respond within 24 hours.",
       "category": "order",
       "sort": 5
+    },
+    {
+      "question": "付款方式有哪些？",
+      "question_en": "What payment methods do you accept?",
+      "answer": "我们接受T/T（电汇）、L/C（信用证）等方式。标准条款为30%预付，70%见提单副本付款。小额订单可接受PayPal。",
+      "answer_en": "We accept T/T (wire transfer), L/C (letter of credit). Standard terms: 30% deposit, 70% against B/L copy. Small orders can use PayPal.",
+      "category": "payment",
+      "sort": 6
+    },
+    {
+      "question": "装运港口在哪里？",
+      "question_en": "Which port do you ship from?",
+      "answer": "主要从上海港和宁波港发货，也可根据客户要求从其他港口发货。",
+      "answer_en": "We mainly ship from Shanghai and Ningbo ports. Other ports available upon request.",
+      "category": "shipping",
+      "sort": 7
+    },
+    {
+      "question": "可以提供样品吗？",
+      "question_en": "Can I get samples?",
+      "answer": "可以提供样品。标准样品7-10天内发出，定制样品需10-15天。样品费用可在后续大货订单中抵扣。",
+      "answer_en": "Yes, we provide samples. Standard samples in 7-10 days, customized samples in 10-15 days. Sample cost can be deducted from bulk order.",
+      "category": "order",
+      "sort": 8
+    },
+    {
+      "question": "产品质量如何保证？",
+      "question_en": "How do you ensure product quality?",
+      "answer": "我们实行三级质检体系：来料检验(IQC)、过程检验(PQC)、出货检验(FQC)。所有产品100%通过安全测试，可安排第三方检测。",
+      "answer_en": "We implement 3-level QC: IQC (incoming), PQC (process), FQC (final). All products pass 100% safety testing. Third-party inspection available.",
+      "category": "quality",
+      "sort": 9
+    },
+    {
+      "question": "产品出口哪些国家？",
+      "question_en": "Which countries do you export to?",
+      "answer": "产品主要出口美国、欧盟、英国、澳大利亚、加拿大等30多个国家和地区，熟悉各国合规要求。",
+      "answer_en": "We export to 30+ countries including USA, EU, UK, Australia, Canada. We are familiar with each country's compliance requirements.",
+      "category": "shipping",
+      "sort": 10
+    },
+    {
+      "question": "OEM定制需要多少起订量？",
+      "question_en": "What is MOQ for OEM customization?",
+      "answer": "OEM定制起订量根据产品类型不同：颜色定制100件起，Logo印刷200件起，包装定制300件起，全新设计500件起。",
+      "answer_en": "OEM MOQ varies: custom color 100 units, logo printing 200 units, packaging 300 units, new design 500 units.",
+      "category": "oem",
+      "sort": 11
+    },
+    {
+      "question": "如何获取测试报告？",
+      "question_en": "How can I get test reports?",
+      "answer": "请发送邮件至sales@b2bbaby.com，注明所需报告类型和产品型号。我们提供ASTM、EN、CPC等完整测试报告。",
+      "answer_en": "Email sales@b2bbaby.com with report type and product model. We provide complete ASTM, EN, CPC test reports.",
+      "category": "certification",
+      "sort": 12
+    },
+    {
+      "question": "售后政策是什么？",
+      "question_en": "What is your after-sales policy?",
+      "answer": "所有产品提供12个月质保。质量问题免费更换配件或退货。技术支持24小时在线响应。",
+      "answer_en": "All products have 12-month warranty. Free replacement or return for quality issues. 24/7 technical support available.",
+      "category": "service",
+      "sort": 13
+    },
+    {
+      "question": "可以参观工厂吗？",
+      "question_en": "Can I visit your factory?",
+      "answer": "欢迎参观工厂！请提前预约，我们可安排接送和参观行程。工厂位于安徽合肥，距离上海约2小时高铁。",
+      "answer_en": "Factory visits welcome! Please schedule in advance. We can arrange pickup and tour. Factory in Hefei, Anhui, 2 hours by train from Shanghai.",
+      "category": "service",
+      "sort": 14
+    },
+    {
+      "question": "产品包装方式有哪些？",
+      "question_en": "What packaging options are available?",
+      "answer": "提供多种包装方式：彩盒、邮购盒、托盘包装。可根据客户要求定制包装设计和尺寸。",
+      "answer_en": "Multiple packaging options: color box, mail order box, pallet packing. Custom packaging design and size available.",
+      "category": "product",
+      "sort": 15
     }
   ]
 }

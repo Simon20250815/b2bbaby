@@ -10,9 +10,37 @@ const categories = [
   { name: 'Market Trends', value: 'market-trends' },
   { name: 'QC & Shipping', value: 'qc-shipping' }
 ];
+
+// Blog listing page schema
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "B2Bbaby Blog",
+  "description": "Expert guides, industry insights, and practical tips for importing baby products from China. Covers certification requirements, supplier verification, quality control, and market trends.",
+  "url": "https://b2bbaby.com/blog",
+  "publisher": {
+    "@type": "Organization",
+    "name": "B2Bbaby",
+    "url": "https://b2bbaby.com"
+  },
+  "blogPost": blogPosts.map(post => ({
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.description,
+    "datePublished": post.datePublished,
+    "url": `https://b2bbaby.com/blog/${post.slug}`,
+    "author": {
+      "@type": "Organization",
+      "name": "B2Bbaby"
+    }
+  }))
+};
 ---
 
 <Layout title="Blog - B2Bbaby | Baby Products Import Guide & Industry Insights" description="Expert guides and insights on importing baby products from China. Certification requirements, supplier verification, quality control.">
+  <!-- Blog Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+  
   <section class="bg-gradient-to-r from-blue-50 to-indigo-50 py-10 md:py-16">
     <div class="container mx-auto px-4 md:px-6">
       <div class="text-center">

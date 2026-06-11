@@ -51,9 +51,35 @@ const getTopicStats = (topicId: string) => {
     totalReadTime: posts.reduce((acc, post) => acc + parseInt(post.readTime), 0)
   };
 };
+
+// Topics page schema
+const topicsSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Baby Product Sourcing Topics",
+  "description": "Comprehensive guides and resources to help you source, certify, and ship baby products from China. Covers compliance, buying guides, OEM/ODM, market trends, and quality control.",
+  "url": "https://b2bbaby.com/blog/topics",
+  "publisher": {
+    "@type": "Organization",
+    "name": "B2Bbaby",
+    "url": "https://b2bbaby.com"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": topics.map((topic, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": topic.name,
+      "description": topic.description,
+      "url": `https://b2bbaby.com/blog/topics#${topic.id}`
+    }))
+  }
+};
 ---
 
 <Layout title="Baby Product Sourcing Topics - B2Bbaby | Expert Guides" description="Explore comprehensive guides on baby product compliance, sourcing, OEM/ODM manufacturing, market trends, and quality control.">
+  <!-- Topics Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(topicsSchema)} />
   
   <section class="bg-gradient-to-r from-blue-50 to-indigo-50 py-10 md:py-16">
     <div class="container mx-auto px-4 md:px-6">
@@ -194,7 +220,7 @@ const getTopicStats = (topicId: string) => {
               </svg>
             </div>
             <h3 class="font-bold text-neutral-900 mb-1">View Products</h3>
-            <p class="text-sm text-neutral-600">Browse our certified baby products</p>
+            <p class="text-sm text-neutral-600">Browse our tested baby products</p>
           </a>
           
           <a href="/oem-odm" class="bg-white p-6 rounded-xl border border-neutral-200 hover:shadow-lg transition text-center">

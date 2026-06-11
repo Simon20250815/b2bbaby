@@ -16,9 +16,9 @@ UMAMI_HASH_SALT=umami-salt-key-change-in-production-2026
 # SMTP 邮件配置（联系表单用）
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
-SMTP_USER=ejecoq@gmail.com
+SMTP_USER=info@b2bbaby.com
 SMTP_PASS=gdahhsnihzlysudk
-SMTP_TO=ejecoq@gmail.com
+SMTP_TO=sales@b2bbaby.com
 
 # 网站配置
 SITE_URL=https://b2bbaby.com

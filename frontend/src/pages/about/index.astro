@@ -1,12 +1,14 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { generateOrganizationSchema } from '@/lib/schema';
+import { generateOrganizationSchema, generateLocalBusinessSchema } from '@/lib/schema';
 
 const organizationSchema = generateOrganizationSchema();
+const localBusinessSchema = generateLocalBusinessSchema();
 ---
 
-<Layout title="About Us - B2Bbaby | 15+ Years Baby Product Manufacturing Experience" description="Professional baby products manufacturer and sourcing expert from China with 15+ years experience, serving 30+ countries worldwide.">
+<Layout title="About Us - B2Bbaby | Professional Baby Product Manufacturer" description="Professional baby products manufacturer and sourcing expert from China, established in 2019, serving 30+ countries worldwide.">
   <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
   
   <section class="bg-gradient-to-r from-blue-50 to-indigo-50 py-10 md:py-16">
     <div class="container mx-auto px-4 md:px-6">
@@ -16,7 +18,7 @@ const organizationSchema = generateOrganizationSchema();
         </span>
         <h1 class="text-3xl md:text-5xl font-bold text-neutral-900 mb-4">About B2Bbaby</h1>
         <p class="text-base md:text-lg text-neutral-600 max-w-3xl mx-auto">
-          Your trusted partner for certified baby products from China. 15+ years of experience serving brands worldwide.
+          Your trusted partner for tested baby products from China. Established in 2019, serving brands worldwide.
         </p>
       </div>
     </div>
