@@ -7,7 +7,7 @@
 - Contact: info@b2bbaby.com (General) | sales@b2bbaby.com (Sales)
 - Phone: +86 176 8112 8186
 - Location: Building C4, Yungu Innovation and Entrepreneurship Park, Baohe District, Hefei, Anhui Province, China
-- Founded: 2010
+- Founded: 2019
 - Employees: 200+
 - Export Countries: 30+
 
@@ -19,19 +19,19 @@
 - FAQ Section
 
 ## Products
-- Foldable Baby Stroller (ASTM F833, CPC certified)
-- EN Certified Safety Gate (EN 1930, CE marked)
-- CPC Certified High Chair (ASTM F404)
-- Baby Bed Rail Safety Guard (EN/CE certified)
+- Foldable Baby Stroller (Tested to ASTM F833-23; CPC documentation support)
+- Safety Gate (Tested to EN 1930:2012; CE marking available)
+- High Chair (Tested to ASTM F404-23; CPC documentation support)
+- Baby Bed Rail Safety Guard (Tested to EN 1930:2012; CE marking available)
 
-## Certifications
-- ASTM F833-23 (US Stroller Standard)
-- EN 1888-1:2018 (EU Stroller Standard)
-- EN 1930:2012 (EU Safety Gate Standard)
-- ASTM F404-23 (US High Chair Standard)
-- CPC (Children's Product Certificate)
-- ISO 9001:2015
-- CE Marking
+## Certifications & Compliance
+- ASTM F833-23 (US Stroller Standard) - Test reports available
+- EN 1888-1:2018 (EU Stroller Standard) - Test reports available
+- EN 1930:2012 (EU Safety Gate Standard) - Test reports available
+- ASTM F404-23 (US High Chair Standard) - Test reports available
+- CPC Documentation Support (Test reports provided for US importer CPC issuance)
+- ISO 9001:2015 (Factory Quality Management System)
+- CE Marking (EU compliance documentation available)
 
 ## Business Terms
 - MOQ: 50-100 units (varies by product)

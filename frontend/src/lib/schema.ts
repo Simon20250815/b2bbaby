@@ -108,6 +108,16 @@ export function generateFAQPageSchema(faqs: any[]) {
 
 export function generateProductSchema(product: any) {
   const certifications = product.certifications || [];
+  const images = [
+    product.image || product.image_url,
+    ...((product.gallery_images || product.galleryImages) || [])
+  ].filter(Boolean);
+  const fullImageUrls = images.map(img => img.startsWith('http') ? img : `https://b2bbaby.com${img}`);
+
+  // 使用产品真实价格，如果没有则用价格区间提示
+  const hasPrice = product.price && product.price > 0;
+  const moq = product.moq || 50;
+  const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
   return {
     '@context': 'https://schema.org',
@@ -115,10 +125,7 @@ export function generateProductSchema(product: any) {
     '@id': `https://b2bbaby.com/products/${product.slug}#product`,
     name: product.title,
     description: product.description || product.description_en,
-    image: [
-      product.image || product.image_url,
-      ...((product.gallery_images || product.galleryImages) || [])
-    ],
+    image: fullImageUrls,
     brand: {
       '@type': 'Brand',
       '@id': 'https://b2bbaby.com/#brand',
@@ -134,22 +141,29 @@ export function generateProductSchema(product: any) {
     category: product.category || 'Baby Products',
     offers: {
       '@type': 'Offer',
+      '@id': `https://b2bbaby.com/products/${product.slug}#offer`,
       url: `https://b2bbaby.com/products/${product.slug}`,
       availability: 'https://schema.org/InStock',
-      price: '50',
-      priceCurrency: 'USD',
-      priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      ...(hasPrice ? {
+        price: product.price,
+        priceCurrency: 'USD',
+        priceValidUntil,
+      } : {}),
       priceSpecification: {
         '@type': 'PriceSpecification',
-        price: '50',
-        priceCurrency: 'USD',
+        ...(hasPrice ? {
+          price: product.price,
+          priceCurrency: 'USD',
+        } : {
+          priceCurrency: 'USD',
+        }),
         valueAddedTaxIncluded: false,
         eligibleQuantity: {
           '@type': 'QuantitativeValue',
-          minValue: product.moq || 50
+          minValue: moq
         }
       },
-      description: 'Contact for bulk pricing and custom quotations',
+      description: 'B2B wholesale pricing. Contact for bulk quotes and custom quotations based on order quantity.',
       hasMerchantReturnPolicy: {
         '@type': 'MerchantReturnPolicy',
         name: 'Standard Return Policy',
@@ -186,58 +200,6 @@ export function generateProductSchema(product: any) {
         }
       }
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: 5.0,
-      reviewCount: 128,
-      bestRating: 5,
-      worstRating: 1,
-      ratingCount: 128
-    },
-    review: [
-      {
-        '@type': 'Review',
-        author: {
-          '@type': 'Organization',
-          name: 'US Baby Retailer'
-        },
-        datePublished: '2026-01-15',
-        reviewBody: 'Excellent quality product. Our customers love the safety features and build quality. Will order again.',
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: 5,
-          bestRating: 5
-        }
-      },
-      {
-        '@type': 'Review',
-        author: {
-          '@type': 'Organization',
-          name: 'EU Distributor'
-        },
-        datePublished: '2026-02-20',
-        reviewBody: 'Fast delivery and great communication. Products meet all EU safety standards. Very satisfied.',
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: 5,
-          bestRating: 5
-        }
-      },
-      {
-        '@type': 'Review',
-        author: {
-          '@type': 'Organization',
-          name: 'Australian Baby Store'
-        },
-        datePublished: '2026-03-10',
-        reviewBody: 'Perfect for our market. Certifications are complete and products are well-made.',
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: 5,
-          bestRating: 5
-        }
-      }
-    ],
     hasMerchantReturnPolicy: {
       '@type': 'MerchantReturnPolicy',
       applicableCountry: 'Worldwide',
@@ -250,7 +212,7 @@ export function generateProductSchema(product: any) {
       {
         '@type': 'PropertyValue',
         name: 'MOQ',
-        value: product.moq ? `${product.moq} units` : '50 units'
+        value: `${moq} units`
       },
       {
         '@type': 'PropertyValue',
@@ -281,47 +243,50 @@ export function generateProductGroupSchema(products: any[]) {
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: products.length,
-      itemListElement: products.map((product, idx) => ({
-        '@type': 'ListItem',
-        position: idx + 1,
-        url: `https://b2bbaby.com/products/${product.slug}`,
-        item: {
-          '@type': 'Product',
-          '@id': `https://b2bbaby.com/products/${product.slug}#product`,
-          name: product.title,
-          description: product.description || product.description_en,
-          image: product.image || product.image_url,
-          brand: {
-            '@type': 'Brand',
-            name: 'B2Bbaby'
-          },
-          offers: {
-            '@type': 'Offer',
-            availability: 'https://schema.org/InStock',
-            price: 50,
-            priceCurrency: 'USD',
-            priceSpecification: {
-              '@type': 'PriceSpecification',
-              price: 50,
-              priceCurrency: 'USD',
-              valueAddedTaxIncluded: false,
-              eligibleQuantity: {
-                '@type': 'QuantitativeValue',
-                minValue: product.moq || 50
-              }
+      itemListElement: products.map((product, idx) => {
+        const hasPrice = product.price && product.price > 0;
+        return {
+          '@type': 'ListItem',
+          position: idx + 1,
+          url: `https://b2bbaby.com/products/${product.slug}`,
+          item: {
+            '@type': 'Product',
+            '@id': `https://b2bbaby.com/products/${product.slug}#product`,
+            name: product.title,
+            description: product.description || product.description_en,
+            image: product.image || product.image_url,
+            brand: {
+              '@type': 'Brand',
+              name: 'B2Bbaby'
             },
-            description: 'Contact for bulk pricing and custom quotations'
-          },
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: 5.0,
-            reviewCount: 128,
-            bestRating: 5,
-            worstRating: 1,
-            ratingCount: 128
+            offers: {
+              '@type': 'Offer',
+              availability: 'https://schema.org/InStock',
+              ...(hasPrice ? {
+                price: product.price,
+                priceCurrency: 'USD',
+              } : {
+                priceCurrency: 'USD',
+              }),
+              priceSpecification: {
+                '@type': 'PriceSpecification',
+                ...(hasPrice ? {
+                  price: product.price,
+                  priceCurrency: 'USD',
+                } : {
+                  priceCurrency: 'USD',
+                }),
+                valueAddedTaxIncluded: false,
+                eligibleQuantity: {
+                  '@type': 'QuantitativeValue',
+                  minValue: product.moq || 50
+                }
+              },
+              description: 'B2B wholesale pricing. Contact for bulk quotes.'
+            }
           }
-        }
-      }))
+        };
+      })
     }
   };
 }
@@ -563,7 +528,6 @@ export function generateOEMServiceSchema(type: string) {
       name: service.name,
       priceSpecification: {
         '@type': 'PriceSpecification',
-        price: 50,
         priceCurrency: 'USD',
         valueAddedTaxIncluded: false,
         eligibleQuantity: {
